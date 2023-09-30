@@ -223,6 +223,19 @@ namespace HoudiniEngineUnity
                 int length);
         [DllImport(HEU_HoudiniVersion.HAPI_LIBRARY, CallingConvention = CallingConvention.Cdecl)]
         public static extern HAPI_Result
+        HAPI_GetMessageNodeCount(
+                ref HAPI_Session session,
+                HAPI_NodeId node_id,
+                out int count);
+        [DllImport(HEU_HoudiniVersion.HAPI_LIBRARY, CallingConvention = CallingConvention.Cdecl)]
+        public static extern HAPI_Result
+        HAPI_GetMessageNodeIds(
+                ref HAPI_Session session,
+                HAPI_NodeId node_id,
+                [Out] HAPI_NodeId[] message_node_ids_array,
+                int count);
+        [DllImport(HEU_HoudiniVersion.HAPI_LIBRARY, CallingConvention = CallingConvention.Cdecl)]
+        public static extern HAPI_Result
         HAPI_CheckForSpecificErrors(
                 ref HAPI_Session session,
                 HAPI_NodeId node_id,
