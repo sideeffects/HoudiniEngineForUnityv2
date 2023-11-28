@@ -148,8 +148,9 @@ namespace HoudiniEngineUnity
 
 		// Start at failed since this is several steps. Once connected, we can set it as such.
 		ConnectionState = SessionConnectionState.FAILED_TO_CONNECT;
-
-		HAPI_Result result = HEU_HAPIFunctions.HAPI_CreateInProcessSession(out _sessionData._HAPISession);
+		
+		HAPI_SessionInfo sessionInfo = new HAPI_SessionInfo();
+		HAPI_Result result = HEU_HAPIFunctions.HAPI_CreateInProcessSession(out _sessionData._HAPISession, ref sessionInfo);
 		if (result != HAPI_Result.HAPI_RESULT_SUCCESS)
 		{
 		    SetSessionErrorMsg(string.Format("Unable to start in-process session.\n Make sure {0} exists.", HEU_Platform.LibPath), true);
@@ -288,7 +289,8 @@ namespace HoudiniEngineUnity
 
 	    // Then create the session
 	    _sessionData._HAPISession.type = HAPI_SessionType.HAPI_SESSION_THRIFT;
-	    result = HEU_HAPIFunctions.HAPI_CreateThriftSocketSession(out _sessionData._HAPISession, hostName.AsByteArray(), serverPort);
+		HAPI_SessionInfo sessionInfo = new HAPI_SessionInfo();
+	    result = HEU_HAPIFunctions.HAPI_CreateThriftSocketSession(out _sessionData._HAPISession, hostName.AsByteArray(), serverPort, ref sessionInfo);
 	    if (result != HAPI_Result.HAPI_RESULT_SUCCESS)
 	    {
 		string harsMsg = "";
@@ -432,7 +434,8 @@ namespace HoudiniEngineUnity
 
 	    // Then create the pipe session
 	    _sessionData._HAPISession.type = HAPI_SessionType.HAPI_SESSION_THRIFT;
-	    result = HEU_HAPIFunctions.HAPI_CreateThriftNamedPipeSession(out _sessionData._HAPISession, pipeName.AsByteArray());
+		HAPI_SessionInfo sessionInfo = new HAPI_SessionInfo();
+	    result = HEU_HAPIFunctions.HAPI_CreateThriftNamedPipeSession(out _sessionData._HAPISession, pipeName.AsByteArray(), ref sessionInfo);
 	    if (result != HAPI_Result.HAPI_RESULT_SUCCESS)
 	    {
 		string harsMsg = "";
@@ -2181,9 +2184,9 @@ namespace HoudiniEngineUnity
 	    return (result == HAPI_Result.HAPI_RESULT_SUCCESS);
 	}
 
-	public override bool RenderCOP2ToImage(HAPI_NodeId copNodeID)
+	public override bool RenderCOPToImage(HAPI_NodeId copNodeID)
 	{
-	    HAPI_Result result = HEU_HAPIFunctions.HAPI_RenderCOP2ToImage(ref _sessionData._HAPISession, copNodeID);
+	    HAPI_Result result = HEU_HAPIFunctions.HAPI_RenderCOPToImage(ref _sessionData._HAPISession, copNodeID);
 	    HandleStatusResult(result, "Rendering COP To Image", false, true);
 	    return (result == HAPI_Result.HAPI_RESULT_SUCCESS);
 	}
