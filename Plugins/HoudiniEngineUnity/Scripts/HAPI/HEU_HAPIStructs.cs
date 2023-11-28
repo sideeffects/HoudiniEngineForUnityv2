@@ -112,6 +112,15 @@ namespace HoudiniEngineUnity
     };
 
     [StructLayout(LayoutKind.Sequential)]
+    [Serializable]
+    public partial struct HAPI_SessionInfo          //Configurations for sessions
+    {
+        [MarshalAs(UnmanagedType.I4)]
+        public int connectionCount;              //The number of subconnections in this session
+
+    };
+
+    [StructLayout(LayoutKind.Sequential)]
     public partial struct HAPI_ThriftServerOptions          //Options to configure a Thrift server being started from HARC.
     {
         [MarshalAs(UnmanagedType.U1)]
