@@ -230,6 +230,7 @@ namespace HoudiniEngineUnity
         HAPI_PRM_SCRIPT_TYPE_DIR,        //"dir" "direction"
         HAPI_PRM_SCRIPT_TYPE_COLOR,        //"color" "rgb"
         HAPI_PRM_SCRIPT_TYPE_COLOR4,        //"color4" "rgba"
+        HAPI_PRM_SCRIPT_TYPE_HUECIRCLE,        
         HAPI_PRM_SCRIPT_TYPE_OPPATH,        
         HAPI_PRM_SCRIPT_TYPE_OPLIST,        
         HAPI_PRM_SCRIPT_TYPE_OBJECT,        
@@ -596,6 +597,7 @@ namespace HoudiniEngineUnity
         HAPI_PDG_EVENT_WORKITEM_SET_FLOAT,        //Deprecated
         HAPI_PDG_EVENT_WORKITEM_SET_STRING,        //Deprecated
         HAPI_PDG_EVENT_WORKITEM_SET_FILE,        //Deprecated
+        HAPI_PDG_EVENT_WORKITEM_SET_DICT,        //Deprecated
         HAPI_PDG_EVENT_WORKITEM_SET_PYOBJECT,        //Deprecated
         HAPI_PDG_EVENT_WORKITEM_SET_GEOMETRY,        //Deprecated
         HAPI_PDG_EVENT_WORKITEM_MERGE,        //Deprecated
@@ -629,6 +631,13 @@ namespace HoudiniEngineUnity
         HAPI_PDG_WORKITEM_COOKED_FAIL,        
         HAPI_PDG_WORKITEM_COOKED_CANCEL,        
         HAPI_PDG_WORKITEM_DIRTY,        
+    };
+
+    public enum HAPI_TCP_PortType          
+    {
+        HAPI_TCP_PORT_ANY,        
+        HAPI_TCP_PORT_RANGE,        
+        HAPI_TCP_PORT_LIST,        
     };
 
 

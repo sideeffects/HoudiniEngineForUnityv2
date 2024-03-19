@@ -118,6 +118,17 @@ namespace HoudiniEngineUnity
         [MarshalAs(UnmanagedType.I4)]
         public int connectionCount;              //The number of subconnections in this session
 
+        public HAPI_TCP_PortType portType;              //Specification for the port numbers
+
+        [MarshalAs(UnmanagedType.I4)]
+        public int minPort;              //Specifies a range of port numbers [minPort maxPort]
+
+        [MarshalAs(UnmanagedType.I4)]
+        public int maxPort;              //Specifies a range of port numbers [minPort maxPort]
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = HEU_HAPIConstants.HAPI_MAX_NUM_CONNECTIONS, ArraySubType = UnmanagedType.I4)]
+        public int[] ports;              //Specifies a list of port numbers
+
     };
 
     [StructLayout(LayoutKind.Sequential)]

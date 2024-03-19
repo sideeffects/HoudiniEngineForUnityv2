@@ -103,6 +103,19 @@ namespace HoudiniEngineUnity
                 ref HAPI_SessionInfo session_info);
         [DllImport(HEU_HoudiniVersion.HAPI_LIBRARY, CallingConvention = CallingConvention.Cdecl)]
         public static extern HAPI_Result
+        HAPI_StartThriftSharedMemoryServer(
+                ref HAPI_ThriftServerOptions options,
+                byte[] shared_mem_name,
+                out HAPI_ProcessId process_id,
+                byte[] log_file);
+        [DllImport(HEU_HoudiniVersion.HAPI_LIBRARY, CallingConvention = CallingConvention.Cdecl)]
+        public static extern HAPI_Result
+        HAPI_CreateThriftSharedMemorySession(
+                out HAPI_Session session,
+                byte[] shared_mem_name,
+                ref HAPI_SessionInfo session_info);
+        [DllImport(HEU_HoudiniVersion.HAPI_LIBRARY, CallingConvention = CallingConvention.Cdecl)]
+        public static extern HAPI_Result
         HAPI_BindCustomImplementation(
                 HAPI_SessionType session_type,
                 byte[] dll_path);
@@ -221,6 +234,19 @@ namespace HoudiniEngineUnity
         [DllImport(HEU_HoudiniVersion.HAPI_LIBRARY, CallingConvention = CallingConvention.Cdecl)]
         public static extern HAPI_Result
         HAPI_GetComposedNodeCookResult(
+                ref HAPI_Session session,
+                byte[] string_value,
+                int length);
+        [DllImport(HEU_HoudiniVersion.HAPI_LIBRARY, CallingConvention = CallingConvention.Cdecl)]
+        public static extern HAPI_Result
+        HAPI_GetNodeCookResultLength(
+                ref HAPI_Session session,
+                HAPI_NodeId node_id,
+                HAPI_StatusVerbosity verbosity,
+                out int buffer_length);
+        [DllImport(HEU_HoudiniVersion.HAPI_LIBRARY, CallingConvention = CallingConvention.Cdecl)]
+        public static extern HAPI_Result
+        HAPI_GetNodeCookResult(
                 ref HAPI_Session session,
                 byte[] string_value,
                 int length);
