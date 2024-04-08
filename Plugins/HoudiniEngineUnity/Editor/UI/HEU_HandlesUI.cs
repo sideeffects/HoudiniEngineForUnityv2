@@ -1,28 +1,28 @@
 ﻿/*
-* Copyright (c) <2020> Side Effects Software Inc.
-* All rights reserved.
-*
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-*
-* 1. Redistributions of source code must retain the above copyright notice,
-*    this list of conditions and the following disclaimer.
-*
-* 2. The name of Side Effects Software may not be used to endorse or
-*    promote products derived from this software without specific prior
-*    written permission.
-*
-* THIS SOFTWARE IS PROVIDED BY SIDE EFFECTS SOFTWARE "AS IS" AND ANY EXPRESS
-* OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
-* OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN
-* NO EVENT SHALL SIDE EFFECTS SOFTWARE BE LIABLE FOR ANY DIRECT, INDIRECT,
-* INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-* LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
-* OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
-* LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-* NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
-* EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ * Copyright (c) <2020> Side Effects Software Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ *    this list of conditions and the following disclaimer.
+ *
+ * 2. The name of Side Effects Software may not be used to endorse or
+ *    promote products derived from this software without specific prior
+ *    written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY SIDE EFFECTS SOFTWARE "AS IS" AND ANY EXPRESS
+ * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN
+ * NO EVENT SHALL SIDE EFFECTS SOFTWARE BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+ * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 
 
 using UnityEngine;
@@ -38,255 +38,266 @@ namespace HoudiniEngineUnity
     [CustomEditor(typeof(HEU_Handle))]
     public class HEU_HandlesUI : Editor
     {
-	public enum HEU_HandleManipMode
-	{
-	    MOVE,
-	    ROTATE,
-	    SCALE
-	}
+        public enum HEU_HandleManipMode
+        {
+            MOVE,
+            ROTATE,
+            SCALE
+        }
 
-	// LOGIC ------------------------------------------------------------------------------------------------------
+        // LOGIC ------------------------------------------------------------------------------------------------------
 
-	internal List<HEU_Handle> CacheHandles()
-	{
-	    List<HEU_Handle> handles = new List<HEU_Handle>();
-	    foreach (Object targetObject in targets)
-	    {
-		HEU_Handle handle = targetObject as HEU_Handle;
-		if (handle != null)
-		{
-		    handles.Add(handle);
-		}
-	    }
-	    return handles;
-	}
+        internal List<HEU_Handle> CacheHandles()
+        {
+            List<HEU_Handle> handles = new List<HEU_Handle>();
+            foreach (Object targetObject in targets)
+            {
+                HEU_Handle handle = targetObject as HEU_Handle;
+                if (handle != null)
+                {
+                    handles.Add(handle);
+                }
+            }
 
-	public bool DrawHandles(HEU_HoudiniAsset asset)
-	{
-	    List<HEU_Handle> handles = CacheHandles();
+            return handles;
+        }
 
-	    HEU_HandleManipMode manipMode = GetCurrentGlobalManipMode();
+        public bool DrawHandles(HEU_HoudiniAsset asset)
+        {
+            List<HEU_Handle> handles = CacheHandles();
 
-	    GUIStyle textStyle = new GUIStyle(EditorStyles.textField);
-	    textStyle.contentOffset = new Vector2(1.4f, 1.4f);
+            HEU_HandleManipMode manipMode = GetCurrentGlobalManipMode();
 
-	    HEU_Parameters assetParameters = asset.Parameters;
-	    SerializedObject serializedParametersObject = new SerializedObject(assetParameters);
-	    SerializedProperty parameterListProperty = HEU_EditorUtility.GetSerializedProperty(serializedParametersObject, "_parameterList");
+            GUIStyle textStyle = new GUIStyle(EditorStyles.textField);
+            textStyle.contentOffset = new Vector2(1.4f, 1.4f);
 
-	    bool bChanged = false;
+            HEU_Parameters assetParameters = asset.Parameters;
+            SerializedObject serializedParametersObject = new SerializedObject(assetParameters);
+            SerializedProperty parameterListProperty =
+                HEU_EditorUtility.GetSerializedProperty(serializedParametersObject, "_parameterList");
 
-	    Matrix4x4 defaultMatrix = Handles.matrix;
+            bool bChanged = false;
 
-	    foreach (HEU_Handle handle in handles)
-	    {
-		if (handle.HandleType == HEU_Handle.HEU_HandleType.XFORM)
-		{
-		    Handles.matrix = asset.transform.localToWorldMatrix;
+            Matrix4x4 defaultMatrix = Handles.matrix;
 
-		    Vector3 handlePosition = handle.HandlePosition;
-		    Quaternion handleRotation = handle.HandleRotation;
-		    Vector3 handleScale = handle.HandleScale;
+            foreach (HEU_Handle handle in handles)
+            {
+                if (handle.HandleType == HEU_Handle.HEU_HandleType.XFORM)
+                {
+                    Handles.matrix = asset.transform.localToWorldMatrix;
 
-		    string handleName = handle.HandleName;
+                    Vector3 handlePosition = handle.HandlePosition;
+                    Quaternion handleRotation = handle.HandleRotation;
+                    Vector3 handleScale = handle.HandleScale;
 
-		    if (manipMode == HEU_HandleManipMode.MOVE)
-		    {
-			if (!handle.HasTranslateHandle())
-			{
-			    continue;
-			}
+                    string handleName = handle.HandleName;
 
-			bool bDisabled = handle.IsTranslateHandleDisabled();
-			if (bDisabled)
-			{
-			    handleName += " (disabled)";
-			}
+                    if (manipMode == HEU_HandleManipMode.MOVE)
+                    {
+                        if (!handle.HasTranslateHandle())
+                        {
+                            continue;
+                        }
 
-			GUIContent labelContent = new GUIContent(handleName);
-			labelContent.tooltip = handleName;
+                        bool bDisabled = handle.IsTranslateHandleDisabled();
+                        if (bDisabled)
+                        {
+                            handleName += " (disabled)";
+                        }
 
-			Handles.Label(handlePosition, labelContent, textStyle);
+                        GUIContent labelContent = new GUIContent(handleName);
+                        labelContent.tooltip = handleName;
 
-			if (bDisabled)
-			{
-			    bool bLighting = Handles.lighting;
-			    Handles.lighting = false;
-			    Handles.PositionHandle(handlePosition, handleRotation);
-			    Handles.lighting = bLighting;
-			    continue;
-			}
+                        Handles.Label(handlePosition, labelContent, textStyle);
 
-			Vector3 updatedPosition = Handles.PositionHandle(handlePosition, handleRotation);
-			if (updatedPosition != handlePosition)
-			{
-			    if (!handle.GetUpdatedPosition(asset, ref updatedPosition))
-			    {
-				continue;
-			    }
+                        if (bDisabled)
+                        {
+                            bool bLighting = Handles.lighting;
+                            Handles.lighting = false;
+                            Handles.PositionHandle(handlePosition, handleRotation);
+                            Handles.lighting = bLighting;
+                            continue;
+                        }
 
-			    HEU_HandleParamBinding translateBinding = handle.GetTranslateBinding();
-			    if (translateBinding != null)
-			    {
-				HEU_ParameterData paramData = assetParameters.GetParameterWithParmID(translateBinding._parmID);
-				if (paramData != null && paramData._unityIndex < parameterListProperty.arraySize)
-				{
-				    SerializedProperty paramDataProperty = parameterListProperty.GetArrayElementAtIndex(paramData._unityIndex);
-				    float[] posFloats = new float[3];
-				    posFloats[0] = updatedPosition[0];
-				    posFloats[1] = updatedPosition[1];
-				    posFloats[2] = updatedPosition[2];
-				    bChanged |= UpdateFloatArrayProperty(paramDataProperty, posFloats, translateBinding);
-				}
-			    }
-			}
-		    }
-		    else if (manipMode == HEU_HandleManipMode.ROTATE)
-		    {
-			if (!handle.HasRotateHandle())
-			{
-			    continue;
-			}
+                        Vector3 updatedPosition = Handles.PositionHandle(handlePosition, handleRotation);
+                        if (updatedPosition != handlePosition)
+                        {
+                            if (!handle.GetUpdatedPosition(asset, ref updatedPosition))
+                            {
+                                continue;
+                            }
 
-			bool bDisabled = handle.IsRotateHandleDisabled();
-			if (bDisabled)
-			{
-			    handleName += " (disabled)";
-			}
+                            HEU_HandleParamBinding translateBinding = handle.GetTranslateBinding();
+                            if (translateBinding != null)
+                            {
+                                HEU_ParameterData paramData =
+                                    assetParameters.GetParameterWithParmID(translateBinding._parmID);
+                                if (paramData != null && paramData._unityIndex < parameterListProperty.arraySize)
+                                {
+                                    SerializedProperty paramDataProperty =
+                                        parameterListProperty.GetArrayElementAtIndex(paramData._unityIndex);
+                                    float[] posFloats = new float[3];
+                                    posFloats[0] = updatedPosition[0];
+                                    posFloats[1] = updatedPosition[1];
+                                    posFloats[2] = updatedPosition[2];
+                                    bChanged |= UpdateFloatArrayProperty(paramDataProperty, posFloats,
+                                        translateBinding);
+                                }
+                            }
+                        }
+                    }
+                    else if (manipMode == HEU_HandleManipMode.ROTATE)
+                    {
+                        if (!handle.HasRotateHandle())
+                        {
+                            continue;
+                        }
 
-			GUIContent labelContent = new GUIContent(handleName);
-			labelContent.tooltip = handleName;
+                        bool bDisabled = handle.IsRotateHandleDisabled();
+                        if (bDisabled)
+                        {
+                            handleName += " (disabled)";
+                        }
 
-			Handles.Label(handlePosition, labelContent, textStyle);
+                        GUIContent labelContent = new GUIContent(handleName);
+                        labelContent.tooltip = handleName;
 
-			if (bDisabled)
-			{
-			    bool bLighting = Handles.lighting;
-			    Handles.lighting = false;
-			    Handles.RotationHandle(handleRotation, handlePosition);
-			    Handles.lighting = bLighting;
-			    continue;
-			}
+                        Handles.Label(handlePosition, labelContent, textStyle);
 
-			Quaternion updatedRotation = Handles.RotationHandle(handleRotation, handlePosition);
-			if (updatedRotation != handleRotation)
-			{
-			    if (!handle.GetUpdatedRotation(asset, ref updatedRotation))
-			    {
-				continue;
-			    }
+                        if (bDisabled)
+                        {
+                            bool bLighting = Handles.lighting;
+                            Handles.lighting = false;
+                            Handles.RotationHandle(handleRotation, handlePosition);
+                            Handles.lighting = bLighting;
+                            continue;
+                        }
 
-			    HEU_HandleParamBinding rotateBinding = handle.GetRotateBinding();
-			    if (rotateBinding != null)
-			    {
-				HEU_ParameterData paramData = assetParameters.GetParameterWithParmID(rotateBinding._parmID);
-				if (paramData != null && paramData._unityIndex < parameterListProperty.arraySize)
-				{
-				    SerializedProperty paramDataProperty = parameterListProperty.GetArrayElementAtIndex(paramData._unityIndex);
-				    float[] rotFloats = new float[3];
-				    rotFloats[0] = updatedRotation[0];
-				    rotFloats[1] = updatedRotation[1];
-				    rotFloats[2] = updatedRotation[2];
-				    bChanged |= UpdateFloatArrayProperty(paramDataProperty, rotFloats, rotateBinding);
-				}
-			    }
-			}
-		    }
-		    else if (manipMode == HEU_HandleManipMode.SCALE)
-		    {
-			if (!handle.HasScaleHandle())
-			{
-			    continue;
-			}
+                        Quaternion updatedRotation = Handles.RotationHandle(handleRotation, handlePosition);
+                        if (updatedRotation != handleRotation)
+                        {
+                            if (!handle.GetUpdatedRotation(asset, ref updatedRotation))
+                            {
+                                continue;
+                            }
 
-			bool bDisabled = handle.IsScaleHandleDisabled();
-			if (bDisabled)
-			{
-			    handleName += " (disabled)";
-			}
+                            HEU_HandleParamBinding rotateBinding = handle.GetRotateBinding();
+                            if (rotateBinding != null)
+                            {
+                                HEU_ParameterData paramData =
+                                    assetParameters.GetParameterWithParmID(rotateBinding._parmID);
+                                if (paramData != null && paramData._unityIndex < parameterListProperty.arraySize)
+                                {
+                                    SerializedProperty paramDataProperty =
+                                        parameterListProperty.GetArrayElementAtIndex(paramData._unityIndex);
+                                    float[] rotFloats = new float[3];
+                                    rotFloats[0] = updatedRotation[0];
+                                    rotFloats[1] = updatedRotation[1];
+                                    rotFloats[2] = updatedRotation[2];
+                                    bChanged |= UpdateFloatArrayProperty(paramDataProperty, rotFloats, rotateBinding);
+                                }
+                            }
+                        }
+                    }
+                    else if (manipMode == HEU_HandleManipMode.SCALE)
+                    {
+                        if (!handle.HasScaleHandle())
+                        {
+                            continue;
+                        }
 
-			GUIContent labelContent = new GUIContent(handleName);
-			labelContent.tooltip = handleName;
+                        bool bDisabled = handle.IsScaleHandleDisabled();
+                        if (bDisabled)
+                        {
+                            handleName += " (disabled)";
+                        }
 
-			Handles.Label(handlePosition, labelContent, textStyle);
+                        GUIContent labelContent = new GUIContent(handleName);
+                        labelContent.tooltip = handleName;
 
-			if (bDisabled)
-			{
-			    bool bLighting = Handles.lighting;
-			    Handles.lighting = false;
-			    Handles.ScaleHandle(handleScale, handlePosition, handleRotation, 1f);
-			    Handles.lighting = bLighting;
-			    continue;
-			}
+                        Handles.Label(handlePosition, labelContent, textStyle);
 
-			Vector3 updatedScale = Handles.ScaleHandle(handleScale, handlePosition, handleRotation, 1f);
-			if (updatedScale != handleScale)
-			{
-			    HEU_HandleParamBinding scaleBinding = handle.GetScaleBinding();
-			    if (scaleBinding != null)
-			    {
-				HEU_ParameterData paramData = assetParameters.GetParameterWithParmID(scaleBinding._parmID);
-				if (paramData != null && paramData._unityIndex < parameterListProperty.arraySize)
-				{
-				    SerializedProperty paramDataProperty = parameterListProperty.GetArrayElementAtIndex(paramData._unityIndex);
-				    float[] scaleFloats = new float[3];
-				    scaleFloats[0] = updatedScale[0];
-				    scaleFloats[1] = updatedScale[1];
-				    scaleFloats[2] = updatedScale[2];
-				    bChanged |= UpdateFloatArrayProperty(paramDataProperty, scaleFloats, scaleBinding);
-				}
-			    }
-			}
-		    }
-		}
-	    }
+                        if (bDisabled)
+                        {
+                            bool bLighting = Handles.lighting;
+                            Handles.lighting = false;
+                            Handles.ScaleHandle(handleScale, handlePosition, handleRotation, 1f);
+                            Handles.lighting = bLighting;
+                            continue;
+                        }
 
-	    if (bChanged)
-	    {
-		serializedParametersObject.ApplyModifiedProperties();
-	    }
+                        Vector3 updatedScale = Handles.ScaleHandle(handleScale, handlePosition, handleRotation, 1f);
+                        if (updatedScale != handleScale)
+                        {
+                            HEU_HandleParamBinding scaleBinding = handle.GetScaleBinding();
+                            if (scaleBinding != null)
+                            {
+                                HEU_ParameterData paramData =
+                                    assetParameters.GetParameterWithParmID(scaleBinding._parmID);
+                                if (paramData != null && paramData._unityIndex < parameterListProperty.arraySize)
+                                {
+                                    SerializedProperty paramDataProperty =
+                                        parameterListProperty.GetArrayElementAtIndex(paramData._unityIndex);
+                                    float[] scaleFloats = new float[3];
+                                    scaleFloats[0] = updatedScale[0];
+                                    scaleFloats[1] = updatedScale[1];
+                                    scaleFloats[2] = updatedScale[2];
+                                    bChanged |= UpdateFloatArrayProperty(paramDataProperty, scaleFloats, scaleBinding);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
-	    Handles.matrix = defaultMatrix;
+            if (bChanged)
+            {
+                serializedParametersObject.ApplyModifiedProperties();
+            }
 
-	    return bChanged;
-	}
+            Handles.matrix = defaultMatrix;
 
-	internal bool UpdateFloatArrayProperty(SerializedProperty paramDataProperty, float[] inValues, HEU_HandleParamBinding bindingParam)
-	{
-	    bool bChanged = false;
-	    SerializedProperty floatValuesProperty = paramDataProperty.FindPropertyRelative("_floatValues");
+            return bChanged;
+        }
 
-	    int numChannels = bindingParam._boundChannels.Length;
-	    for (int i = 0; i < numChannels; ++i)
-	    {
-		if (bindingParam._boundChannels[i] && floatValuesProperty.GetArrayElementAtIndex(i).floatValue != inValues[i])
-		{
-		    floatValuesProperty.GetArrayElementAtIndex(i).floatValue = inValues[i];
-		    bChanged = true;
-		}
-	    }
+        internal bool UpdateFloatArrayProperty(SerializedProperty paramDataProperty, float[] inValues,
+            HEU_HandleParamBinding bindingParam)
+        {
+            bool bChanged = false;
+            SerializedProperty floatValuesProperty = paramDataProperty.FindPropertyRelative("_floatValues");
 
-	    return bChanged;
-	}
+            int numChannels = bindingParam._boundChannels.Length;
+            for (int i = 0; i < numChannels; ++i)
+            {
+                if (bindingParam._boundChannels[i] &&
+                    floatValuesProperty.GetArrayElementAtIndex(i).floatValue != inValues[i])
+                {
+                    floatValuesProperty.GetArrayElementAtIndex(i).floatValue = inValues[i];
+                    bChanged = true;
+                }
+            }
 
-	public static HEU_HandleManipMode GetCurrentGlobalManipMode()
-	{
-	    string manipTool = Tools.current.ToString();
-	    HEU_HandleManipMode manipMode = HEU_HandleManipMode.MOVE;
-	    if (manipTool.Equals("Move"))
-	    {
-		manipMode = HEU_HandleManipMode.MOVE;
-	    }
-	    else if (manipTool.Equals("Rotate"))
-	    {
-		manipMode = HEU_HandleManipMode.ROTATE;
-	    }
-	    else if (manipTool.Equals("Scale"))
-	    {
-		manipMode = HEU_HandleManipMode.SCALE;
-	    }
-	    return manipMode;
-	}
+            return bChanged;
+        }
+
+        public static HEU_HandleManipMode GetCurrentGlobalManipMode()
+        {
+            string manipTool = Tools.current.ToString();
+            HEU_HandleManipMode manipMode = HEU_HandleManipMode.MOVE;
+            if (manipTool.Equals("Move"))
+            {
+                manipMode = HEU_HandleManipMode.MOVE;
+            }
+            else if (manipTool.Equals("Rotate"))
+            {
+                manipMode = HEU_HandleManipMode.ROTATE;
+            }
+            else if (manipTool.Equals("Scale"))
+            {
+                manipMode = HEU_HandleManipMode.SCALE;
+            }
+
+            return manipMode;
+        }
     }
-
-}   // HoudiniEngineUnity
+} // HoudiniEngineUnity
