@@ -592,12 +592,14 @@ namespace HoudiniEngineUnity
         public static extern HAPI_Result
         HAPI_CreateInputNode(
                 ref HAPI_Session session,
+                HAPI_NodeId parent_node_id,
                 out HAPI_NodeId node_id,
                 byte[] name);
         [DllImport(HEU_HoudiniVersion.HAPI_LIBRARY, CallingConvention = CallingConvention.Cdecl)]
         public static extern HAPI_Result
         HAPI_CreateInputCurveNode(
                 ref HAPI_Session session,
+                HAPI_NodeId parent_node_id,
                 out HAPI_NodeId node_id,
                 byte[] name);
         [DllImport(HEU_HoudiniVersion.HAPI_LIBRARY, CallingConvention = CallingConvention.Cdecl)]
