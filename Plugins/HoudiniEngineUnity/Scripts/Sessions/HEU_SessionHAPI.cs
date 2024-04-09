@@ -2445,14 +2445,14 @@ namespace HoudiniEngineUnity
 
 	public override bool CreateInputNode(out HAPI_NodeId nodeID, string name)
 	{
-	    HAPI_Result result = HEU_HAPIFunctions.HAPI_CreateInputNode(ref _sessionData._HAPISession, out nodeID, name.AsByteArray());
+	    HAPI_Result result = HEU_HAPIFunctions.HAPI_CreateInputNode(ref _sessionData._HAPISession, -1, out nodeID, name.AsByteArray());
 	    HandleStatusResult(result, "Creating Input Node", false, true);
 	    return (result == HAPI_Result.HAPI_RESULT_SUCCESS);
 	}
 
 	public override bool CreateInputCurveNode(out HAPI_NodeId nodeID, string name)
 	{
-	    HAPI_Result result = HEU_HAPIFunctions.HAPI_CreateInputCurveNode(ref _sessionData._HAPISession, out nodeID, name.AsByteArray());
+	    HAPI_Result result = HEU_HAPIFunctions.HAPI_CreateInputCurveNode(ref _sessionData._HAPISession, -1, out nodeID, name.AsByteArray());
 	    HandleStatusResult(result, "Creating Input Curve Node", false, true);
 	    return (result == HAPI_Result.HAPI_RESULT_SUCCESS);
 	}
