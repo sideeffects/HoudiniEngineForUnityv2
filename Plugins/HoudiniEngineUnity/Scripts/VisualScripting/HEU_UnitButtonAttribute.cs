@@ -10,14 +10,14 @@ namespace HoudiniEngineUnity
     public class HEU_UnitButtonAttribute : Attribute
     {
         public string functionName;
-	public string buttonLabel;
-	public int buttonWidth;
+        public string buttonLabel;
+        public int buttonWidth;
 
         public HEU_UnitButtonAttribute(string fnName, string btnLabel, int btnWidth)
         {
             this.functionName = fnName;
-	    this.buttonLabel = btnLabel;
-	    this.buttonWidth = btnWidth;
+            this.buttonLabel = btnLabel;
+            this.buttonWidth = btnWidth;
         }
     }
 }
