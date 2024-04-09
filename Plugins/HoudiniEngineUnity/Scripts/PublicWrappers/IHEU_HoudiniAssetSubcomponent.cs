@@ -51,8 +51,8 @@ namespace HoudiniEngineUnity
 
 
     /// <summary>
-    ///     A subcomponent of an HDA (HEU_HoudiniAsset)
-    ///     Used primarily as a helper interface
+    /// A subcomponent of an HDA (HEU_HoudiniAsset)
+    /// Used primarily as a helper interface
     /// </summary>
     public interface IHEU_HoudiniAssetSubcomponent
     {

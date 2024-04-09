@@ -31,7 +31,7 @@ using UnityEngine;
 namespace HoudiniEngineUnity
 {
     /// <summary>
-    ///     Container for plugin global settings.
+    /// Container for plugin global settings.
     /// </summary>
     public static class HEU_PluginSettings
     {
@@ -745,7 +745,7 @@ namespace HoudiniEngineUnity
             get
             {
 #if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
-                string path = HEU_Platform.GetHoudiniEnginePath();
+		string path = HEU_Platform.GetHoudiniEnginePath();
 #else
                 string path = HEU_Platform.GetHoudiniEnginePath() + HEU_HoudiniVersion.HAPI_BIN_PATH +
                               HEU_Platform.DirectorySeparator + "houdini";

@@ -32,13 +32,13 @@ using UnityEngine;
 namespace HoudiniEngineUnity
 {
     /// <summary>
-    ///     Base class that wraps threaded tasks.
-    ///     Derive from this for custom threaded tasks.
+    /// Base class that wraps threaded tasks.
+    /// Derive from this for custom threaded tasks.
     /// </summary>
     public class HEU_ThreadedTask
     {
         /// <summary>
-        ///     Start the work in a new thread, with priority and background set.
+        /// Start the work in a new thread, with priority and background set.
         /// </summary>
         public virtual void Start()
         {
@@ -65,7 +65,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Request the thread to stop.
+        /// Request the thread to stop.
         /// </summary>
         public virtual void Stop()
         {
@@ -76,7 +76,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Abort the thread immediately.
+        /// Abort the thread immediately.
         /// </summary>
         public virtual void Abort()
         {
@@ -88,8 +88,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Reset this wrapper's state.
-        ///     Aborts running thread.
+        /// Reset this wrapper's state.
+        /// Aborts running thread.
         /// </summary>
         public virtual void Reset()
         {
@@ -113,8 +113,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Check if thread has finished or stopped,
-        ///     and does callbacks for either state.
+        /// Check if thread has finished or stopped,
+        /// and does callbacks for either state.
         /// </summary>
         public virtual void Update()
         {
@@ -139,36 +139,36 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Do the actual work. Derived classes should override this.
-        ///     Not thread-safe.
+        /// Do the actual work. Derived classes should override this.
+        /// Not thread-safe.
         /// </summary>
         protected virtual void DoWork()
         {
         }
 
         /// <summary>
-        ///     Callback when task is completed.
+        /// Callback when task is completed.
         /// </summary>
         protected virtual void OnComplete()
         {
         }
 
         /// <summary>
-        ///     Callback when task is stopped.
+        /// Callback when task is stopped.
         /// </summary>
         protected virtual void OnStopped()
         {
         }
 
         /// <summary>
-        ///     Clean up this thread wrapper.
+        /// Clean up this thread wrapper.
         /// </summary>
         protected virtual void CleanUp()
         {
         }
 
         /// <summary>
-        ///     Internal thread function to execute the work.
+        /// Internal thread function to execute the work.
         /// </summary>
         private void Run()
         {
@@ -206,7 +206,7 @@ namespace HoudiniEngineUnity
         public string TaskName => _name;
 
         /// <summary>
-        ///     Get or set task is complete
+        /// Get or set task is complete
         /// </summary>
         public bool IsComplete
         {
@@ -231,7 +231,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Get or set work is still executing (thread running)
+        /// Get or set work is still executing (thread running)
         /// </summary>
         public bool IsActive
         {
@@ -256,7 +256,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Get or set request for thread to stop
+        /// Get or set request for thread to stop
         /// </summary>
         public bool StopRequested
         {
@@ -281,7 +281,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Get or set thread priority
+        /// Get or set thread priority
         /// </summary>
         public System.Threading.ThreadPriority Priority
         {
@@ -290,7 +290,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Get or set thread should run in background or not
+        /// Get or set thread should run in background or not
         /// </summary>
         public bool IsBackground
         {

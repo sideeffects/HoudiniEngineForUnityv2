@@ -34,13 +34,13 @@ namespace HoudiniEngineUnity
     using HAPI_NodeId = System.Int32;
 
     /// <summary>
-    ///     Utility class for managing input interfaces and uploading input data.
-    ///     HEU_InputInterface-derived classes should register with this class
-    ///     so that they will be considered for uploading input gameobjects.
-    ///     When an input object needs to be uploaded, this uses the registered interface
-    ///     with the highest prioerity that can upload that object.
-    ///     The plugins set of input interfaces (Mesh, Terrain) are registered with this class
-    ///     and can be overriden by adding input interfaces that can also upload those object types.
+    /// Utility class for managing input interfaces and uploading input data.
+    /// HEU_InputInterface-derived classes should register with this class
+    /// so that they will be considered for uploading input gameobjects.
+    /// When an input object needs to be uploaded, this uses the registered interface
+    /// with the highest prioerity that can upload that object.
+    /// The plugins set of input interfaces (Mesh, Terrain) are registered with this class
+    /// and can be overriden by adding input interfaces that can also upload those object types.
     /// </summary>
     public static class HEU_InputUtility
     {
@@ -48,8 +48,8 @@ namespace HoudiniEngineUnity
         private static List<HEU_InputInterface> _inputInterfaces = new List<HEU_InputInterface>();
 
         /// <summary>
-        ///     Return the highest priority in the registered interface list.
-        ///     Use the returned value + 1 to set a higher priority interface.
+        /// Return the highest priority in the registered interface list.
+        /// Use the returned value + 1 to set a higher priority interface.
         /// </summary>
         /// <returns>Integer representing highest priority in the registered interface list</returns>
         public static int GetHighestPriority()
@@ -58,7 +58,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Add the given inputInterface to the registered interface list based on its priority.
+        /// Add the given inputInterface to the registered interface list based on its priority.
         /// </summary>
         /// <param name="inputInterface">Interface to register</param>
         public static void RegisterInputInterface(HEU_InputInterface inputInterface)
@@ -95,7 +95,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Remove the given input interface from list of registered interfaces.
+        /// Remove the given input interface from list of registered interfaces.
         /// </summary>
         /// <param name="inputInterface">The input interface to unregister</param>
         public static void UnregisterInputInterface(HEU_InputInterface inputInterface)
@@ -104,8 +104,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Return the input interface with the given type.
-        ///     Searches from highest priority to lowest.
+        /// Return the input interface with the given type.
+        /// Searches from highest priority to lowest.
         /// </summary>
         /// <param name="type">Type of interface to find</param>
         /// <returns>Found input interface or null</returns>
@@ -124,8 +124,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Returns the input interface that can upload the given inputObject
-        ///     with the highest priority.
+        /// Returns the input interface that can upload the given inputObject
+        /// with the highest priority.
         /// </summary>
         /// <param name="inputObject">The gameobject to check if the interfaces can upload it</param>
         /// <returns>Compatible input interface or null</returns>
@@ -146,9 +146,9 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Return the input interface that can upload the given inputObjectInfo's data.
-        ///     It checks the inputObjectInfo._inputInterfaceType to see if it was previously
-        ///     uploaded, and if so, uses the same interface.
+        /// Return the input interface that can upload the given inputObjectInfo's data.
+        /// It checks the inputObjectInfo._inputInterfaceType to see if it was previously
+        /// uploaded, and if so, uses the same interface.
         /// </summary>
         /// <param name="inputObjectInfo">Input object info used to find the interface</param>
         /// <returns>Compatible input interface or null</returns>
@@ -173,11 +173,11 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Create an input node network and upload the given set of input objects.
-        ///     This creates a SOP/merge node, and input nodes for each object in inputObjects
-        ///     which are then connected to the merge node.
-        ///     It finds the input interface that supports each object in inputObjects for creating
-        ///     the input node and uploading the data based on the type of data.
+        /// Create an input node network and upload the given set of input objects.
+        /// This creates a SOP/merge node, and input nodes for each object in inputObjects
+        /// which are then connected to the merge node.
+        /// It finds the input interface that supports each object in inputObjects for creating
+        /// the input node and uploading the data based on the type of data.
         /// </summary>
         /// <param name="session">Session to create the input node in</param>
         /// <param name="assetID">Main asset ID</param>
@@ -233,11 +233,11 @@ namespace HoudiniEngineUnity
                     tilemapInterface.Initialize(inputNode.TilemapSettings);
                 }
 #if UNITY_SPLINES_INSTALLED
-                if (inputInterfaceType == typeof(HEU_InputInterfaceSpline))
-                {
-                    HEU_InputInterfaceSpline splineInterface = inputInterface as HEU_InputInterfaceSpline;
-                    splineInterface.Initialize(inputNode.SplineSettings);
-                }
+		if (inputInterfaceType == typeof(HEU_InputInterfaceSpline))
+		{
+			HEU_InputInterfaceSpline splineInterface = inputInterface as HEU_InputInterfaceSpline;
+			splineInterface.Initialize(inputNode.SplineSettings);
+		}
 #endif
 
                 bool bResult = inputInterface.CreateInputNodeWithDataUpload(session, connectMergeID,
@@ -321,7 +321,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Set the input node's transform.
+        /// Set the input node's transform.
         /// </summary>
         /// <param name="session">Session that the input node exists in</param>
         /// <param name="inputObject">The input object info containing data about the input</param>

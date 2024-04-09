@@ -39,12 +39,12 @@ namespace HoudiniEngineUnity
     public static class HEU_TerrainUtility
     {
         /// <summary>
-        ///     Creates terrain from given volumeInfo for the given gameObject.
-        ///     If gameObject has a valid Terrain component, then it is reused.
-        ///     Similarly, if the Terrain component has a valid TerrainData, or if the given terrainData is valid, then it is used.
-        ///     Otherwise a new TerrainData is created and set to the Terrain.
-        ///     Populates the volumePositionOffset with the heightfield offset position.
-        ///     Returns true if successfully created the terrain, otherwise false.
+        /// Creates terrain from given volumeInfo for the given gameObject.
+        /// If gameObject has a valid Terrain component, then it is reused.
+        /// Similarly, if the Terrain component has a valid TerrainData, or if the given terrainData is valid, then it is used.
+        /// Otherwise a new TerrainData is created and set to the Terrain.
+        /// Populates the volumePositionOffset with the heightfield offset position.
+        /// Returns true if successfully created the terrain, otherwise false.
         /// </summary>
         /// <param name="session">Houdini Engine session to query heightfield data from</param>
         /// <param name="volumeInfo">Volume info pertaining to the heightfield to generate the Terrain from</param>
@@ -266,8 +266,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Sets a material on the given Terrain object.
-        ///     Currently sets the default Terrain material from the plugin settings, if its valid.
+        /// Sets a material on the given Terrain object.
+        /// Currently sets the default Terrain material from the plugin settings, if its valid.
         /// </summary>
         /// <param name="terrain">The terrain to set material for</param>
         public static void SetTerrainMaterial(Terrain terrain, string specifiedMaterialName,
@@ -285,8 +285,8 @@ namespace HoudiniEngineUnity
 #if UNITY_2019_2_OR_NEWER
                     terrain.materialTemplate = material;
 #else
-                    terrain.materialType = Terrain.MaterialType.Custom;
-                    terrain.materialTemplate = material;
+	                terrain.materialType = Terrain.MaterialType.Custom;
+	                terrain.materialTemplate = material;
 #endif
                 }
                 else
@@ -317,8 +317,8 @@ namespace HoudiniEngineUnity
 #if UNITY_2019_2_OR_NEWER
                     terrain.materialTemplate = material;
 #else
-                    terrain.materialType = Terrain.MaterialType.Custom;
-                    terrain.materialTemplate = material;
+	                terrain.materialType = Terrain.MaterialType.Custom;
+	                terrain.materialTemplate = material;
 #endif
                 }
                 else
@@ -365,8 +365,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Retrieves the heightmap from Houdini for the given volume part, converts to Unity coordinates,
-        ///     normalizes to 0 and 1, along with min and max height values, as well as the range.
+        /// Retrieves the heightmap from Houdini for the given volume part, converts to Unity coordinates,
+        /// normalizes to 0 and 1, along with min and max height values, as well as the range.
         /// </summary>
         /// <param name="session">Current Houdini session</param>
         /// <param name="geoID">Geometry object ID</param>
@@ -493,16 +493,14 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Returns the DetailLayer values for the given heightfield part.
-        ///     Converts from HF float[] values into int[,] array.
+        /// Returns the DetailLayer values for the given heightfield part.
+        /// Converts from HF float[] values into int[,] array.
         /// </summary>
         /// <param name="session">Houdini Engine session to query</param>
         /// <param name="geoID">The geometry ID in Houdini</param>
         /// <param name="partID">The part ID in Houdini</param>
-        /// <param name="detailResolution">
-        ///     Out value specifying the detail resolution acquired
-        ///     from the heightfield size.
-        /// </param>
+        /// <param name="detailResolution">Out value specifying the detail resolution acquired
+        /// from the heightfield size.</param>
         /// <returns>The DetailLayer values</returns>
         public static int[,] GetDetailMapFromPart(HEU_SessionBase session, HAPI_NodeId geoID, HAPI_PartId partID,
             out int detailResolution)
@@ -563,7 +561,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Retrieve the heightmap from Houdini for given part (volume), along with min and max height values.
+        /// Retrieve the heightmap from Houdini for given part (volume), along with min and max height values.
         /// </summary>
         /// <param name="session">Current Houdini session.</param>
         /// <param name="xLength">Length of x dimension of the heightmap.</param>
@@ -608,8 +606,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Convert the given heightValues (linear array) into a multi-dimensional array that Unity
-        ///     needs for uploading as the heightmap for terrain.
+        /// Convert the given heightValues (linear array) into a multi-dimensional array that Unity
+        /// needs for uploading as the heightmap for terrain.
         /// </summary>
         /// <param name="heightMapSize">Size of each dimension of the heightmap (assumes equal sides).</param>
         /// <param name="heightValues">List of height values that will be converted to the heightmap.</param>
@@ -631,9 +629,9 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Converts the given heightfields (linear array) into a multi-dimensional array that Unity
-        ///     needs for uploading splatmap values for terrain.
-        ///     Assumes the values have already been converted to Unity coordinates, and normalized between 0 and 1.
+        /// Converts the given heightfields (linear array) into a multi-dimensional array that Unity
+        /// needs for uploading splatmap values for terrain.
+        /// Assumes the values have already been converted to Unity coordinates, and normalized between 0 and 1.
         /// </summary>
         /// <param name="heightMapSize">Size of each dimension of the heightmap (assumes equal sides).</param>
         /// <param name="heightFields">List of height values that will be converted to alphamap.</param>
@@ -662,18 +660,15 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Returns a new alphamap for Unity terrain consisting of heightfield values that have
-        ///     already be converted to Unity format, with strengths multiplied.
+        /// Returns a new alphamap for Unity terrain consisting of heightfield values that have
+        /// already be converted to Unity format, with strengths multiplied.
         /// </summary>
         /// <param name="heightMapSize">Size of each dimension of the heightmap</param>
         /// <param name="existingAlphaMaps">Existing alphamaps to reuse (could be null)</param>
         /// <param name="heightFields">Converted heightfields to use for alphamaps</param>
         /// <param name="strengths">Strength values to multiply the alphamap by</param>
-        /// <param name="alphaMapIndices">
-        ///     List of indices for each alphamap dictating whether to use existingAlphaMaps values or use heightFields values.
-        ///     Negative values signal existing indices, while positive (>0) values signal heightField indices. Indices are offset
-        ///     by -1, and +1, respectively.
-        /// </param>
+        /// <param name="alphaMapIndices">List of indices for each alphamap dictating whether to use existingAlphaMaps values or use heightFields values.
+        /// Negative values signal existing indices, while positive (>0) values signal heightField indices. Indices are offset by -1, and +1, respectively.</param>
         /// <returns>Converted alphamap</returns>
         public static float[,,] AppendConvertedHeightFieldToAlphaMap(int heightMapWidth, int heightMapHeight,
             float[,,] existingAlphaMaps, List<float[]> heightFields, float[] strengths, List<int> alphaMapIndices)
@@ -712,7 +707,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Get the volume position offset based on volume dimensions and bounds.
+        /// Get the volume position offset based on volume dimensions and bounds.
         /// </summary>
         public static Vector3 GetVolumePositionOffset(HEU_SessionBase session, HAPI_NodeId geoID, HAPI_PartId partID,
             Vector3 volumePosition, float terrainSizeX, float heightMapSize, int mapWidth, int mapHeight,
@@ -732,7 +727,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Returns list of HEU_TreePrototypeInfo formed by querying data from given part.
+        /// Returns list of HEU_TreePrototypeInfo formed by querying data from given part.
         /// </summary>
         /// <param name="session">Houdini Engine session</param>
         /// <param name="geoID">Geometry object</param>
@@ -788,8 +783,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Grab the scatter data for the given part.
-        ///     This finds the properties of TreeInstances via attributes.
+        /// Grab the scatter data for the given part.
+        /// This finds the properties of TreeInstances via attributes.
         /// </summary>
         /// <param name="session">Houdini session</param>
         /// <param name="geoID">Geometry ID</param>
@@ -973,7 +968,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Apply the cached scatter prototypes and instances to the given TerrainData.
+        /// Apply the cached scatter prototypes and instances to the given TerrainData.
         /// </summary>
         public static void ApplyScatterTrees(TerrainData terrainData, HEU_VolumeScatterTrees scatterTrees,
             int tileIndex)
@@ -1041,7 +1036,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Fill up the given detailPrototype with values from the specified heightfield part.
+        /// Fill up the given detailPrototype with values from the specified heightfield part.
         /// </summary>
         /// <param name="session">Houdini Engine session to query</param>
         /// <param name="geoID">The geometry ID in Houdini</param>
@@ -1134,16 +1129,14 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Retrieve and set the detail properties from the specified heightfield.
-        ///     This includes detail distance, density, and resolution per patch.
+        /// Retrieve and set the detail properties from the specified heightfield.
+        /// This includes detail distance, density, and resolution per patch.
         /// </summary>
         /// <param name="session">Current Houdini Engine session</param>
         /// <param name="geoID">Heightfield object</param>
         /// <param name="partID">Heightfield layer</param>
-        /// <param name="detailProperties">
-        ///     Reference to a HEU_DetailProperties which will
-        ///     be populated.
-        /// </param>
+        /// <param name="detailProperties">Reference to a HEU_DetailProperties which will
+        /// be populated.</param>
         public static void PopulateDetailProperties(HEU_SessionBase session, HAPI_NodeId geoID,
             HAPI_PartId partID, ref HEU_DetailProperties detailProperties)
         {
@@ -1193,8 +1186,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Apply the given detail layers and properties to the given terrain.
-        ///     The detail distance and resolution will be set, along with detail prototypes, and layers.
+        /// Apply the given detail layers and properties to the given terrain.
+        /// The detail distance and resolution will be set, along with detail prototypes, and layers.
         /// </summary>
         /// <param name="terrain">The Terrain to set the detail properies on</param>
         /// <param name="terrainData">The TerrainData to apply the layers to</param>
@@ -1268,7 +1261,7 @@ namespace HoudiniEngineUnity
 #if UNITY_2020_2_OR_NEWER
                 // _bendFactor is deprecated
 #else
-                detailPrototype.bendFactor = heuDetail._bendFactor;
+		detailPrototype.bendFactor = heuDetail._bendFactor;
 #endif
 
                 detailPrototype.dryColor = heuDetail._dryColor;
@@ -1365,7 +1358,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Returns the heightfield layer type (HFLayerType) for the specified part.
+        /// Returns the heightfield layer type (HFLayerType) for the specified part.
         /// </summary>
         /// <param name="session">Current Houdini Engine session</param>
         /// <param name="geoID">Heightfield object</param>

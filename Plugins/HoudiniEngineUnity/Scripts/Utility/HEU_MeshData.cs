@@ -31,7 +31,7 @@ using UnityEngine;
 namespace HoudiniEngineUnity
 {
     /// <summary>
-    ///     Helper container for mesh data
+    /// Helper container for mesh data
     /// </summary>
     public class HEU_MeshData
     {

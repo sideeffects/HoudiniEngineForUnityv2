@@ -29,7 +29,7 @@ using System.Collections.Generic;
 using UnityEngine.Events;
 
 /// <summary>
-///     Test class for Houdini Engine Asset events (build, cook, bake)
+/// Test class for Houdini Engine Asset events (build, cook, bake)
 /// </summary>
 public class HEU_AssetEventReceiverTest : MonoBehaviour
 {

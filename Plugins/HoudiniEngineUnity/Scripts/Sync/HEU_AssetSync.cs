@@ -37,7 +37,7 @@ namespace HoudiniEngineUnity
     using HAPI_NodeId = System.Int32;
 
     /// <summary>
-    ///     Instantiates an HDA in a separate thread, and generates its geometry.
+    /// Instantiates an HDA in a separate thread, and generates its geometry.
     /// </summary>
     //[ExecuteInEditMode] // Needed to get OnDestroy callback when deleted in Editor
     public class HEU_AssetSync : HEU_BaseSync

@@ -39,15 +39,15 @@ using HoudiniEngineUnity;
 using HAPI_NodeId = System.Int32;
 
 /// <summary>
-///     This is an example for the Houini Engine for Unity plugin.
-///     It shows how to programmetically import input meshes from the scene
-///     into Houdini, connect them to a UVLayout SOP, and generate the output
-///     either as copy or replace the input mesh.
+/// This is an example for the Houini Engine for Unity plugin.
+/// It shows how to programmetically import input meshes from the scene
+/// into Houdini, connect them to a UVLayout SOP, and generate the output
+/// either as copy or replace the input mesh.
 /// </summary>
 public class HEU_ScriptMeshInputUVLayoutExample
 {
     /// <summary>
-    ///     Specifies how output should be generated
+    /// Specifies how output should be generated
     /// </summary>
     public enum OutputMode
     {
@@ -70,8 +70,8 @@ public class HEU_ScriptMeshInputUVLayoutExample
 #endif
 
     /// <summary>
-    ///     Applies a Houdini's UVLayout node to each given gameobject's mesh data, and generates the output.
-    ///     The output could be a copy gameobject, or replace the mesh and materials on the original.
+    /// Applies a Houdini's UVLayout node to each given gameobject's mesh data, and generates the output.
+    /// The output could be a copy gameobject, or replace the mesh and materials on the original.
     /// </summary>
     /// <param name="gameObjects">Array of gameobjects containing meshes</param>
     /// <param name="outputMode">How the outputs should be generated</param>

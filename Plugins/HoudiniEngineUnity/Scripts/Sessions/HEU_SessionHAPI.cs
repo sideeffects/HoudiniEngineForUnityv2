@@ -699,7 +699,7 @@ namespace HoudiniEngineUnity
 
 	    // Default session. On Linux use socket due to issues with pipe.
 #if UNITY_STANDALONE_LINUX
-        return CreateThriftSocketSession(true, HEU_PluginSettings.Session_Localhost, HEU_PluginSettings.Session_Port, HEU_PluginSettings.Session_AutoClose, HEU_PluginSettings.Session_Timeout, true);
+			return CreateThriftSocketSession(true, HEU_PluginSettings.Session_Localhost, HEU_PluginSettings.Session_Port, HEU_PluginSettings.Session_AutoClose, HEU_PluginSettings.Session_Timeout, true);
 #else
 	    return CreateThriftPipeSession(true, HEU_PluginSettings.Session_PipeName, HEU_PluginSettings.Session_AutoClose, HEU_PluginSettings.Session_Timeout, true);
 #endif

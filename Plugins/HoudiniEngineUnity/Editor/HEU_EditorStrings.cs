@@ -31,7 +31,7 @@ using UnityEngine;
 namespace HoudiniEngineUnity
 {
     /// <summary>
-    ///     Commonly-used strings all in one place.
+    /// Commonly-used strings all in one place.
     /// </summary>
     public static class HEU_EditorStrings
     {

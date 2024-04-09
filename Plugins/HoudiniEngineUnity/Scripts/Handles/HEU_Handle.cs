@@ -36,8 +36,8 @@ namespace HoudiniEngineUnity
     using HAPI_ParmId = System.Int32;
 
     /// <summary>
-    ///     Represents a Handle in an asset.
-    ///     Currently only supports transform (xform) handle.
+    /// Represents a Handle in an asset.
+    /// Currently only supports transform (xform) handle.
     /// </summary>
     [System.Serializable]
     internal class HEU_Handle : ScriptableObject, IEquivable<HEU_Handle>

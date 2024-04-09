@@ -33,7 +33,7 @@ using System.IO;
 namespace HoudiniEngineUnity
 {
     /// <summary>
-    ///     Container of a tool's metadata
+    /// Container of a tool's metadata
     /// </summary>
     [System.Serializable]
     public class HEU_ShelfToolData

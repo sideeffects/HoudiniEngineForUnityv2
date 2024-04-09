@@ -81,7 +81,7 @@ namespace HoudiniEngineUnity
 #if HOUDINIENGINEUNITY_ENABLED
 	    sessionBase = new HEU_SessionHAPI();
 #else
-        sessionBase = new HEU_SessionBase();
+            sessionBase = new HEU_SessionBase();
 #endif
 	    return sessionBase;
 	}
@@ -89,7 +89,7 @@ namespace HoudiniEngineUnity
 	public static HEU_SessionBase CreateSessionFromType(System.Type type)
 	{
 #if !UNITY_5_6_OR_NEWER
-        HEU_Logger.LogError("Houdini Engine for Unity only supports Unity version 5.6.0 and newer!");
+            HEU_Logger.LogError("Houdini Engine for Unity only supports Unity version 5.6.0 and newer!");
 #elif HOUDINIENGINEUNITY_ENABLED
 	    if (type == null || type == typeof(HEU_SessionHAPI))
 	    {
@@ -566,7 +566,7 @@ namespace HoudiniEngineUnity
 	    HAPI_Result result = HEU_HAPIFunctions.HAPI_ClearConnectionError();
 	    return (result == HAPI_Result.HAPI_RESULT_SUCCESS);
 #else
-        return true;
+	    return true;
 #endif
 	}
 
@@ -644,7 +644,7 @@ namespace HoudiniEngineUnity
 		}
 	    }
 #else
-        session.SetSessionErrorMsg("Load session only supported in Unity Editor!", true);
+            session.SetSessionErrorMsg("Load session only supported in Unity Editor!", true);
 #endif
 	    return false;
 	}
@@ -691,80 +691,68 @@ namespace HoudiniEngineUnity
 		return true;
 	    }
 #else
-        session.SetSessionErrorMsg("Save session only supported in Unity Editor!", true);
-        return false;
+            session.SetSessionErrorMsg("Save session only supported in Unity Editor!", true);
+            return false;
 #endif
 	}
 
 	public static string GetHoudiniPathOnMacOS(string houdiniPath)
 	{
 #if UNITY_EDITOR_OSX
-        // On macOS, need to find the actual executable, which is within one of .app folders
-        // that Houdini ships with, depending on the installation type.
-        // HoudiniPath should by default be pointing to the HFS (Houdini install) folder.
-        // Or user should have selected one of the .app folders within.
+	    // On macOS, need to find the actual executable, which is within one of .app folders
+	    // that Houdini ships with, depending on the installation type.
+	    // HoudiniPath should by default be pointing to the HFS (Houdini install) folder.
+	    // Or user should have selected one of the .app folders within.
 
-        // If not set to .app, then set it based on what app is available
-        if (!houdiniPath.EndsWith(".app", System.StringComparison.InvariantCulture))
-        {
-            string[] appNames = { "FX", "Core", "Indie", "Apprentice", "Indie", "Indie Steam Edition" };
-            string tryPath;
-            foreach (string name in appNames)
-            {
-                tryPath = HEU_Platform.BuildPath(houdiniPath, string.Format("Houdini {0} {1}.app",
-                    name,
-                    HEU_HoudiniVersion.HOUDINI_VERSION_STRING));
-                if (HEU_Platform.DoesPathExist(tryPath))
-                {
-                    houdiniPath = tryPath;
-                    break;
-                }
-            }
-        }
+	    // If not set to .app, then set it based on what app is available
+	    if (!houdiniPath.EndsWith(".app", System.StringComparison.InvariantCulture))
+	    {
+		string[] appNames = { "FX", "Core", "Indie", "Apprentice", "Indie", "Indie Steam Edition" };
+		string tryPath;
+		foreach (string name in appNames)
+		{
+		    tryPath = HEU_Platform.BuildPath(houdiniPath, string.Format("Houdini {0} {1}.app",
+			    name,
+			    HEU_HoudiniVersion.HOUDINI_VERSION_STRING));
+		    if (HEU_Platform.DoesPathExist(tryPath))
+		    {
+			houdiniPath = tryPath;
+			break;
+		    }
+		}
+	    }
 
-        if (houdiniPath.EndsWith(".app", System.StringComparison.InvariantCulture))
-        {
-            // Get the executable name inside the .app, but the executable
-            // name is based on the license type, so need to query the 
-            // license type and map it to executable name:
-            // 	Houdini Apprenctice 18.0.100
-            // 	Houdini Core 18.0.100
-            // 	Houdini FX 18.0.100
-            // 	Houdini Indie 18.0.100
-            // 	Houdini Indie Steam Edition 18.0.100
-            //houdiniPath = "/Applications/Houdini/Houdini18.0.100/Houdini Indie 18.0.100.app";
-            string hexecutable = "";
-            string pattern = @"(.*)/Houdini (.*) (.*).app$";
-            Regex reg = new Regex(pattern);
-            Match match = reg.Match(houdiniPath);
-            if (match.Success && match.Groups.Count > 2)
-            {
-                switch (match.Groups[2].Value)
-                {
-                    case "Apprentice":
-                        hexecutable = "happrentice";
-                        break;
-                    case "Core":
-                        hexecutable = "houdinicore";
-                        break;
-                    case "FX":
-                        hexecutable = "houdini";
-                        break;
-                    case "Indie":
-                        hexecutable = "hindie";
-                        break;
-                    case "Education":
-                        hexecutable = "heducation";
-                        break;
-                    case "Indie Steam Edition":
-                        hexecutable = "hindie.steam";
-                        break;
-                    default: break;
-                }
-            }
+	    if (houdiniPath.EndsWith(".app", System.StringComparison.InvariantCulture))
+	    {
+		// Get the executable name inside the .app, but the executable
+		// name is based on the license type, so need to query the 
+		// license type and map it to executable name:
+		// 	Houdini Apprenctice 18.0.100
+		// 	Houdini Core 18.0.100
+		// 	Houdini FX 18.0.100
+		// 	Houdini Indie 18.0.100
+		// 	Houdini Indie Steam Edition 18.0.100
+		//houdiniPath = "/Applications/Houdini/Houdini18.0.100/Houdini Indie 18.0.100.app";
+		string hexecutable = "";
+		string pattern = @"(.*)/Houdini (.*) (.*).app$";
+		Regex reg = new Regex(pattern);
+		Match match = reg.Match(houdiniPath);
+		if (match.Success && match.Groups.Count > 2)
+		{
+		    switch (match.Groups[2].Value)
+		    {
+			case "Apprentice": hexecutable = "happrentice"; break;
+			case "Core": hexecutable = "houdinicore"; break;
+			case "FX": hexecutable = "houdini"; break;
+			case "Indie": hexecutable = "hindie"; break;
+                        case "Education": hexecutable = "heducation"; break;
+			case "Indie Steam Edition": hexecutable = "hindie.steam"; break;
+			default: break;
+		    }
+		}
 
-            houdiniPath += "/Contents/MacOS/" + hexecutable;
-        }
+		houdiniPath += "/Contents/MacOS/" + hexecutable;
+	    }
 #endif
 	    return houdiniPath;
 	}
@@ -774,7 +762,7 @@ namespace HoudiniEngineUnity
 	    string houdiniPath = HEU_PluginSettings.HoudiniDebugLaunchPath;
 
 #if UNITY_EDITOR_OSX
-        houdiniPath = GetHoudiniPathOnMacOS(houdiniPath);
+	    houdiniPath = GetHoudiniPathOnMacOS(houdiniPath);
 #endif
 
 	    var HoudiniProcess = new System.Diagnostics.Process();
@@ -818,7 +806,7 @@ namespace HoudiniEngineUnity
 	    string HoudiniPath = HEU_PluginSettings.HoudiniDebugLaunchPath;
 
 #if UNITY_EDITOR_OSX
-        HoudiniPath = GetHoudiniPathOnMacOS(HoudiniPath);
+	    HoudiniPath = GetHoudiniPathOnMacOS(HoudiniPath);
 #endif
 
 	    var HoudiniProcess = new System.Diagnostics.Process();

@@ -56,8 +56,8 @@ namespace HoudiniEngineUnity
 
 #if UNITY_EDITOR
         /// <summary>
-        ///     Registers this input inteface for Unity Tilemap2D on
-        ///     the callback after scripts are reloaded in Unity.
+        /// Registers this input inteface for Unity Tilemap2D on
+        /// the callback after scripts are reloaded in Unity.
         /// </summary>
         [InitializeOnLoadMethod]
         [UnityEditor.Callbacks.DidReloadScripts]

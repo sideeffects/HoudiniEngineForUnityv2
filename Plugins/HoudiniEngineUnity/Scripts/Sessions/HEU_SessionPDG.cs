@@ -44,7 +44,7 @@ namespace HoudiniEngineUnity
 
 
     /// <summary>
-    ///     Session wrapper for HAPI PDG calls.
+    /// Session wrapper for HAPI PDG calls.
     /// </summary>
     public static class HEU_SessionPDG
     {

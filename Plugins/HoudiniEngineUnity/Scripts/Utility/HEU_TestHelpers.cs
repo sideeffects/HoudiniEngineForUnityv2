@@ -79,8 +79,7 @@ namespace HoudiniEngineUnity
 
 
         // Helper for logging equivalence message
-        public static bool AssertTrueLogEquivalent<T>(
-            T a, T b, ref bool result, string header, string subject,
+        public static bool AssertTrueLogEquivalent<T>(T a, T b, ref bool result, string header, string subject,
             string optional1 = "", string optional2 = "", string optional3 = "", RequireStruct<T> _ = null)
             where T : struct
         {
@@ -148,9 +147,7 @@ namespace HoudiniEngineUnity
                 bResult = a.Equals(b);
             }
 
-            string errorString = string.Format("{0} vs {1}", a.ToString(), b.ToString());
-
-            PrintTestLogAndSetResult(bResult, ref result, header, subject, optional1, optional2, errorString);
+            PrintTestLogAndSetResult(bResult, ref result, header, subject, optional1, optional2, optional3);
 
             return bResult;
         }
@@ -192,20 +189,6 @@ namespace HoudiniEngineUnity
             if (ShouldBeTested(a, b, ref bResult, header, subject))
             {
                 bResult = a.IsEquivalentTo((T)b);
-                PrintTestLogAndSetResult(bResult, ref result, header, subject, optional1, optional2, optional3);
-            }
-
-            return bResult;
-        }
-
-        public static bool AssertTrueLogEquivalent(Type a, Type b, ref bool result, string header, string subject,
-            string optional1 = "", string optional2 = "", string optional3 = "")
-        {
-            bool bResult = true;
-
-            if (ShouldBeTested(a, b, ref bResult, header, subject))
-            {
-                bResult = a == b;
                 PrintTestLogAndSetResult(bResult, ref result, header, subject, optional1, optional2, optional3);
             }
 
@@ -386,10 +369,6 @@ namespace HoudiniEngineUnity
 
                 PrintTestLogAndSetResult(bResult, ref result, header, subject, optional1, optional2, optional3);
             }
-            else
-            {
-                result = false;
-            }
 
             return bResult;
         }
@@ -457,15 +436,15 @@ namespace HoudiniEngineUnity
         {
             if (!expression)
             {
-                string errorStr = header + ": " + subject + " is not equivalent.";
+                string errorStr = header + ": " + subject + " is not equivalent!";
                 if (optional1 != "")
-                    errorStr += " | " + optional1;
+                    errorStr += "| " + optional1;
 
                 if (optional2 != "")
-                    errorStr += " | " + optional2;
+                    errorStr += "| " + optional2;
 
                 if (optional3 != "")
-                    errorStr += " | " + optional3;
+                    errorStr += "| " + optional3;
 
                 HEU_Logger.LogError(errorStr);
 
@@ -785,19 +764,26 @@ namespace HoudiniEngineUnity
 
             string header = "HAPI_NodeInfo";
 
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.parmCount, other.self.parmCount, ref bResult, header, "Parm count");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.parmIntValueCount, other.self.parmIntValueCount, ref bResult, header, "Parm Int count");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.parmFloatValueCount, other.self.parmFloatValueCount, ref bResult, header,
-                "Parm float count");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.parmStringValueCount, other.self.parmStringValueCount, ref bResult, header,
-                "Parm string count");
-            //HEU_TestHelpers.AssertTrueLogEquivalent(self.parmChoiceCount, other.self.parmChoiceCount, ref bResult, header, "Parm choice count");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.childNodeCount, other.self.childNodeCount, ref bResult, header, "Child node count");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.inputCount, other.self.inputCount, ref bResult, header, "Input count");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.outputCount, other.self.outputCount, ref bResult, header, "Output count");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.createdPostAssetLoad, other.self.createdPostAssetLoad, ref bResult, header,
-                "Created post asset load");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.isTimeDependent, other.self.isTimeDependent, ref bResult, header, "Is time dependent");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.parmCount, other.self.parmCount, ref bResult, header,
+                "Parm count");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.parmIntValueCount, other.self.parmIntValueCount, ref bResult,
+                header, "Parm Int count");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.parmFloatValueCount, other.self.parmFloatValueCount,
+                ref bResult, header, "Parm float count");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.parmStringValueCount, other.self.parmStringValueCount,
+                ref bResult, header, "Parm string count");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.parmChoiceCount, other.self.parmChoiceCount, ref bResult,
+                header, "Parm choice count");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.childNodeCount, other.self.childNodeCount, ref bResult, header,
+                "Child node count");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.inputCount, other.self.inputCount, ref bResult, header,
+                "Input count");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.outputCount, other.self.outputCount, ref bResult, header,
+                "Output count");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.createdPostAssetLoad, other.self.createdPostAssetLoad,
+                ref bResult, header, "Created post asset load");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.isTimeDependent, other.self.isTimeDependent, ref bResult,
+                header, "Is time dependent");
 
             return bResult;
         }
@@ -905,16 +891,25 @@ namespace HoudiniEngineUnity
             string header = "HAPI_GeoInfo";
 
             HEU_TestHelpers.AssertTrueLogEquivalent(self.type, other.self.type, ref bResult, header, "Type");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.isEditable, other.self.isEditable, ref bResult, header, "isEditable");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.isTemplated, other.self.isTemplated, ref bResult, header, "isTemplated");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.isDisplayGeo, other.self.isDisplayGeo, ref bResult, header, "isDisplayGeo");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.hasMaterialChanged, other.self.hasMaterialChanged, ref bResult, header,
-                "hasMaterialChanged");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.pointGroupCount, other.self.pointGroupCount, ref bResult, header, "pointGroupCount");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.primitiveGroupCount, other.self.primitiveGroupCount, ref bResult, header,
-                "primitiveGroupCount");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.edgeGroupCount, other.self.edgeGroupCount, ref bResult, header, "isTemplated");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.partCount, other.self.partCount, ref bResult, header, "partCount");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.isEditable, other.self.isEditable, ref bResult, header,
+                "isEditable");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.isTemplated, other.self.isTemplated, ref bResult, header,
+                "isTemplated");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.isDisplayGeo, other.self.isDisplayGeo, ref bResult, header,
+                "isDisplayGeo");
+            // HEU_TestHelpers.AssertTrueLogEquivalent(self.hasGeoChanged == other.hasGeoChanged, ref bResult, header, "hasGeoChanged");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.hasMaterialChanged, other.self.hasMaterialChanged, ref bResult,
+                header, "hasMaterialChanged");
+
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.pointGroupCount, other.self.pointGroupCount, ref bResult,
+                header, "pointGroupCount");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.primitiveGroupCount, other.self.primitiveGroupCount,
+                ref bResult, header, "primitiveGroupCount");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.edgeGroupCount, other.self.edgeGroupCount, ref bResult, header,
+                "isTemplated");
+
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.partCount, other.self.partCount, ref bResult, header,
+                "partCount");
 
             return bResult;
         }
@@ -1013,11 +1008,15 @@ namespace HoudiniEngineUnity
 
             // skip id, parentId, childIndex
             HEU_TestHelpers.AssertTrueLogEquivalent(self.type, other.self.type, ref bResult, header, "type");
-            //HEU_TestHelpers.AssertTrueLogEquivalent(self.scriptType, other.self.scriptType, ref bResult, header, "scriptType");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.permissions, other.self.permissions, ref bResult, header, "permissions");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.tagCount, other.self.tagCount, ref bResult, header, "tagCount");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.scriptType, other.self.scriptType, ref bResult, header,
+                "scriptType");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.permissions, other.self.permissions, ref bResult, header,
+                "permissions");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.tagCount, other.self.tagCount, ref bResult, header,
+                "tagCount");
 
-            //HEU_TestHelpers.AssertTrueLogEquivalent(self.choiceCount, other.self.choiceCount, ref bResult, header, "choiceCount");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.choiceCount, other.self.choiceCount, ref bResult, header,
+                "choiceCount");
             HEU_TestHelpers.AssertTrueLogEquivalent(self.size, other.self.size, ref bResult, header, "size");
 
             // skip string handles
@@ -1027,11 +1026,19 @@ namespace HoudiniEngineUnity
             HEU_TestHelpers.AssertTrueLogEquivalent(self.max, other.self.max, ref bResult, header, "max");
             HEU_TestHelpers.AssertTrueLogEquivalent(self.UIMin, other.self.UIMin, ref bResult, header, "UIMin");
             HEU_TestHelpers.AssertTrueLogEquivalent(self.UIMax, other.self.UIMax, ref bResult, header, "UIMax");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.invisible, other.self.invisible, ref bResult, header, "invisible");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.disabled, other.self.disabled, ref bResult, header, "disabled");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.invisible, other.self.invisible, ref bResult, header,
+                "invisible");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.disabled, other.self.disabled, ref bResult, header,
+                "disabled");
+
             HEU_TestHelpers.AssertTrueLogEquivalent(self.spare, other.self.spare, ref bResult, header, "spare");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.joinNext, other.self.joinNext, ref bResult, header, "joinNext");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.labelNone, other.self.labelNone, ref bResult, header, "labelNone");
+
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.joinNext, other.self.joinNext, ref bResult, header,
+                "joinNext");
+
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.labelNone, other.self.labelNone, ref bResult, header,
+                "labelNone");
+
             // HEU_TestHelpers.AssertTrueLogEquivalent(self.intValuesIndex, other.self.intValuesIndex, ref bResult, header, "intValuesIndex");
             // HEU_TestHelpers.AssertTrueLogEquivalent(self.floatValuesIndex, other.self.floatValuesIndex, ref bResult, header, "floatValuesIndex");
             // HEU_TestHelpers.AssertTrueLogEquivalent(self.stringValuesIndex, other.self.stringValuesIndex, ref bResult, header, "stringValuesIndex");
@@ -1214,8 +1221,8 @@ namespace HoudiniEngineUnity
 
             if (self != null && other.self != null && self.shader != null && other.self.shader != null)
             {
-                HEU_TestHelpers.AssertTrueLogEquivalent(self.shader.name, other.self.shader.name, ref bResult, header, "shaderName", self.shader.name,
-                    other.self.shader.name);
+                HEU_TestHelpers.AssertTrueLogEquivalent(self.shader.name, other.self.shader.name, ref bResult, header,
+                    "shaderName");
             }
 
             return bResult;
@@ -1262,35 +1269,34 @@ namespace HoudiniEngineUnity
 
             // Nothing too good to test - bounds can be different
             string header = "Collider";
-
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.GetType(), other.self.GetType(), ref bResult, header, "type");
-            if (!bResult)
-                return bResult;
-
             //HEU_TestHelpers.AssertTrueLogEquivalent(self.bounds, other.self.bounds, ref bResult, header, "bounds");
             if (other.self.GetType() == typeof(BoxCollider))
             {
                 BoxCollider castSelf = (BoxCollider)self;
                 BoxCollider castOther = (BoxCollider)other.self;
-                HEU_TestHelpers.AssertTrueLogEquivalent(castSelf.ToTestObject(), castOther.ToTestObject(), ref bResult, header, "box");
+                HEU_TestHelpers.AssertTrueLogEquivalent(castSelf.ToTestObject(), castOther.ToTestObject(), ref bResult,
+                    header, "box");
             }
             else if (other.self.GetType() == typeof(SphereCollider))
             {
                 SphereCollider castSelf = (SphereCollider)self;
                 SphereCollider castOther = (SphereCollider)other.self;
-                HEU_TestHelpers.AssertTrueLogEquivalent(castSelf.ToTestObject(), castOther.ToTestObject(), ref bResult, header, "sphere");
+                HEU_TestHelpers.AssertTrueLogEquivalent(castSelf.ToTestObject(), castOther.ToTestObject(), ref bResult,
+                    header, "sphere");
             }
             else if (other.self.GetType() == typeof(CapsuleCollider))
             {
                 CapsuleCollider castSelf = (CapsuleCollider)self;
                 CapsuleCollider castOther = (CapsuleCollider)other.self;
-                HEU_TestHelpers.AssertTrueLogEquivalent(castSelf.ToTestObject(), castOther.ToTestObject(), ref bResult, header, "capsule");
+                HEU_TestHelpers.AssertTrueLogEquivalent(castSelf.ToTestObject(), castOther.ToTestObject(), ref bResult,
+                    header, "capsule");
             }
             else if (other.self.GetType() == typeof(MeshCollider))
             {
                 MeshCollider castSelf = (MeshCollider)self;
                 MeshCollider castOther = (MeshCollider)other.self;
-                HEU_TestHelpers.AssertTrueLogEquivalent(castSelf.ToTestObject(), castOther.ToTestObject(), ref bResult, header, "mesh");
+                HEU_TestHelpers.AssertTrueLogEquivalent(castSelf.ToTestObject(), castOther.ToTestObject(), ref bResult,
+                    header, "mesh");
             }
 
             return bResult;
@@ -1578,8 +1584,8 @@ namespace HoudiniEngineUnity
 
             if (self.sharedMaterials != null || other.self.sharedMaterials != null)
             {
-                HEU_TestHelpers.AssertTrueLogEquivalent(self.sharedMaterials.ToTestObject(), other.self.sharedMaterials.ToTestObject(), ref bResult,
-                    header, "sharedMaterials");
+                HEU_TestHelpers.AssertTrueLogEquivalent(self.sharedMaterials.ToTestObject(),
+                    other.self.sharedMaterials.ToTestObject(), ref bResult, header, "sharedMaterials");
             }
 
 
@@ -1627,13 +1633,8 @@ namespace HoudiniEngineUnity
 
             if (self.sharedMesh != null || other.self.sharedMesh != null)
             {
-                HEU_TestHelpers.AssertTrueLogEquivalent(self.sharedMesh.ToTestObject(),other.self.sharedMesh.ToTestObject(), ref bResult, header, "sharedMesh");
-            }
-
-            if (!bResult)
-            {
-                string errorStr = string.Format("{0} differs", this.self.sharedMesh.name);
-                HEU_Logger.LogError(errorStr);
+                HEU_TestHelpers.AssertTrueLogEquivalent(self.sharedMesh.ToTestObject(),
+                    other.self.sharedMesh.ToTestObject(), ref bResult, header, "sharedMesh");
             }
 
             return bResult;

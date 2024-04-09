@@ -695,46 +695,42 @@ namespace HoudiniEngineUnity
                     }
 
 #else
-                    // Need to create SplatPrototype for each layer in heightfield, representing the textures.
-                    SplatPrototype[] splatPrototypes = new SplatPrototype[numLayers];
-                    for (int m = 0; m < numLayers; ++m)
-                    {
-                        splatPrototypes[m] = new SplatPrototype();
+					// Need to create SplatPrototype for each layer in heightfield, representing the textures.
+					SplatPrototype[] splatPrototypes = new SplatPrototype[numLayers];
+					for (int m = 0; m < numLayers; ++m)
+					{
+						splatPrototypes[m] = new SplatPrototype();
 
-                        HEU_LoadBufferVolumeLayer layer = terrainBuffers[t]._splatLayers[m];
+						HEU_LoadBufferVolumeLayer layer = terrainBuffers[t]._splatLayers[m];
 
-                        Texture2D diffuseTexture = null;
-                        if (!string.IsNullOrEmpty(layer._diffuseTexturePath))
-                        {
-                            diffuseTexture = HEU_MaterialFactory.LoadTexture(layer._diffuseTexturePath);
-                        }
+						Texture2D diffuseTexture = null;
+						if (!string.IsNullOrEmpty(layer._diffuseTexturePath))
+						{
+							diffuseTexture = HEU_MaterialFactory.LoadTexture(layer._diffuseTexturePath);
+						}
+						if (diffuseTexture == null)
+						{
+							diffuseTexture = defaultTexture;
+						}
+						splatPrototypes[m].texture = diffuseTexture;
 
-                        if (diffuseTexture == null)
-                        {
-                            diffuseTexture = defaultTexture;
-                        }
+						splatPrototypes[m].tileOffset = layer._tileOffset;
+						if (layer._tileSize.magnitude == 0f && diffuseTexture != null)
+						{
+							// Use texture size if tile size is 0
+							layer._tileSize = new Vector2(diffuseTexture.width, diffuseTexture.height);
+						}
+						splatPrototypes[m].tileSize = layer._tileSize;
 
-                        splatPrototypes[m].texture = diffuseTexture;
+						splatPrototypes[m].metallic = layer._metallic;
+						splatPrototypes[m].smoothness = layer._smoothness;
 
-                        splatPrototypes[m].tileOffset = layer._tileOffset;
-                        if (layer._tileSize.magnitude == 0f && diffuseTexture != null)
-                        {
-                            // Use texture size if tile size is 0
-                            layer._tileSize = new Vector2(diffuseTexture.width, diffuseTexture.height);
-                        }
-
-                        splatPrototypes[m].tileSize = layer._tileSize;
-
-                        splatPrototypes[m].metallic = layer._metallic;
-                        splatPrototypes[m].smoothness = layer._smoothness;
-
-                        if (!string.IsNullOrEmpty(layer._normalTexturePath))
-                        {
-                            splatPrototypes[m].normalMap = HEU_MaterialFactory.LoadTexture(layer._normalTexturePath);
-                        }
-                    }
-
-                    terrainData.splatPrototypes = splatPrototypes;
+						if (!string.IsNullOrEmpty(layer._normalTexturePath))
+						{
+							splatPrototypes[m].normalMap = HEU_MaterialFactory.LoadTexture(layer._normalTexturePath);
+						}
+					}
+					terrainData.splatPrototypes = splatPrototypes;
 #endif
 
                     // Set the splatmaps

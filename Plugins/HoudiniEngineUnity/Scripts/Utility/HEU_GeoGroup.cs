@@ -31,7 +31,7 @@ using UnityEngine;
 namespace HoudiniEngineUnity
 {
     /// <summary>
-    ///     Container for geometry group data.
+    /// Container for geometry group data.
     /// </summary>
     public class HEU_GeoGroup : IComparable<HEU_GeoGroup>
     {
@@ -66,7 +66,7 @@ namespace HoudiniEngineUnity
     }
 
     /// <summary>
-    ///     Helper used for storing vertex connections for normal generation
+    /// Helper used for storing vertex connections for normal generation
     /// </summary>
     public class HEU_VertexEntry
     {

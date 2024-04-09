@@ -38,7 +38,7 @@ namespace HoudiniEngineUnity
     using HAPI_StringHandle = System.Int32;
 
     /// <summary>
-    ///     Type of heighfield for terrain
+    /// Type of heighfield for terrain
     /// </summary>
     public enum HFLayerType
     {
@@ -49,7 +49,7 @@ namespace HoudiniEngineUnity
     }
 
     /// <summary>
-    ///     Represents a volume-based terrain layer
+    /// Represents a volume-based terrain layer
     /// </summary>
     [System.Serializable]
     public class HEU_VolumeLayer : IEquivable<HEU_VolumeLayer>
@@ -69,9 +69,9 @@ namespace HoudiniEngineUnity
         // heightfield layer, so that it can be reused or updated.
         public TerrainLayer _terrainLayer;
 #else
-        // Index of the SplatPrototype in the TerrainData splatprototypes list.
-        // For reusing on recook.
-        public int _splatPrototypeIndex = -1;
+		// Index of the SplatPrototype in the TerrainData splatprototypes list.
+		// For reusing on recook.
+		public int _splatPrototypeIndex = -1;
 #endif
 
         public HFLayerType _layerType;
@@ -113,8 +113,8 @@ namespace HoudiniEngineUnity
     }
 
     /// <summary>
-    ///     Container for TreePrototypes and TreeInstances
-    ///     specified in a heightfield for a Unity terrain.
+    /// Container for TreePrototypes and TreeInstances
+    /// specified in a heightfield for a Unity terrain.
     /// </summary>
     public class HEU_VolumeScatterTrees : IEquivable<HEU_VolumeScatterTrees>
     {
@@ -167,9 +167,9 @@ namespace HoudiniEngineUnity
     }
 
     /// <summary>
-    ///     Wrapper for TreePrototype.
-    ///     Since unable to load the prefab in a non-main thread,
-    ///     this holds the prefab path until we can load it.
+    /// Wrapper for TreePrototype.
+    /// Since unable to load the prefab in a non-main thread,
+    /// this holds the prefab path until we can load it.
     /// </summary>
     public class HEU_TreePrototypeInfo : IEquivable<HEU_TreePrototypeInfo>
     {
@@ -198,7 +198,7 @@ namespace HoudiniEngineUnity
     }
 
     /// <summary>
-    ///     Terrain detail properties
+    /// Terrain detail properties
     /// </summary>
     public class HEU_DetailProperties : IEquivable<HEU_DetailProperties>
     {
@@ -233,12 +233,12 @@ namespace HoudiniEngineUnity
     }
 
     /// <summary>
-    ///     Wrapper for DetailPrototype.
-    ///     https://docs.unity3d.com/ScriptReference/DetailPrototype.html
-    ///     Reason for using this instead of DetailPrototype
-    ///     directly is to support storing of the asset paths
-    ///     instead of assets directly, as well as to mitigate
-    ///     Unity changes with DetailPrototype.
+    /// Wrapper for DetailPrototype.
+    /// https://docs.unity3d.com/ScriptReference/DetailPrototype.html
+    /// Reason for using this instead of DetailPrototype
+    /// directly is to support storing of the asset paths
+    /// instead of assets directly, as well as to mitigate
+    /// Unity changes with DetailPrototype.
     /// </summary>
     public class HEU_DetailPrototype : IEquivable<HEU_DetailPrototype>
     {
@@ -263,7 +263,7 @@ namespace HoudiniEngineUnity
 #if UNITY_2020_2_OR_NEWER
             // _bendFactor is deprecated
 #else
-            _bendFactor = proto.bendFactor;
+	    _bendFactor = proto.bendFactor;
 #endif
             _dryColor = proto.dryColor;
             _healthyColor = proto.healthyColor;
@@ -296,7 +296,7 @@ namespace HoudiniEngineUnity
     }
 
     /// <summary>
-    ///     Creates terrain out of volume parts.
+    /// Creates terrain out of volume parts.
     /// </summary>
     public class HEU_VolumeCache : ScriptableObject, IHEU_VolumeCache, IHEU_HoudiniAssetSubcomponent,
         IEquivable<HEU_VolumeCache>
@@ -1158,69 +1158,69 @@ namespace HoudiniEngineUnity
             int numTotalAlphaMaps = finalTerrainLayers.Count;
 
 #else
-            // Create or update the SplatPrototype based on heightfield layers.
+			// Create or update the SplatPrototype based on heightfield layers.
 
-            // Need to create or reuse SplatPrototype for each layer in heightfield, representing the textures.
-            SplatPrototype[] existingSplats = terrainData.splatPrototypes;
+			// Need to create or reuse SplatPrototype for each layer in heightfield, representing the textures.
+			SplatPrototype[] existingSplats = terrainData.splatPrototypes;
 
-            // A full rebuild clears out existing splats, but a regular cook keeps them.
-            List<SplatPrototype> finalSplats = new List<SplatPrototype>(existingSplats);
+			// A full rebuild clears out existing splats, but a regular cook keeps them.
+			List<SplatPrototype> finalSplats = new List<SplatPrototype>(existingSplats);
 
-            // This holds the alpha map indices for each layer that will be added to the TerrainData
-            // The alpha maps could be a mix of existing and new values, so need to know which to use
-            List<int> alphaMapIndices = new List<int>();
+			// This holds the alpha map indices for each layer that will be added to the TerrainData
+			// The alpha maps could be a mix of existing and new values, so need to know which to use
+			List<int> alphaMapIndices = new List<int>();
 
-            // Initially set to use existing alpha maps, then override later on if specified via HF layers.
-            for (int a = 0; a < existingSplats.Length; ++a)
-            {
-                // Negative indices for existing alpha map (offset by -1)
-                alphaMapIndices.Add(-a - 1);
-            }
+			// Initially set to use existing alpha maps, then override later on if specified via HF layers.
+			for (int a = 0; a < existingSplats.Length; ++a)
+			{
+				// Negative indices for existing alpha map (offset by -1)
+				alphaMapIndices.Add(-a - 1);
+			}
 
-            bool bNewSplat = false;
-            HEU_VolumeLayer layer = null;
-            SplatPrototype splatPrototype = null;
+			bool bNewSplat = false;
+			HEU_VolumeLayer layer = null;
+			SplatPrototype splatPrototype = null;
 
-            for (int m = 0; m < numTerrainLayersToProcess; ++m)
-            {
-                bNewSplat = false;
+			for (int m = 0; m < numTerrainLayersToProcess; ++m)
+			{
+				bNewSplat = false;
 
-                layer = terrainLayersToProcess[m];
+				layer = terrainLayersToProcess[m];
 
-                geoID = _ownerNode.GeoID;
-                partID = layer._part.PartID;
+				geoID = _ownerNode.GeoID;
+				partID = layer._part.PartID;
 
-                // Try to find existing SplatPrototype for reuse. But not for full rebuild.
-                splatPrototype = null;
-                if (layer._splatPrototypeIndex >= 0 && layer._splatPrototypeIndex < existingSplats.Length)
-                {
-                    splatPrototype = existingSplats[layer._splatPrototypeIndex];
+				// Try to find existing SplatPrototype for reuse. But not for full rebuild.
+				splatPrototype = null;
+				if (layer._splatPrototypeIndex >= 0 && layer._splatPrototypeIndex < existingSplats.Length)
+				{
+					splatPrototype = existingSplats[layer._splatPrototypeIndex];
 
-                    // Positive index for alpha map from heightfield (starting at 1)
-                    alphaMapIndices[layer._splatPrototypeIndex] = m + 1;
-                }
+					// Positive index for alpha map from heightfield (starting at 1)
+					alphaMapIndices[layer._splatPrototypeIndex] = m + 1;
+				}
 
-                if (splatPrototype == null)
-                {
-                    splatPrototype = new SplatPrototype();
-                    layer._splatPrototypeIndex = finalSplats.Count;
-                    finalSplats.Add(splatPrototype);
+				if (splatPrototype == null)
+				{
+					splatPrototype = new SplatPrototype();
+					layer._splatPrototypeIndex = finalSplats.Count;
+					finalSplats.Add(splatPrototype);
 
-                    // Positive index for alpha map from heightfield (starting at 1)
-                    alphaMapIndices.Add(m + 1);
-                }
+					// Positive index for alpha map from heightfield (starting at 1)
+					alphaMapIndices.Add(m + 1);
+				}
 
-                // Now override splat properties if they have been set via attributes
-                LoadLayerPropertiesFromAttributes(session, geoID, partID, splatPrototype, bNewSplat, defaultTexture);
-            }
+				// Now override splat properties if they have been set via attributes
+				LoadLayerPropertiesFromAttributes(session, geoID, partID, splatPrototype, bNewSplat, defaultTexture);
+			}
 
-            // On regular cook, get existing alpha maps so we can reuse the values if needed.
-            float[,,] existingAlphaMaps =
-                terrainData.GetAlphamaps(0, 0, terrainData.alphamapWidth, terrainData.alphamapHeight);
+			// On regular cook, get existing alpha maps so we can reuse the values if needed.
+			float[,,] existingAlphaMaps =
+ terrainData.GetAlphamaps(0, 0, terrainData.alphamapWidth, terrainData.alphamapHeight);
 
-            terrainData.splatPrototypes = finalSplats.ToArray();
+			terrainData.splatPrototypes = finalSplats.ToArray();
 
-            int numTotalAlphaMaps = finalSplats.Count;
+			int numTotalAlphaMaps = finalSplats.Count;
 #endif
 
             // Set alpha maps by combining with existing alpha maps, and appending new heightfields
@@ -1342,69 +1342,69 @@ namespace HoudiniEngineUnity
             }
         }
 #else
-        internal void LoadLayerPropertiesFromAttributes(HEU_SessionBase session, HAPI_NodeId geoID, HAPI_PartId partID, SplatPrototype splat,
-            bool bNewTerrainLayer, Texture2D defaultTexture)
-        {
-            Texture2D diffuseTexture = null;
-            if (LoadLayerTextureFromAttribute(session, geoID, partID, HEU_Defines.DEFAULT_UNITY_HEIGHTFIELD_TEXTURE_DIFFUSE_ATTR, out diffuseTexture))
-            {
-                splat.texture = diffuseTexture;
-            }
+	internal void LoadLayerPropertiesFromAttributes(HEU_SessionBase session, HAPI_NodeId geoID, HAPI_PartId partID, SplatPrototype splat,
+			bool bNewTerrainLayer, Texture2D defaultTexture)
+		{
+			Texture2D diffuseTexture = null;
+			if (LoadLayerTextureFromAttribute(session, geoID, partID, HEU_Defines.DEFAULT_UNITY_HEIGHTFIELD_TEXTURE_DIFFUSE_ATTR, out diffuseTexture))
+			{
+				splat.texture = diffuseTexture;
+			}
 
-            if (splat.texture == null && bNewTerrainLayer)
-            {
-                // Applying default texture if this layer was created newly and no texture was specified.
-                // Unity always seems to require a default texture when creating a new layer normally.
-                splat.texture = defaultTexture;
-            }
+			if (splat.texture == null && bNewTerrainLayer)
+			{
+				// Applying default texture if this layer was created newly and no texture was specified.
+				// Unity always seems to require a default texture when creating a new layer normally.
+				splat.texture = defaultTexture;
+			}
 
-            if (splat.texture == null)
-            {
-                splat.texture = defaultTexture;
-            }
+			if (splat.texture == null)
+			{
+				splat.texture = defaultTexture;
+			}
 
-            Texture2D normalTexture = null;
-            if (LoadLayerTextureFromAttribute(session, geoID, partID, HEU_Defines.DEFAULT_UNITY_HEIGHTFIELD_TEXTURE_NORMAL_ATTR, out normalTexture))
-            {
-                splat.normalMap = normalTexture;
-            }
+			Texture2D normalTexture = null;
+			if (LoadLayerTextureFromAttribute(session, geoID, partID, HEU_Defines.DEFAULT_UNITY_HEIGHTFIELD_TEXTURE_NORMAL_ATTR, out normalTexture))
+			{
+				splat.normalMap = normalTexture;
+			}
 
-            float metallic = 0f;
-            if (LoadLayerFloatFromAttribute(session, geoID, partID, HEU_Defines.DEFAULT_UNITY_HEIGHTFIELD_METALLIC_ATTR, ref metallic))
-            {
-                splat.metallic = metallic;
-            }
+			float metallic = 0f;
+			if (LoadLayerFloatFromAttribute(session, geoID, partID, HEU_Defines.DEFAULT_UNITY_HEIGHTFIELD_METALLIC_ATTR, ref metallic))
+			{
+				splat.metallic = metallic;
+			}
 
-            float smoothness = 0f;
-            if (LoadLayerFloatFromAttribute(session, geoID, partID, HEU_Defines.DEFAULT_UNITY_HEIGHTFIELD_SMOOTHNESS_ATTR, ref smoothness))
-            {
-                splat.smoothness = smoothness;
-            }
+			float smoothness = 0f;
+			if (LoadLayerFloatFromAttribute(session, geoID, partID, HEU_Defines.DEFAULT_UNITY_HEIGHTFIELD_SMOOTHNESS_ATTR, ref smoothness))
+			{
+				splat.smoothness = smoothness;
+			}
 
-            Color specularColor = new Color();
-            if (LoadLayerColorFromAttribute(session, geoID, partID, HEU_Defines.DEFAULT_UNITY_HEIGHTFIELD_SPECULAR_ATTR, ref specularColor))
-            {
-                splat.specular = specularColor;
-            }
+			Color specularColor = new Color();
+			if (LoadLayerColorFromAttribute(session, geoID, partID, HEU_Defines.DEFAULT_UNITY_HEIGHTFIELD_SPECULAR_ATTR, ref specularColor))
+			{
+				splat.specular = specularColor;
+			}
 
-            Vector2 tileOffset = new Vector2();
-            if (LoadLayerVector2FromAttribute(session, geoID, partID, HEU_Defines.DEFAULT_UNITY_HEIGHTFIELD_TILE_OFFSET_ATTR, ref tileOffset))
-            {
-                splat.tileOffset = tileOffset;
-            }
+			Vector2 tileOffset = new Vector2();
+			if (LoadLayerVector2FromAttribute(session, geoID, partID, HEU_Defines.DEFAULT_UNITY_HEIGHTFIELD_TILE_OFFSET_ATTR, ref tileOffset))
+			{
+				splat.tileOffset = tileOffset;
+			}
 
-            Vector2 tileSize = new Vector2();
-            if (LoadLayerVector2FromAttribute(session, geoID, partID, HEU_Defines.DEFAULT_UNITY_HEIGHTFIELD_TILE_SIZE_ATTR, ref tileSize))
-            {
-                splat.tileSize = tileSize;
-            }
+			Vector2 tileSize = new Vector2();
+			if (LoadLayerVector2FromAttribute(session, geoID, partID, HEU_Defines.DEFAULT_UNITY_HEIGHTFIELD_TILE_SIZE_ATTR, ref tileSize))
+			{
+				splat.tileSize = tileSize;
+			}
 
-            if (splat.tileSize.magnitude == 0f)
-            {
-                // Use texture size if tile size is 0
-                splat.tileSize = new Vector2(splat.texture.width, splat.texture.height);
-            }
-        }
+			if (splat.tileSize.magnitude == 0f)
+			{
+				// Use texture size if tile size is 0
+				splat.tileSize = new Vector2(splat.texture.width, splat.texture.height);
+			}
+		}
 #endif
 
         internal void PopulateScatterTrees(HEU_SessionBase session, HAPI_NodeId geoID, HAPI_PartId partID,

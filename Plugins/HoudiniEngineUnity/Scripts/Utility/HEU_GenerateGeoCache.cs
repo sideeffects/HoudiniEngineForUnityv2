@@ -44,7 +44,7 @@ namespace HoudiniEngineUnity
 
 
     /// <summary>
-    ///     Stores geometry and material info for a part that is then used to generate Unity geometry.
+    /// Stores geometry and material info for a part that is then used to generate Unity geometry.
     /// </summary>
     public class HEU_GenerateGeoCache
     {
@@ -160,7 +160,7 @@ namespace HoudiniEngineUnity
         //	LOGIC -----------------------------------------------------------------------------------------------------
 
         /// <summary>
-        ///     Creates a new HEU_GenerateGeoCache with geometry and material data for given part.
+        /// Creates a new HEU_GenerateGeoCache with geometry and material data for given part.
         /// </summary>
         /// <param name="bUseLODGroups">Whether to split group by LOD name</param>
         /// <returns>New HEU_GenerateGeoCache populated with geometry and material data.</returns>
@@ -169,7 +169,7 @@ namespace HoudiniEngineUnity
             List<HEU_MaterialData> materialCache, string assetCacheFolderPath)
         {
 #if HEU_PROFILER_ON
-            float generateGeoCacheStartTime = Time.realtimeSinceStartup;
+	    float generateGeoCacheStartTime = Time.realtimeSinceStartup;
 #endif
 
             HEU_GenerateGeoCache geoCache = new HEU_GenerateGeoCache();
@@ -240,14 +240,14 @@ namespace HoudiniEngineUnity
             }
 
 #if HEU_PROFILER_ON
-            HEU_Logger.LogFormat("GENERATE GEO CACHE TIME:: {0}", (Time.realtimeSinceStartup - generateGeoCacheStartTime));
+	    HEU_Logger.LogFormat("GENERATE GEO CACHE TIME:: {0}", (Time.realtimeSinceStartup - generateGeoCacheStartTime));
 #endif
 
             return geoCache;
         }
 
         /// <summary>
-        ///     Parse and populate materials in use by part.
+        /// Parse and populate materials in use by part.
         /// </summary>
         public void PopulateUnityMaterialData(HEU_SessionBase session)
         {
@@ -376,13 +376,10 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Populate geometry data such as positions, UVs, normals, colors, tangents, vertices, indices by group from part.
-        ///     Splits by collider and/or LOD groups. All other groups are combined to a single main group.
+        /// Populate geometry data such as positions, UVs, normals, colors, tangents, vertices, indices by group from part.
+        /// Splits by collider and/or LOD groups. All other groups are combined to a single main group.
         /// </summary>
-        /// <param name="bUseLODGroups">
-        ///     Split geometry by LOD group if true. Otherwise store all non-collision groups into main
-        ///     group.
-        /// </param>
+        /// <param name="bUseLODGroups">Split geometry by LOD group if true. Otherwise store all non-collision groups into main group.</param>
         /// <returns>True if successfull</returns>
         public bool PopulateGeometryData(HEU_SessionBase session, bool bUseLODGroups)
         {
@@ -707,8 +704,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Get the LOD transition attribute values from the given part.
-        ///     Expects it to be detail attribute with float type.
+        /// Get the LOD transition attribute values from the given part.
+        /// Expects it to be detail attribute with float type.
         /// </summary>
         /// <param name="LODTransitionValues">Output float array of LOD transition values</param>
         public static void ParseLODTransitionAttribute(HEU_SessionBase session, HAPI_NodeId geoID, HAPI_PartId partID,
@@ -929,7 +926,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Generates single mesh from given GeoGroup.
+        /// Generates single mesh from given GeoGroup.
         /// </summary>
         /// <param name="GeoGroup">Contains submehs data</param>
         /// <param name="geoCache">Contains geometry data</param>
@@ -980,8 +977,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Generates LOD meshes from given GeoGroupMeshes.
-        ///     The outputGameObject will have a LODGroup component setup with each of the LOD mesh data.
+        /// Generates LOD meshes from given GeoGroupMeshes.
+        /// The outputGameObject will have a LODGroup component setup with each of the LOD mesh data.
         /// </summary>
         /// <param name="GeoGroupMeshes">List of LOD groups containing submesh data</param>
         /// <param name="geoCache">Contains geometry data</param>
@@ -1155,8 +1152,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Generate mesh from given GeoGroup containing submesh data.
-        ///     Combines submeshes to form a single mesh, along with materials for it.
+        /// Generate mesh from given GeoGroup containing submesh data.
+        /// Combines submeshes to form a single mesh, along with materials for it.
         /// </summary>
         /// <param name="GeoGroup">Contains submesh data</param>
         /// <param name="geoCache">Contains geometry data</param>
@@ -1337,11 +1334,11 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Returns a new mesh that is created from combining the meshes given in the subMeshesMap
-        ///     specified by submeshIndices, specifically for quad topology meshes.
-        ///     Unity crashes when using CombineInstance with quad topology submeshes,
-        ///     so this works around the issue, though slower.
-        ///     Note that this does not generate UVs.
+        /// Returns a new mesh that is created from combining the meshes given in the subMeshesMap
+        /// specified by submeshIndices, specifically for quad topology meshes.
+        /// Unity crashes when using CombineInstance with quad topology submeshes,
+        /// so this works around the issue, though slower.
+        /// Note that this does not generate UVs.
         /// </summary>
         /// <param name="subMeshesMap">Map of submeshes to indices</param>
         /// <param name="subMeshIndices">List of indices of submeshes to combine</param>
@@ -1439,10 +1436,10 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Returns a new mesh that is created from combining the meshes given in the subMeshesMap
-        ///     specified by submeshIndices. Uses Unity's CombineInstance.
-        ///     Quad topology meshes should not be called here due to Unity crash,
-        ///     rather should use CombineQuadMeshes.
+        /// Returns a new mesh that is created from combining the meshes given in the subMeshesMap
+        /// specified by submeshIndices. Uses Unity's CombineInstance.
+        /// Quad topology meshes should not be called here due to Unity crash,
+        /// rather should use CombineQuadMeshes.
         /// </summary>
         /// <param name="subMeshesMap">Map of submeshes to indices</param>
         /// <param name="submeshIndices">Indices of submeshes to combine</param>
@@ -1487,7 +1484,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Returns a new Mesh created by data from submesh.
+        /// Returns a new Mesh created by data from submesh.
         /// </summary>
         /// <param name="submesh">Contains geometry data for mesh</param>
         /// <param name="bGenerateUVs">True to generate UVs manually</param>
@@ -1563,8 +1560,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Transfer given attribute values, based on owner type, into vertex attribute values
-        ///     for the given group of vertices.
+        /// Transfer given attribute values, based on owner type, into vertex attribute values
+        /// for the given group of vertices.
         /// </summary>
         /// <param name="groupVertexList">Vertex indices in group to transfer attributes for</param>
         /// <param name="allFaceCounts">Face counts of faces in entire mesh</param>
@@ -1649,9 +1646,9 @@ namespace HoudiniEngineUnity
 
 
         /// <summary>
-        ///     Generate mesh for the given gameObject with the populated geoCache data.
-        ///     Splits vertices so that each triangle will have unique (non-shared) vertices.
-        ///     Can be invoked on non-main thread as it doesn't use any Unity main thread-only APIs.
+        /// Generate mesh for the given gameObject with the populated geoCache data.
+        /// Splits vertices so that each triangle will have unique (non-shared) vertices.
+        /// Can be invoked on non-main thread as it doesn't use any Unity main thread-only APIs.
         /// </summary>
         /// <returns>True if successfully generated mesh for gameObject</returns>
         public static bool GenerateGeoGroupUsingGeoCacheVertices(HEU_SessionBase session, HEU_GenerateGeoCache geoCache,
@@ -1659,7 +1656,7 @@ namespace HoudiniEngineUnity
             out List<HEU_GeoGroup> LODGroupMeshes, out int defaultMaterialKey)
         {
 #if HEU_PROFILER_ON
-            float generateMeshTime = Time.realtimeSinceStartup;
+			float generateMeshTime = Time.realtimeSinceStartup;
 #endif
 
             string collisionGroupName = HEU_PluginSettings.CollisionGroupName;
@@ -2147,17 +2144,17 @@ namespace HoudiniEngineUnity
             }
 
 #if HEU_PROFILER_ON
-            HEU_Logger.LogFormat("GENERATE GEO GROUP TIME:: {0}", (Time.realtimeSinceStartup - generateMeshTime));
+			HEU_Logger.LogFormat("GENERATE GEO GROUP TIME:: {0}", (Time.realtimeSinceStartup - generateMeshTime));
 #endif
 
             return true;
         }
 
         /// <summary>
-        ///     Generate mesh for the given gameObject with the populated geoCache data.
-        ///     Only uses the points to generate the mesh, so vertices might be shared.
-        ///     Note that only point attributes are used (all other attributes ignored).
-        ///     Can be invoked on non-main thread as it doesn't use any Unity main thread-only APIs.
+        /// Generate mesh for the given gameObject with the populated geoCache data.
+        /// Only uses the points to generate the mesh, so vertices might be shared.
+        /// Note that only point attributes are used (all other attributes ignored).
+        /// Can be invoked on non-main thread as it doesn't use any Unity main thread-only APIs.
         /// </summary>
         /// <returns>True if successfully generated mesh for gameObject</returns>
         public static bool GenerateGeoGroupUsingGeoCachePoints(HEU_SessionBase session, HEU_GenerateGeoCache geoCache,
@@ -2165,7 +2162,7 @@ namespace HoudiniEngineUnity
             out List<HEU_GeoGroup> LODGroupMeshes, out int defaultMaterialKey)
         {
 #if HEU_PROFILER_ON
-            float generateMeshTime = Time.realtimeSinceStartup;
+			float generateMeshTime = Time.realtimeSinceStartup;
 #endif
 
             string collisionGroupName = HEU_PluginSettings.CollisionGroupName;
@@ -2557,7 +2554,7 @@ namespace HoudiniEngineUnity
             }
 
 #if HEU_PROFILER_ON
-            HEU_Logger.LogFormat("GENERATE GEO GROUP TIME:: {0}", (Time.realtimeSinceStartup - generateMeshTime));
+			HEU_Logger.LogFormat("GENERATE GEO GROUP TIME:: {0}", (Time.realtimeSinceStartup - generateMeshTime));
 #endif
 
             return true;

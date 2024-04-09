@@ -27,8 +27,8 @@
 using UnityEngine;
 
 /// <summary>
-///     This is an example script that shows how scripts can be added to generated
-///     assets, and their functions can be invoked with argument.
+/// This is an example script that shows how scripts can be added to generated
+/// assets, and their functions can be invoked with argument.
 /// </summary>
 [ExecuteInEditMode] // This ExecuteInEditMode must be set in order to have function callback in Editor.
 public class HEU_ScriptCallbackExample : MonoBehaviour

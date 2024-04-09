@@ -166,7 +166,7 @@ namespace HoudiniEngineUnity
     public static class ArrayExtensions
     {
         /// <summary>
-        ///     Set the given array with the given value for every element.
+        /// Set the given array with the given value for every element.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="array"></param>
@@ -183,7 +183,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Set the given list with the given value for every element.
+        /// Set the given list with the given value for every element.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="array"></param>

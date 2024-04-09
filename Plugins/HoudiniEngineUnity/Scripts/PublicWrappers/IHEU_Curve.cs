@@ -51,7 +51,7 @@ namespace HoudiniEngineUnity
     using HAPI_PartId = System.Int32;
 
     /// <summary>
-    ///     Holds all parameter data for an asset.
+    /// Holds all parameter data for an asset.
     /// </summary>
     public interface IHEU_Curve
     {
@@ -89,13 +89,13 @@ namespace HoudiniEngineUnity
         bool IsGeoCurve();
 
         /// <summary>
-        ///     Sets the curve name
+        /// Sets the curve name
         /// </summary>
         /// <param name="name">The name to set it to</param>
         void SetCurveName(string name);
 
         /// <summary>
-        ///     Sets a curve point
+        /// Sets a curve point
         /// </summary>
         /// <param name="pointIndex">The point index to set</param>
         /// <param name="newPosition">The position to set at</param>
@@ -103,7 +103,7 @@ namespace HoudiniEngineUnity
         void SetCurvePoint(int pointIndex, Vector3 newPosition, bool bRecookAsset = false);
 
         /// <summary>
-        ///     Sets a curve point
+        /// Sets a curve point
         /// </summary>
         /// <param name="pointIndex">The point index to set</param>
         /// <param name="curveData">The data to set at</param>
@@ -111,39 +111,39 @@ namespace HoudiniEngineUnity
         void SetCurvePoint(int pointIndex, CurveNodeData curveData, bool bRecookAsset = false);
 
         /// <summary>
-        ///     Sets a curve point using the list
+        /// Sets a curve point using the list
         /// </summary>
         /// <param name="curveNodeData">The list of points to set it</param>
         /// <param name="bRecookAsset">Whether or not to recook the asset after setting</param>
         void SetCurveNodeData(List<CurveNodeData> curveNodeData, bool bRecookAsset = false);
 
         /// <summary>
-        ///     Gets a curve point at a index
+        /// Gets a curve point at a index
         /// </summary>
         /// <param name="pointIndex">The index of the point</param>
         /// <returns>The position of the curve point</returns>
         Vector3 GetCurvePoint(int pointIndex);
 
         /// <summary>
-        ///     Gets the curve points
+        /// Gets the curve points
         /// </summary>
         /// <returns>A list containing all point transforms</returns>
         List<CurveNodeData> GetAllPointTransforms();
 
         /// <summary>
-        ///     Gets all the point positions
+        /// Gets all the point positions
         /// </summary>
         /// <returns>A list containing all point positions</returns>
         List<Vector3> GetAllPoints();
 
         /// <summary>
-        ///     Gets the number of points
+        /// Gets the number of points
         /// </summary>
         /// <returns>Gets the number of points</returns>
         int GetNumPoints();
 
         /// <summary>
-        ///     Inserts a curve point at the index
+        /// Inserts a curve point at the index
         /// </summary>
         /// <param name="index">The index to insert the newpoint</param>
         /// <param name="position">The position of the new point</param>
@@ -151,7 +151,7 @@ namespace HoudiniEngineUnity
         void InsertCurvePoint(int index, Vector3 position, bool bRecookAsset = false);
 
         /// <summary>
-        ///     Inserts a curve point at the index
+        /// Inserts a curve point at the index
         /// </summary>
         /// <param name="index">The index to insert the new point</param>
         /// <param name="curveData">The transform of the new point</param>
@@ -159,35 +159,35 @@ namespace HoudiniEngineUnity
         void InsertCurvePoint(int index, CurveNodeData curveData, bool bRecookAsset = false);
 
         /// <summary>
-        ///     Add a curve point to the end
+        /// Add a curve point to the end
         /// </summary>
         /// <param name="position">The position of the new point</param>
         /// <param name="bRecookAsset">Whether or not to recook the asset afterwards</param>
         void AddCurvePointToEnd(Vector3 position, bool bRecookAsset = false);
 
         /// <summary>
-        ///     Add a curve point to the end
+        /// Add a curve point to the end
         /// </summary>
         /// <param name="curveData">The transform of the new point</param>
         /// <param name="bRecookAsset">Whether or not to recook the asset afterwards</param>
         void AddCurvePointToEnd(CurveNodeData curveData, bool bRecookAsset = false);
 
         /// <summary>
-        ///     Removes a curve point at the index
+        /// Removes a curve point at the index
         /// </summary>
         /// <param name="pointIndex">The index to remove the point</param>
         /// <param name="bRecookAsset">Whether or not to recook the asset afterwards</param>
         void RemoveCurvePoint(int pointIndex, bool bRecookAsset = false);
 
         /// <summary>
-        ///     Clears all points on the curve
+        /// Clears all points on the curve
         /// </summary>
         /// <param name="bRecookAsset">Whether or not to recook the asset afterwards</param>
         void ClearCurveNodeData(bool bRecookAsset = false);
 
 
         /// <summary>
-        ///     Project curve points onto collider or layer.
+        /// Project curve points onto collider or layer.
         /// </summary>
         /// <param name="rayDirection">Direction to cast ray</param>
         /// <param name="rayDistance">Maximum ray cast distance</param>
@@ -196,7 +196,7 @@ namespace HoudiniEngineUnity
 
 
         /// <summary>
-        ///     Sets the curve geometry visibility
+        /// Sets the curve geometry visibility
         /// </summary>
         /// <param name="bVisible">Whether or not the curve is visible</param>
         /// <param name="bRecookAsset">Whether or not to recook the asset afterwards</param>
@@ -204,20 +204,20 @@ namespace HoudiniEngineUnity
 
 
         /// <summary>
-        ///     Gets a transformed point in world space
+        /// Gets a transformed point in world space
         /// </summary>
         /// <param name="pointIndex">The index of the point</param>
         /// <returns>The transformed point</returns>
         Vector3 GetTransformedPoint(int pointIndex);
 
         /// <summary>
-        ///     Gets a list of the transformed points in world space
+        /// Gets a list of the transformed points in world space
         /// </summary>
         /// <returns>The transformed points</returns>
         List<Vector3> GetTransformedPoints();
 
         /// <summary>
-        ///     Gets the curve node data by value.
+        /// Gets the curve node data by value.
         /// </summary>
         /// <returns>A list containing the curve transforms, copied by value.</returns>
         List<CurveNodeData> DuplicateCurveNodeData();

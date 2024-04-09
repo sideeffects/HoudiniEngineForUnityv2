@@ -42,7 +42,7 @@ using UnityEditor;
 namespace HoudiniEngineUnity
 {
     /// <summary>
-    ///     Manages storage for Houdini Engine plugin data.
+    /// Manages storage for Houdini Engine plugin data.
     /// </summary>
     public class HEU_PluginStorage
     {
@@ -110,8 +110,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Create new instance if none found.
-        ///     Loads plugin data from file.
+        /// Create new instance if none found.
+        /// Loads plugin data from file.
         /// </summary>
         public static void InstantiateAndLoad()
         {
@@ -133,35 +133,35 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Sets the System.Threading.Thread.CurrentThread.CurrentCulture to System.Globalization.CultureInfo.InvariantCulture
-        ///     if useInvariant is true. This fixes issues with locale-specific parsing issues such as commas for dots in decimals.
+        /// Sets the System.Threading.Thread.CurrentThread.CurrentCulture to System.Globalization.CultureInfo.InvariantCulture
+        /// if useInvariant is true. This fixes issues with locale-specific parsing issues such as commas for dots in decimals.
         /// </summary>
         /// <param name="useInvariant">True to use InvariatCulture. False will reset to DefaultThreadCurrentCulture.</param>
         public static void SetCurrentCulture(bool useInvariant)
         {
 #if NET_4_6
-            if (useInvariant)
-            {
-                // DefaultThreadCurrentCulture could be null in which case save the CurrentCulture into it
-                if (System.Globalization.CultureInfo.DefaultThreadCurrentCulture == null)
-                {
-                    System.Globalization.CultureInfo.DefaultThreadCurrentCulture =
-                        System.Threading.Thread.CurrentThread.CurrentCulture;
-                }
+	    if (useInvariant)
+	    {
+		// DefaultThreadCurrentCulture could be null in which case save the CurrentCulture into it
+		if (System.Globalization.CultureInfo.DefaultThreadCurrentCulture == null)
+		{
+		    System.Globalization.CultureInfo.DefaultThreadCurrentCulture =
+ System.Threading.Thread.CurrentThread.CurrentCulture;
+		}
 
-                System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
-            }
-            else if (System.Globalization.CultureInfo.DefaultThreadCurrentCulture != null)
-            {
-                // Only reset to default if DefaultThreadCurrentCulture is not null otherwise we get error
-                System.Threading.Thread.CurrentThread.CurrentCulture =
-                    System.Globalization.CultureInfo.DefaultThreadCurrentCulture;
-            }
+		System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
+	    }
+	    else if (System.Globalization.CultureInfo.DefaultThreadCurrentCulture != null)
+	    {
+		// Only reset to default if DefaultThreadCurrentCulture is not null otherwise we get error
+		System.Threading.Thread.CurrentThread.CurrentCulture =
+ System.Globalization.CultureInfo.DefaultThreadCurrentCulture;
+	    }
 #endif
         }
 
         /// <summary>
-        ///     Retrieve the array from given JSON string.
+        /// Retrieve the array from given JSON string.
         /// </summary>
         /// <typeparam name="T">Type of array</typeparam>
         /// <param name="jsonArray">String containing JSON array.</param>
@@ -345,8 +345,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Set flag so that the plugin data will be saved out
-        ///     at end of update.
+        /// Set flag so that the plugin data will be saved out
+        /// at end of update.
         /// </summary>
         private void MarkDirtyForSave()
         {
@@ -360,7 +360,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Saves plugin data if there are outstanding changes.
+        /// Saves plugin data if there are outstanding changes.
         /// </summary>
         public static void SaveIfRequired()
         {
@@ -382,7 +382,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Save plugin data to disk.
+        /// Save plugin data to disk.
         /// </summary>
         public bool SavePluginData()
         {
@@ -426,7 +426,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Load the saved plugin settings from disk.
+        /// Load the saved plugin settings from disk.
         /// </summary>
         /// <returns>True if successfully loaded.</returns>
         public bool LoadPluginData()
@@ -553,7 +553,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Removes all plugin data from persistent storage.
+        /// Removes all plugin data from persistent storage.
         /// </summary>
         public static void ClearPluginData()
         {
@@ -565,7 +565,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Load setings data from saved file.
+        /// Load setings data from saved file.
         /// </summary>
         public static void LoadFromSavedFile()
         {
@@ -584,8 +584,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Save given list of sessions (HEU_SessionData) into storage for retrieval later.
-        ///     A way to persist current session information through code refresh/compiles.
+        /// Save given list of sessions (HEU_SessionData) into storage for retrieval later.
+        /// A way to persist current session information through code refresh/compiles.
         /// </summary>
         /// <param name="allSessions"></param>
         public static void SaveAllSessionData(List<HEU_SessionBase> allSessions)
@@ -606,7 +606,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Returns list of session data retrieved from storage.
+        /// Returns list of session data retrieved from storage.
         /// </summary>
         /// <returns>List of HEU_SessionData stored on disk.</returns>
         public static List<HEU_SessionData> LoadAllSessionData()
@@ -635,7 +635,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Removes the session data file.
+        /// Removes the session data file.
         /// </summary>
         public static void DeleteAllSavedSessionData()
         {
@@ -657,9 +657,9 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Build up the asset environment paths set in unity_houdini.env.
-        ///     The paths must have key prefixes start with HEU_Defines.HEU_ENVPATH_PREFIX.
-        ///     When assets are loaded, these mappings are used to find real paths.
+        /// Build up the asset environment paths set in unity_houdini.env.
+        /// The paths must have key prefixes start with HEU_Defines.HEU_ENVPATH_PREFIX.
+        /// When assets are loaded, these mappings are used to find real paths.
         /// </summary>
         public void LoadAssetEnvironmentPaths()
         {
@@ -690,9 +690,9 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Convert the given real path to its environment mapped version, if there is a mapping for it.
-        ///     For example, if inPath is C:\temp\hdas\trees\tree1.hda and environment map is
-        ///     HEU_ENVPATH_HDAS=C:\temp\hdas\ then the result will be $HEU_ENVPATH_HDAS/trees\tree1.hda
+        /// Convert the given real path to its environment mapped version, if there is a mapping for it.
+        /// For example, if inPath is C:\temp\hdas\trees\tree1.hda and environment map is
+        /// HEU_ENVPATH_HDAS=C:\temp\hdas\ then the result will be $HEU_ENVPATH_HDAS/trees\tree1.hda
         /// </summary>
         /// <param name="inPath">The real path to convert</param>
         /// <returns>The mapped path if a valid environment mapping is found for it, otherwise inPath is returned.</returns>
@@ -724,9 +724,9 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Convert environment mapped path to real path, if there is a mapping for it.
-        ///     For example, if inPath is $HEU_ENVPATH_HDAS/trees/tree1.hda and mapping is
-        ///     HEU_ENVPATH_HDAS=C:\temp\hdas\ then the result will be C:\temp\hdas\trees/tree1.
+        /// Convert environment mapped path to real path, if there is a mapping for it.
+        /// For example, if inPath is $HEU_ENVPATH_HDAS/trees/tree1.hda and mapping is
+        /// HEU_ENVPATH_HDAS=C:\temp\hdas\ then the result will be C:\temp\hdas\trees/tree1.
         /// </summary>
         /// <param name="inPath"></param>
         /// <returns></returns>

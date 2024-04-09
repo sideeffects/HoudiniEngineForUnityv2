@@ -40,7 +40,7 @@ using UnityEditor;
 namespace HoudiniEngineUnity
 {
     /// <summary>
-    ///     Base class for platform-specific functionaltiy.
+    /// Base class for platform-specific functionaltiy.
     /// </summary>
 #if UNITY_EDITOR && HOUDINIENGINEUNITY_ENABLED
     [InitializeOnLoad]
@@ -68,7 +68,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Returns the path to the Houdini Engine plugin installation.
+        /// Returns the path to the Houdini Engine plugin installation.
         /// </summary>
         /// <returns>Path to the Houdini Engine plugin installation.</returns>
         public static string GetHoudiniEnginePath()
@@ -86,7 +86,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Returns the default installation path of Houdini that this plugin was built to use.
+        /// Returns the default installation path of Houdini that this plugin was built to use.
         /// </summary>
         public static string GetHoudiniEngineDefaultPath()
         {
@@ -123,29 +123,27 @@ namespace HoudiniEngineUnity
             }
 
 #elif (UNITY_EDITOR_OSX || UNITY_EDITOR_LINUX || (!UNITY_EDITOR && (UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX)))
-            HAPIPath = System.Environment.GetEnvironmentVariable(HEU_Defines.HAPI_PATH);
-            if (string.IsNullOrEmpty(HAPIPath))
-            {
-                HAPIPath = HEU_HoudiniVersion.HOUDINI_INSTALL_PATH;
-            }
+	    HAPIPath = System.Environment.GetEnvironmentVariable(HEU_Defines.HAPI_PATH);
+	    if (string.IsNullOrEmpty(HAPIPath))
+	    {
+		HAPIPath = HEU_HoudiniVersion.HOUDINI_INSTALL_PATH;
+	    }
 #else
-            _lastErrorMsg = "Unable to find Houdini installation because this is an unsupported platform!";
+	    _lastErrorMsg = "Unable to find Houdini installation because this is an unsupported platform!";
 #endif
 
             return HAPIPath;
         }
 
         /// <summary>
-        ///     Return the saved Houdini install path.
-        ///     Checks if the plugin has been updated, and if so, asks
-        ///     user whether they want to switch to new version.
-        ///     If user switches, then this returns null to allow installed version
-        ///     to be used.
+        /// Return the saved Houdini install path.
+        /// Checks if the plugin has been updated, and if so, asks
+        /// user whether they want to switch to new version.
+        /// If user switches, then this returns null to allow installed version
+        /// to be used.
         /// </summary>
-        /// <returns>
-        ///     The saved Houdini install path or null if it doesn't
-        ///     exist or user wants to use installed version
-        /// </returns>
+        /// <returns>The saved Houdini install path or null if it doesn't 
+        /// exist or user wants to use installed version</returns>
         public static string GetSavedHoudiniPath()
         {
             string HAPIPath = HEU_PluginSettings.HoudiniInstallPath;
@@ -179,7 +177,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Sets the HAPI_CLIENT_NAME environment variable
+        /// Sets the HAPI_CLIENT_NAME environment variable
         public static void SetHapiClientName()
         {
             System.Environment.SetEnvironmentVariable(
@@ -187,7 +185,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Find the Houdini Engine libraries, and add the Houdini Engine path to the system path.
+        /// Find the Houdini Engine libraries, and add the Houdini Engine path to the system path.
         /// </summary>
         public static void SetHoudiniEnginePath()
         {
@@ -244,39 +242,38 @@ namespace HoudiniEngineUnity
             _pathSet = true;
 
 #elif (UNITY_EDITOR_OSX || UNITY_EDITOR_LINUX || (!UNITY_EDITOR && (UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX)))
-            if (!System.IO.Directory.Exists(appPath))
-            {
-                _lastErrorMsg = string.Format("Could not find Houdini Engine library at {0}", appPath);
-                HEU_Logger.LogError(_lastErrorMsg);
-                return;
-            }
+	    if(!System.IO.Directory.Exists(appPath))
+	    {
+		    _lastErrorMsg = string.Format("Could not find Houdini Engine library at {0}", appPath);
+		    HEU_Logger.LogError(_lastErrorMsg);
+		    return;
+	    }
 
-            _libPath = appPath + HEU_HoudiniVersion.HAPI_LIBRARY_PATH;
+	    _libPath = appPath + HEU_HoudiniVersion.HAPI_LIBRARY_PATH;
 
-            // Set HARS bin path to environment path so that we can start Thrift server
-            string systemPath = System.Environment.GetEnvironmentVariable("PATH", System.EnvironmentVariableTarget.Process);
-            if (string.IsNullOrEmpty(systemPath) || !systemPath.Contains(binPath))
-            {
-                if (string.IsNullOrEmpty(systemPath))
-                {
-                    systemPath = binPath;
-                }
-                else
-                {
-                    systemPath = binPath + ":" + systemPath;
-                }
-            }
-
-            System.Environment.SetEnvironmentVariable("PATH", systemPath, System.EnvironmentVariableTarget.Process);
-
-            _pathSet = true;
+	    // Set HARS bin path to environment path so that we can start Thrift server
+	    string systemPath = System.Environment.GetEnvironmentVariable("PATH", System.EnvironmentVariableTarget.Process);
+	    if (string.IsNullOrEmpty(systemPath) || !systemPath.Contains(binPath))
+	    {
+		    if (string.IsNullOrEmpty(systemPath))
+		    {
+			    systemPath = binPath;
+		    }
+		    else
+		    {
+			    systemPath = binPath + ":" + systemPath;
+		    }
+	    }
+	    System.Environment.SetEnvironmentVariable("PATH", systemPath, System.EnvironmentVariableTarget.Process);
+			
+	    _pathSet = true;
 #endif
 
 #endif
         }
 
         /// <summary>
-        ///     Return all folders (their full paths) in given path as semicolon delimited string.
+        /// Return all folders (their full paths) in given path as semicolon delimited string.
         /// </summary>
         /// <param name="path">Path to parse.</param>
         /// <returns>Paths of all folders under given path.</returns>
@@ -291,7 +288,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Helper that uses StringBuilder to build up the paths of all folders in given path.
+        /// Helper that uses StringBuilder to build up the paths of all folders in given path.
         /// </summary>
         /// <param name="inPath">Path to parse.</param>
         /// <param name="pathBuilder">StringBuilder to add results to.</param>
@@ -311,8 +308,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Returns all files (with their paths) in a given folder, with or without pattern, either recursively or just the
-        ///     first.
+        /// Returns all files (with their paths) in a given folder, with or without pattern, either recursively or just the first.
         /// </summary>
         /// <param name="folderPath">Path to folder</param>
         /// <param name="searchPattern">File name pattern to search for</param>
@@ -343,7 +339,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Removes file name and returns the path containing just the folders.
+        /// Removes file name and returns the path containing just the folders.
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
@@ -360,7 +356,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Returns path separator character.
+        /// Returns path separator character.
         /// </summary>
         public static char DirectorySeparator =>
             // Instead of returning Path.DirectorySeparator, we'll use /
@@ -369,7 +365,7 @@ namespace HoudiniEngineUnity
             '/';
 
         /// <summary>
-        ///     Returns path separator string.
+        /// Returns path separator string.
         /// </summary>
         public static string DirectorySeparatorStr =>
             // Instead of returning Path.DirectorySeparator, we'll use /
@@ -378,10 +374,10 @@ namespace HoudiniEngineUnity
             "/";
 
         /// <summary>
-        ///     Given a list of folders, builds a platform-compatible
-        ///     path, using a separator in between the arguments.
-        ///     Assumes folder arguments are given in order from left to right.
-        ///     eg. folder1/folder2/args[0]/args[1]/...
+        /// Given a list of folders, builds a platform-compatible
+        /// path, using a separator in between the arguments.
+        /// Assumes folder arguments are given in order from left to right.
+        /// eg. folder1/folder2/args[0]/args[1]/...
         /// </summary>
         /// <param name="str1"></param>
         /// <param name="str2"></param>
@@ -406,7 +402,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Removes and returns the last directory separator character from given string.
+        /// Removes and returns the last directory separator character from given string.
         /// </summary>
         /// <param name="inPath">Path to parse</param>
         /// <returns>Returns the last directory separator character from given string</returns>
@@ -487,7 +483,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Returns environment value of given key, if found.
+        /// Returns environment value of given key, if found.
         /// </summary>
         /// <param name="key">Key to get the environment value for</param>
         /// <returns>Environment value as string, or empty if none found</returns>

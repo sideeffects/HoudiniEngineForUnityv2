@@ -142,7 +142,7 @@ namespace HoudiniEngineUnity
 
 	    return sb.ToString();
 #else
-        return "";
+	    return "";
 #endif
 	}
 
@@ -158,7 +158,7 @@ namespace HoudiniEngineUnity
 #if UNITY_EDITOR_WIN || (!UNITY_EDITOR && UNITY_STANDALONE_WIN)
 	    pathStr = pathStr.Replace(";", "\n");
 #elif (UNITY_EDITOR_OSX || UNITY_EDITOR_LINUX || (!UNITY_EDITOR && (UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX)))
-        pathStr = pathStr.Replace(":", "\n");
+	    pathStr = pathStr.Replace(":", "\n");
 #endif
 	    return pathStr;
 	}
@@ -770,7 +770,7 @@ namespace HoudiniEngineUnity
 
 	    return rootGO;
 #else
-        return null;
+			return null;
 #endif
 	}
 

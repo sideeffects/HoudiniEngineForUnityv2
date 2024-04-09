@@ -36,7 +36,7 @@ namespace HoudiniEngineUnity
     using HAPI_ParmId = System.Int32;
 
     /// <summary>
-    ///     Represents a Handle binding to a parameter.
+    /// Represents a Handle binding to a parameter.
     /// </summary>
     [System.Serializable]
     internal class HEU_HandleParamBinding : IEquivable<HEU_HandleParamBinding>

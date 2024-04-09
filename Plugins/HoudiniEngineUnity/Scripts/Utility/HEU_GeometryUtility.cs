@@ -45,7 +45,7 @@ namespace HoudiniEngineUnity
     using HAPI_PartId = System.Int32;
 
     /// <summary>
-    ///     Geometry-specific utility functions.
+    /// Geometry-specific utility functions.
     /// </summary>
     public static class HEU_GeometryUtility
     {
@@ -54,8 +54,8 @@ namespace HoudiniEngineUnity
 #if UNITY_EDITOR
             return Unwrapping.GeneratePerTriangleUV(meshSrc);
 #else
-            HEU_Logger.LogWarning("GeneratePerTriangle is unavailable at runtime!");
-            return null;
+			HEU_Logger.LogWarning("GeneratePerTriangle is unavailable at runtime!");
+			return null;
 #endif
         }
 
@@ -66,14 +66,14 @@ namespace HoudiniEngineUnity
             UnwrapParam.SetDefaults(out param);
             Unwrapping.GenerateSecondaryUVSet(meshsrc, param);
 #else
-            HEU_Logger.LogWarning("GenerateSecondaryUVSet is unavailable at runtime!");
+			HEU_Logger.LogWarning("GenerateSecondaryUVSet is unavailable at runtime!");
 #endif
         }
 
 
         /// <summary>
-        ///     Calculate the tangents for the given mesh.
-        ///     Does nothing if the mesh has no geometry, UVs, or normals.
+        /// Calculate the tangents for the given mesh.
+        /// Does nothing if the mesh has no geometry, UVs, or normals.
         /// </summary>
         /// <param name="mesh">Source mesh to calculate tangents for.</param>
         public static void CalculateMeshTangents(Mesh mesh)
@@ -158,7 +158,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Generates a cube mesh using quad faces from given points, with vertex colours on selected and non-selected points.
+        /// Generates a cube mesh using quad faces from given points, with vertex colours on selected and non-selected points.
         /// </summary>
         /// <param name="points">A cube will be created for each point in this list</param>
         /// <param name="selectedPtsFlag">Indices of selected points</param>
@@ -285,8 +285,8 @@ namespace HoudiniEngineUnity
 #if UNITY_2017_3_OR_NEWER
                 mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
 #else
-                HEU_Logger.LogErrorFormat("Unable to generate mesh from points due to larger than supported geometry (> {0} vertices). Use Unity 2017.3+ for large geometry.", ushort.MaxValue);
-                return mesh;
+				HEU_Logger.LogErrorFormat("Unable to generate mesh from points due to larger than supported geometry (> {0} vertices). Use Unity 2017.3+ for large geometry.", ushort.MaxValue);
+				return mesh;
 #endif
             }
 
@@ -299,9 +299,9 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        ///     Returns the output instance's name for given instance index.
-        ///     The instance name convention is: PartName_Instance1
-        ///     User could override the prefix (PartName) with their own via given instancePrefixes array.
+        /// Returns the output instance's name for given instance index. 
+        /// The instance name convention is: PartName_Instance1
+        /// User could override the prefix (PartName) with their own via given instancePrefixes array.
         /// </summary>
         /// <param name="partName"></param>
         /// <param name="userPrefix"></param>

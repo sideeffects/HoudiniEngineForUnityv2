@@ -41,8 +41,8 @@ namespace HoudiniEngineUnity
     }
 
     /// <summary>
-    ///     Helper that contains a request for parameter modification.
-    ///     Currently used to modifier multiparms after the UI has drawn.
+    /// Helper that contains a request for parameter modification.
+    /// Currently used to modifier multiparms after the UI has drawn.
     /// </summary>
     [System.Serializable]
     public class HEU_ParameterModifier : IEquivable<HEU_ParameterModifier>
