@@ -73,13 +73,13 @@ namespace HoudiniEngineUnity
     };
 
     /// <summary>
-    /// Holds all parameter data for an asset.
+    ///     Holds all parameter data for an asset.
     /// </summary>
     public interface IHEU_InputNode
     {
         /// <summary>
-        /// Enabling Keep World Transform by default to keep consistent with other plugins
-        /// If true, sets the SOP/merge (object merge) node to use INTO_THIS_OBJECT transform type. Otherwise NONE.
+        ///     Enabling Keep World Transform by default to keep consistent with other plugins
+        ///     If true, sets the SOP/merge (object merge) node to use INTO_THIS_OBJECT transform type. Otherwise NONE.
         /// </summary>
         bool KeepWorldTransform { get; set; }
 
@@ -117,32 +117,32 @@ namespace HoudiniEngineUnity
         HEU_InputInterfaceSplineSettings SplineSettings { get; }
 
         /// <summary>
-        /// Whether or not this is an asset input
+        ///     Whether or not this is an asset input
         /// </summary>
         /// <returns>Is an asset input?</returns>
         bool IsAssetInput();
 
         /// <summary>
-        /// Get the number of input entries
+        ///     Get the number of input entries
         /// </summary>
         /// <returns>Number of input entries</returns>
         int NumInputEntries();
 
         /// <summary>
-        /// Get the input entry gameobject at a index
+        ///     Get the input entry gameobject at a index
         /// </summary>
         /// <param name="index">The index</param>
         /// <returns>The gameobject</returns>
         GameObject GetInputEntryGameObject(int index);
 
         /// <summary>
-        /// Get the input entry gameobjects
+        ///     Get the input entry gameobjects
         /// </summary>
         /// <returns>The gameobjects</returns>
         GameObject[] GetInputEntryGameObjects();
 
         /// <summary>
-        /// Sets the input entry gameObject at a index
+        ///     Sets the input entry gameObject at a index
         /// </summary>
         /// <param name="index">The index</param>
         /// <param name="newInputGameObject">The gameObject to set</param>
@@ -150,7 +150,7 @@ namespace HoudiniEngineUnity
         void SetInputEntry(int index, GameObject newInputGameObject, bool bRecookAsset = false);
 
         /// <summary>
-        /// Inserts the input entry gameObject at a index
+        ///     Inserts the input entry gameObject at a index
         /// </summary>
         /// <param name="index">The index</param>
         /// <param name="newInputGameObject">The gameObject to set</param>
@@ -158,40 +158,40 @@ namespace HoudiniEngineUnity
         void InsertInputEntry(int index, GameObject newInputGameObject, bool bRecookAsset = false);
 
         /// <summary>
-        /// Add an input entry at the end
+        ///     Add an input entry at the end
         /// </summary>
         /// <param name="newEntryGameObject">The gameObject to add</param>
         /// <param name="bRecookAsset">Whether or not to recook the asset afterwards</param>
         void AddInputEntryAtEnd(GameObject newEntryGameObject, bool bRecookAsset = false);
 
         /// <summary>
-        /// Resets the input node
+        ///     Resets the input node
         /// </summary>
         /// <param name="bRecookAsset">Whether or not to recook the asset afterwards</param>
         void ResetInputNode(bool bRecookAsset = false);
 
         /// <summary>
-        /// Changes the input type
+        ///     Changes the input type
         /// </summary>
         /// <param name="newType">The new input type to change the input node to</param>
         /// <param name="bRecookAsset">Whether or not to recook the asset afterwards</param>
         void ChangeInputType(HEU_InputObjectTypeWrapper newType, bool bRecookAsset = false);
 
         /// <summary>
-        /// Remove input entry at index
+        ///     Remove input entry at index
         /// </summary>
         /// <param name="index">The input entry to remove</param>
         /// <param name="bRecookAsset">Whether or not to recook the asset afterwards</param>
         void RemoveInputEntry(int index, bool bRecookAsset = false);
 
         /// <summary>
-        /// Removes all input entries
+        ///     Removes all input entries
         /// </summary>
         /// <param name="bRecookAsset">Whether or not to recook the asset afterwards</param>
         void RemoveAllInputEntries(bool bRecookAsset = false);
 
         /// <summary>
-        /// Sets the input entry object use transform flag.
+        ///     Sets the input entry object use transform flag.
         /// </summary>
         /// <param name="index">Index to set it at</param>
         /// <param name="value">The value to set it at</param>
@@ -199,7 +199,7 @@ namespace HoudiniEngineUnity
         void SetInputEntryObjectUseTransformOffset(int index, bool value, bool bRecookAsset = false);
 
         /// <summary>
-        /// Sets the input entry object translation offset. Only valid if use transform offset is true.
+        ///     Sets the input entry object translation offset. Only valid if use transform offset is true.
         /// </summary>
         /// <param name="index">Index to set it at</param>
         /// <param name="translateOffset">The offset to set it at</param>
@@ -207,7 +207,7 @@ namespace HoudiniEngineUnity
         void SetInputEntryObjectTransformTranslateOffset(int index, Vector3 translateOffset, bool bRecookAsset = false);
 
         /// <summary>
-        /// Sets the input entry object rotate offset. Only valid if use transform offset is true.
+        ///     Sets the input entry object rotate offset. Only valid if use transform offset is true.
         /// </summary>
         /// <param name="index">Index to set it at</param>
         /// <param name="rotateOffset">The offset to set it at</param>
@@ -215,7 +215,7 @@ namespace HoudiniEngineUnity
         void SetInputEntryObjectTransformRotateOffset(int index, Vector3 rotateOffset, bool bRecookAsset = false);
 
         /// <summary>
-        /// Sets the input entry object scale offset. Only valid if use transform offset is true.
+        ///     Sets the input entry object scale offset. Only valid if use transform offset is true.
         /// </summary>
         /// <param name="index">Index to set it at</param>
         /// <param name="scaleOffset">The offset to set it at</param>
@@ -223,32 +223,32 @@ namespace HoudiniEngineUnity
         void SetInputEntryObjectTransformScaleOffset(int index, Vector3 scaleOffset, bool bRecookAsset = false);
 
         /// <summary>
-        /// Gets whether or not an input HDAs are connected.
+        ///     Gets whether or not an input HDAs are connected.
         /// </summary>
         /// <returns>Whether or not an input HDAs are connected.</returns>
         bool AreAnyInputHDAsConnected();
 
         /// <summary>
-        /// Gets connected input count
+        ///     Gets connected input count
         /// </summary>
         /// <returns>The number of connected input counts.</returns>
         int GetConnectedInputCount();
 
         /// <summary>
-        /// Gets the connected input node ID at index
+        ///     Gets the connected input node ID at index
         /// </summary>
         /// <param name="index">Index to set it at</param>
         /// <returns>Gets connected node ID.</returns>
         HAPI_NodeId GetConnectedNodeID(int index);
 
         /// <summary>
-        /// Loads the specified input preset
+        ///     Loads the specified input preset
         /// </summary>
         /// <param name="inputPreset">The input preset</param>
         void LoadPreset(HEU_InputPreset inputPreset);
 
         /// <summary>
-        /// Populates the specified inputPreset with this HEU_InputNode's data
+        ///     Populates the specified inputPreset with this HEU_InputNode's data
         /// </summary>
         /// <param name="inputPreset">The input preset</param>
         void PopulateInputPreset(HEU_InputPreset inputPreset);

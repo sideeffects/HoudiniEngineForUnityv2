@@ -39,7 +39,7 @@ using UnityEditor;
 namespace HoudiniEngineUnity
 {
     /// <summary>
-    /// General task manager for Houdini Engine Unity plugin.
+    ///     General task manager for Houdini Engine Unity plugin.
     /// </summary>
 #if UNITY_EDITOR && HOUDINIENGINEUNITY_ENABLED
     [InitializeOnLoad]
@@ -47,8 +47,8 @@ namespace HoudiniEngineUnity
     public class HEU_TaskManager
     {
         /// <summary>
-        /// Register for the update callback.
-        /// Called when scripts are initially loaded.
+        ///     Register for the update callback.
+        ///     Called when scripts are initially loaded.
         /// </summary>
         static HEU_TaskManager()
         {
@@ -63,7 +63,7 @@ namespace HoudiniEngineUnity
         private static List<HEU_Task> _pendingRemove = new List<HEU_Task>();
 
         /// <summary>
-        /// Process tasks and update their state.
+        ///     Process tasks and update their state.
         /// </summary>
         private static void Update()
         {

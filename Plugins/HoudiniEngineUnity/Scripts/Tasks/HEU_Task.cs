@@ -32,7 +32,7 @@ using UnityEngine;
 namespace HoudiniEngineUnity
 {
     /// <summary>
-    /// Base class for all Houdini Engine Unity tasks.
+    ///     Base class for all Houdini Engine Unity tasks.
     /// </summary>
     public abstract class HEU_Task
     {
@@ -84,7 +84,7 @@ namespace HoudiniEngineUnity
 
 
     /// <summary>
-    /// Asset-specific class for Houdini Engine Unity tasks.
+    ///     Asset-specific class for Houdini Engine Unity tasks.
     /// </summary>
     public class HEU_AssetTask : HEU_Task
     {

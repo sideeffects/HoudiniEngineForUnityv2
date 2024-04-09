@@ -39,7 +39,7 @@ namespace HoudiniEngineUnity
 
 
     /// <summary>
-    /// Meta data container for filtering when displaying TOP networks and nodes
+    ///     Meta data container for filtering when displaying TOP networks and nodes
     /// </summary>
     public class TOPNodeTags
     {
@@ -58,7 +58,7 @@ namespace HoudiniEngineUnity
     }
 
     /// <summary>
-    /// Container for TOP network data
+    ///     Container for TOP network data
     /// </summary>
     [System.Serializable]
     public class HEU_TOPNetworkData
@@ -79,7 +79,7 @@ namespace HoudiniEngineUnity
     }
 
     /// <summary>
-    /// Container for TOP node data, status, results, etc
+    ///     Container for TOP node data, status, results, etc
     /// </summary>
     [System.Serializable]
     public class HEU_TOPNodeData
@@ -134,7 +134,7 @@ namespace HoudiniEngineUnity
     }
 
     /// <summary>
-    /// Container of work item's results (e.g. loaded geometry / gameobject)
+    ///     Container of work item's results (e.g. loaded geometry / gameobject)
     /// </summary>
     [System.Serializable]
     public class HEU_TOPWorkResult
@@ -145,8 +145,8 @@ namespace HoudiniEngineUnity
     }
 
     /// <summary>
-    /// Work item status tally for UI.
-    /// Allows to show number of work items cooking, waiting, errored, etc.
+    ///     Work item status tally for UI.
+    ///     Allows to show number of work items cooking, waiting, errored, etc.
     /// </summary>
     [System.Serializable]
     internal class HEU_WorkItemTally

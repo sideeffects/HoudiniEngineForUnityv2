@@ -38,17 +38,17 @@ namespace HoudiniEngineUnity
     using HAPI_PartId = System.Int32;
 
     /// <summary>
-    /// This class provides functionality for uploading Unity terrain data from a gameobject
-    /// into Houdini through a heightfield node network.
-    /// It derives from the HEU_InputInterface and registers with HEU_InputUtility so that it
-    /// can be used automatically when uploading terrain data.
+    ///     This class provides functionality for uploading Unity terrain data from a gameobject
+    ///     into Houdini through a heightfield node network.
+    ///     It derives from the HEU_InputInterface and registers with HEU_InputUtility so that it
+    ///     can be used automatically when uploading terrain data.
     /// </summary>
     public class HEU_InputInterfaceTerrain : HEU_InputInterface
     {
 #if UNITY_EDITOR
         /// <summary>
-        /// Registers this input inteface for Unity meshes on
-        /// the callback after scripts are reloaded in Unity.
+        ///     Registers this input inteface for Unity meshes on
+        ///     the callback after scripts are reloaded in Unity.
         /// </summary>
         [InitializeOnLoadMethod]
         [UnityEditor.Callbacks.DidReloadScripts]
@@ -64,9 +64,9 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Creates a heightfield network inside the same object as connectNodeID.
-        /// Uploads the terrain data from inputObject into the new heightfield network, incuding
-        /// all terrain layers/alphamaps.
+        ///     Creates a heightfield network inside the same object as connectNodeID.
+        ///     Uploads the terrain data from inputObject into the new heightfield network, incuding
+        ///     all terrain layers/alphamaps.
         /// </summary>
         /// <param name="session">Session that connectNodeID exists in</param>
         /// <param name="connectNodeID">The node to connect the network to. Most likely a SOP/merge node</param>
@@ -170,7 +170,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Create the main heightfield network for input.
+        ///     Create the main heightfield network for input.
         /// </summary>
         /// <param name="session"></param>
         /// <param name="idt"></param>
@@ -208,7 +208,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Upload the base height layer into heightfield network.
+        ///     Upload the base height layer into heightfield network.
         /// </summary>
         /// <param name="session"></param>
         /// <param name="idt"></param>
@@ -331,7 +331,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Upload the alphamaps (TerrainLayers) into heightfield network.
+        ///     Upload the alphamaps (TerrainLayers) into heightfield network.
         /// </summary>
         /// <param name="session"></param>
         /// <param name="idt"></param>
@@ -382,7 +382,7 @@ namespace HoudiniEngineUnity
 #if UNITY_2018_3_OR_NEWER
                 string layerName = idt._terrainData.terrainLayers[m].name;
 #else
-				string layerName = "unity_alphamap_" + m + 1;
+                string layerName = "unity_alphamap_" + m + 1;
 #endif
 
                 // The Unity layer name could contain '.terrainlayer' and spaces. Remove them because Houdini doesn't allow
@@ -474,8 +474,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Helper to set heightfield data for a specific volume node.
-        /// Used for a specific terrain layer.
+        ///     Helper to set heightfield data for a specific volume node.
+        ///     Used for a specific terrain layer.
         /// </summary>
         /// <param name="session">Session that the volume node resides in.</param>
         /// <param name="volumeNodeID">ID of the target volume node</param>
@@ -535,7 +535,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Writes out the TerrainData file path as a string attribute (primitive-owned) for the specified heightfield volume.
+        ///     Writes out the TerrainData file path as a string attribute (primitive-owned) for the specified heightfield volume.
         /// </summary>
         /// <param name="session">Current Houdini session</param>
         /// <param name="geoNodeID">Geometry object ID</param>
@@ -579,7 +579,7 @@ namespace HoudiniEngineUnity
 
 #if UNITY_2018_3_OR_NEWER
         /// <summary>
-        /// Writes out the TerrainLayer file path as a string attribute (primitive-owned) for the specified heightfield volume.
+        ///     Writes out the TerrainLayer file path as a string attribute (primitive-owned) for the specified heightfield volume.
         /// </summary>
         /// <param name="session">Current Houdini session</param>
         /// <param name="geoNodeID">Geometry object ID</param>
@@ -623,11 +623,11 @@ namespace HoudiniEngineUnity
 #endif
 
         /// <summary>
-        /// Set the given TerrainData's TreePrototyes as attributes on the given part.
-        /// The TreePrototypes as stored a string attributes where the name is HEU_Defines.HEIGHTFIELD_TREEPROTOTYPE + index.
-        /// The string value is the tree prefab's file path comme-separated with the bend factor:
-        /// e.g: Assets/Trees/redtree.prefab,0.9
-        /// This does nothing if the given TerrainData doesn't have TreePrototype.
+        ///     Set the given TerrainData's TreePrototyes as attributes on the given part.
+        ///     The TreePrototypes as stored a string attributes where the name is HEU_Defines.HEIGHTFIELD_TREEPROTOTYPE + index.
+        ///     The string value is the tree prefab's file path comme-separated with the bend factor:
+        ///     e.g: Assets/Trees/redtree.prefab,0.9
+        ///     This does nothing if the given TerrainData doesn't have TreePrototype.
         /// </summary>
         /// <param name="session">Houdini Engine session</param>
         /// <param name="geoNodeID">Geometry object ID</param>
@@ -709,7 +709,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Holds terrain data for uploading as heightfields
+        ///     Holds terrain data for uploading as heightfields
         /// </summary>
         public class HEU_InputDataTerrain : HEU_InputData
         {
@@ -737,7 +737,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Generates heightfield/terrain data from the given object relevant for uploading to Houdini.
+        ///     Generates heightfield/terrain data from the given object relevant for uploading to Houdini.
         /// </summary>
         /// <param name="inputObject"></param>
         /// <returns>Valid input object or null if given object is not supported</returns>

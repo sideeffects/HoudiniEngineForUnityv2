@@ -37,7 +37,7 @@ namespace HoudiniEngineUnity
 
 
     /// <summary>
-    /// Contains utility functions for working with parameters
+    ///     Contains utility functions for working with parameters
     /// </summary>
     public static class HEU_ParameterUtility
     {

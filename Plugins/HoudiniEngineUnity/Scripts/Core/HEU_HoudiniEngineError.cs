@@ -28,7 +28,7 @@
 namespace HoudiniEngineUnity
 {
     /// <summary>
-    /// Houdini Engine base error class.
+    ///     Houdini Engine base error class.
     /// </summary>
     public class HEU_HoudiniEngineError : System.Exception
     {

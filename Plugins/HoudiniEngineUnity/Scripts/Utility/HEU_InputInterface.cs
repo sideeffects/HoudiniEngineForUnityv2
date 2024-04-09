@@ -33,9 +33,9 @@ namespace HoudiniEngineUnity
     using HAPI_NodeId = System.Int32;
 
     /// <summary>
-    /// Base interface class containing functionality for uploading input data into Houdini.
-    /// Derived classes should register with the HEU_InputUtility after scripts are reloaded.
-    /// For example, check out HEU_InputInterfaceMesh.cs or HEU_InputInterfaceTerrain.cs.
+    ///     Base interface class containing functionality for uploading input data into Houdini.
+    ///     Derived classes should register with the HEU_InputUtility after scripts are reloaded.
+    ///     For example, check out HEU_InputInterfaceMesh.cs or HEU_InputInterfaceTerrain.cs.
     /// </summary>
     public abstract class HEU_InputInterface
     {
@@ -50,8 +50,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Register this interface class with HEU_InputUtility
-        /// so that it will be used on input gameobjects
+        ///     Register this interface class with HEU_InputUtility
+        ///     so that it will be used on input gameobjects
         /// </summary>
         public void RegisterInterface()
         {
@@ -75,15 +75,15 @@ namespace HoudiniEngineUnity
 #endif
 
         /// <summary>
-        /// Return true if this interface supports uploading the given inputObject's data.
-        /// Should check the components on the inputObject and children.
+        ///     Return true if this interface supports uploading the given inputObject's data.
+        ///     Should check the components on the inputObject and children.
         /// </summary>
         /// <param name="inputObject">The gameobject whose components will be checked</param>
         /// <returns>True if this interface supports uploading this input object's data</returns>
         public abstract bool IsThisInputObjectSupported(GameObject inputObject);
 
         /// <summary>
-        /// Create the input node and upload data based on given inputObject.
+        ///     Create the input node and upload data based on given inputObject.
         /// </summary>
         /// <param name="session">Session to create the node in</param>
         /// <param name="connectNodeID">The node to connect the input node to. Usually the SOP/merge node.</param>

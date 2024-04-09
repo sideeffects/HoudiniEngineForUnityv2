@@ -51,7 +51,7 @@ namespace HoudiniEngineUnity
     using HAPI_PartId = System.Int32;
 
     /// <summary>
-    /// PDG asset link link state
+    ///     PDG asset link link state
     /// </summary>
     public enum HEU_LinkStateWrapper
     {
@@ -62,7 +62,7 @@ namespace HoudiniEngineUnity
     }
 
     /// <summary>
-    /// PDG asset link
+    ///     PDG asset link
     /// </summary>
     public interface IHEU_PDGAssetLink
     {
@@ -102,14 +102,14 @@ namespace HoudiniEngineUnity
         void Setup(HEU_HoudiniAsset hdaAsset);
 
         /// <summary>
-        /// Reset all TOP network and node state.
-        /// Should be done after the linked HDA has rebuilt.
+        ///     Reset all TOP network and node state.
+        ///     Should be done after the linked HDA has rebuilt.
         /// </summary>
         void Reset();
 
         /// <summary>
-        /// Refresh this object's internal state by querying and populating TOP network and nodes
-        /// from linked HDA.
+        ///     Refresh this object's internal state by querying and populating TOP network and nodes
+        ///     from linked HDA.
         /// </summary>
         void Refresh();
 
@@ -117,14 +117,14 @@ namespace HoudiniEngineUnity
 
 
         /// <summary>
-        /// Set the TOP network at the given index as currently selected TOP network
+        ///     Set the TOP network at the given index as currently selected TOP network
         /// </summary>
         /// <param name="newIndex">Index of the TOP network</param>
         void SelectTOPNetwork(int newIndex);
 
 
         /// <summary>
-        /// Set the TOP node at the given index in the given TOP network as currently selected TOP node
+        ///     Set the TOP node at the given index in the given TOP network as currently selected TOP node
         /// </summary>
         /// <param name="network">Container TOP network</param>
         /// <param name="newIndex">Index of the TOP node to be selected</param>
@@ -137,34 +137,34 @@ namespace HoudiniEngineUnity
         HEU_TOPNetworkData GetTOPNetwork(int index);
 
         /// <summary>
-        /// Dirty the specified TOP node and clear its work item results.
+        ///     Dirty the specified TOP node and clear its work item results.
         /// </summary>
         /// <param name="topNode"></param>
         void DirtyTOPNode(HEU_TOPNodeData topNode);
 
         /// <summary>
-        /// Cook the specified TOP node.
+        ///     Cook the specified TOP node.
         /// </summary>
         /// <param name="topNode"></param>
         void CookTOPNode(HEU_TOPNodeData topNode);
 
         /// <summary>
-        /// Dirty the currently selected TOP network and clear all work item results.
+        ///     Dirty the currently selected TOP network and clear all work item results.
         /// </summary>
         void DirtyAll();
 
         /// <summary>
-        /// Cook the output TOP node of the currently selected TOP network.
+        ///     Cook the output TOP node of the currently selected TOP network.
         /// </summary>
         void CookOutput();
 
         /// <summary>
-        /// Pause the PDG cook of the currently selected TOP network
+        ///     Pause the PDG cook of the currently selected TOP network
         /// </summary>
         void PauseCook();
 
         /// <summary>
-        /// Cancel the PDG cook of the currently selected TOP network
+        ///     Cancel the PDG cook of the currently selected TOP network
         /// </summary>
         void CancelCook();
 

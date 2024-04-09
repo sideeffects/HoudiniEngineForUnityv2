@@ -34,10 +34,10 @@ using HoudiniEngineUnity;
 public class HEU_ExampleInstanceCustomAttribute : MonoBehaviour
 {
     /// <summary>
-    /// Example to show how to use the HEU_OutputAttributeStore component to query
-    /// attribute data and set it on instances.
-    /// This should be used with HEUInstanceAttributesStore.hda.
-    /// This function is called after HDA is cooked.
+    ///     Example to show how to use the HEU_OutputAttributeStore component to query
+    ///     attribute data and set it on instances.
+    ///     This should be used with HEUInstanceAttributesStore.hda.
+    ///     This function is called after HDA is cooked.
     /// </summary>
     private void InstancerCallback()
     {

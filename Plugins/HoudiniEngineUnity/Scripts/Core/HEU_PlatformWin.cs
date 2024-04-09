@@ -36,7 +36,7 @@ using System.Text;
 namespace HoudiniEngineUnity
 {
     /// <summary>
-    /// Windows-specific platform functionality.
+    ///     Windows-specific platform functionality.
     /// </summary>
     public static class HEU_PlatformWin
     {
@@ -83,7 +83,7 @@ namespace HoudiniEngineUnity
         private static extern uint RegCloseKey(int hKey);
 
         /// <summary>
-        /// Returns the value of the specified registry key.
+        ///     Returns the value of the specified registry key.
         /// </summary>
         /// <param name="rootKey">Handle to registry key.</param>
         /// <param name="keyName">Name of the registry subkey to be queried.</param>
@@ -120,7 +120,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Returns the value of the specified registry key (32-bit app).
+        ///     Returns the value of the specified registry key (32-bit app).
         /// </summary>
         /// <param name="rootKey">Handle to registry key.</param>
         /// <param name="keyName">Name of the registry subkey to be queried.</param>
@@ -132,7 +132,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Returns the value of the specified registry key (64-bit app).
+        ///     Returns the value of the specified registry key (64-bit app).
         /// </summary>
         /// <param name="rootKey">Handle to registry key.</param>
         /// <param name="keyName">Name of the registry subkey to be queried.</param>
@@ -144,7 +144,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Returns the application path of the specified application, as found in the system registry.
+        ///     Returns the application path of the specified application, as found in the system registry.
         /// </summary>
         /// <param name="appName">Name of the application as set in the registry.</param>
         /// <returns>Returns application path of the specified applicatoin.</returns>

@@ -27,7 +27,7 @@
 namespace HoudiniEngineUnity
 {
     /// <summary>
-    /// Container for Unity and Substance material data
+    ///     Container for Unity and Substance material data
     /// </summary>
     public class HEU_UnityMaterialInfo
     {

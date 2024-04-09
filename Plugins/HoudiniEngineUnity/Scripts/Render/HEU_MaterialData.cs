@@ -62,8 +62,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// For this object's _material, we update the shader attributes and 
-        /// fetch the textures from Houdini.
+        ///     For this object's _material, we update the shader attributes and
+        ///     fetch the textures from Houdini.
         /// </summary>
         /// <param name="materialInfo">This material's info from Houdini</param>
         /// <param name="assetCacheFolderPath">Path to asset's cache folder</param>
@@ -317,7 +317,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Returns true if this material was pre-existing in Unity and not generated from Houdini at cook time.
+        ///     Returns true if this material was pre-existing in Unity and not generated from Houdini at cook time.
         /// </summary>
         public bool IsExistingMaterial()
         {
@@ -435,7 +435,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Return the file name for the given material node's parameter.
+        ///     Return the file name for the given material node's parameter.
         /// </summary>
         /// <param name="session">Current session</param>
         /// <param name="nodeID">Material node ID</param>
@@ -490,7 +490,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Retruns true if the material (via its parameters) is a transparent material or not.
+        ///     Retruns true if the material (via its parameters) is a transparent material or not.
         /// </summary>
         /// <param name="session">Current Houdini session</param>
         /// <param name="nodeID">The material node ID</param>
@@ -552,8 +552,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Returns null if the given image info supports a Unity friendly image format.
-        /// Otherwise returns a file format that we know Unity supports.
+        ///     Returns null if the given image info supports a Unity friendly image format.
+        ///     Otherwise returns a file format that we know Unity supports.
         /// </summary>
         /// <param name="imageInfo">Image info containing the current image file format</param>
         /// <returns></returns>

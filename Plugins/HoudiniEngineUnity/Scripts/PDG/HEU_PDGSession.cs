@@ -48,9 +48,9 @@ namespace HoudiniEngineUnity
     using HAPI_SessionId = System.Int64;
 
     /// <summary>
-    /// Global object that manages all PDG-specific things on Unity side.
-    /// Handles PDG events for all PDG graph contexts.
-    /// Manages and updates all HEU_PDGAssetLink objects in scene.
+    ///     Global object that manages all PDG-specific things on Unity side.
+    ///     Handles PDG events for all PDG graph contexts.
+    ///     Manages and updates all HEU_PDGAssetLink objects in scene.
     /// </summary>
     public class HEU_PDGSession
     {
@@ -117,9 +117,9 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Query all the PDG graph context in the current Houdini Engine session.
-        /// Handle PDG events, work item status updates.
-        /// Forward relevant events to HEU_PDGAssetLink objects.
+        ///     Query all the PDG graph context in the current Houdini Engine session.
+        ///     Handle PDG events, work item status updates.
+        ///     Forward relevant events to HEU_PDGAssetLink objects.
         /// </summary>
         private void UpdatePDGContext()
         {
@@ -177,8 +177,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Query the currently active PDG graph contexts in the Houdini Engine session.
-        /// Should be done each time to get latest set of graph contexts.
+        ///     Query the currently active PDG graph contexts in the Houdini Engine session.
+        ///     Should be done each time to get latest set of graph contexts.
         /// </summary>
         public void ReinitializePDGContext()
         {
@@ -212,7 +212,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Process a PDG event. Notify the relevant HEU_PDGAssetLink object.
+        ///     Process a PDG event. Notify the relevant HEU_PDGAssetLink object.
         /// </summary>
         /// <param name="session">Houdini Engine session</param>
         /// <param name="contextID">PDG graph context ID</param>
@@ -432,7 +432,7 @@ namespace HoudiniEngineUnity
 
 
         /// <summary>
-        /// Returns the HEU_PDGAssetLink and HEU_TOPNodeData associated with this TOP node ID
+        ///     Returns the HEU_PDGAssetLink and HEU_TOPNodeData associated with this TOP node ID
         /// </summary>
         /// <param name="nodeID">Node ID to query</param>
         /// <param name="assetLink">Found HEU_PDGAssetLink or null</param>
@@ -545,7 +545,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Return the current Houdini Engine session
+        ///     Return the current Houdini Engine session
         /// </summary>
         /// <returns></returns>
         public HEU_SessionBase GetHAPIPDGSession(bool bCreate = true)
@@ -561,7 +561,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Cook the PDG graph of the specified TOP network
+        ///     Cook the PDG graph of the specified TOP network
         /// </summary>
         /// <param name="topNetwork"></param>
         public void CookTOPNetworkOutputNode(HEU_TOPNetworkData topNetwork,
@@ -599,7 +599,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Pause the PDG graph cook of the specified TOP network
+        ///     Pause the PDG graph cook of the specified TOP network
         /// </summary>
         /// <param name="topNetwork"></param>
         public void PauseCook(HEU_TOPNetworkData topNetwork)
@@ -623,7 +623,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Cancel the PDG graph cook of the specified TOP network
+        ///     Cancel the PDG graph cook of the specified TOP network
         /// </summary>
         /// <param name="topNetwork"></param>
         public void CancelCook(HEU_TOPNetworkData topNetwork)
@@ -647,7 +647,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Clear all work items' results of the specified TOP node. This destroys any loaded results (geometry etc).
+        ///     Clear all work items' results of the specified TOP node. This destroys any loaded results (geometry etc).
         /// </summary>
         /// <param name="session"></param>
         /// <param name="contextID"></param>
@@ -666,7 +666,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Returns true if successfully dirtied the TOP node.
+        ///     Returns true if successfully dirtied the TOP node.
         /// </summary>
         /// <param name="topNode">TOP node to dirty</param>
         public bool DirtyTOPNode(HAPI_NodeId nodeID)
@@ -684,7 +684,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Returns true if cooked the specified TOP node.
+        ///     Returns true if cooked the specified TOP node.
         /// </summary>
         /// <param name="topNode"></param>
         public bool CookTOPNode(HAPI_NodeId nodeID)
@@ -702,7 +702,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Returns true if dirtied the TOP network.
+        ///     Returns true if dirtied the TOP network.
         /// </summary>
         public bool DirtyAll(HAPI_NodeId nodeID)
         {

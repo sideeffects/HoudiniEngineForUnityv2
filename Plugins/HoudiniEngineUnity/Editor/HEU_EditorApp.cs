@@ -32,13 +32,13 @@ using System.Collections.Generic;
 namespace HoudiniEngineUnity
 {
     /// <summary>
-    /// Manages Editor callbacks and events.
+    ///     Manages Editor callbacks and events.
     /// </summary>
     [InitializeOnLoad]
     public static class HEU_EditorApp
     {
         /// <summary>
-        /// Executed after script (re)load. Sets up plugin callbacks.
+        ///     Executed after script (re)load. Sets up plugin callbacks.
         /// </summary>
         static HEU_EditorApp()
         {
@@ -51,7 +51,7 @@ namespace HoudiniEngineUnity
 #if UNITY_2019_1_OR_NEWER
             SceneView.duringSceneGui += OnSceneGUIDelegate;
 #else
-	    SceneView.onSceneGUIDelegate += OnSceneGUIDelegate;
+            SceneView.onSceneGUIDelegate += OnSceneGUIDelegate;
 #endif
         }
 

@@ -50,8 +50,8 @@ namespace HoudiniEngineUnity
 
 
     /// <summary>
-    /// Callback when asset is cooked.
-    /// <param name="CookedEventData">The reload data.</param>
+    ///     Callback when asset is cooked.
+    ///     <param name="CookedEventData">The reload data.</param>
     /// </summary>
     [System.Serializable]
     public class HEU_PDGCookedDataEvent : UnityEvent<HEU_PDGCookedEventData>
@@ -71,15 +71,15 @@ namespace HoudiniEngineUnity
     }
 
     /// <summary>
-    /// Connects to an instanced HDA containing TOP networks and TOP nodes, manages PDG graph cook, and keeps in sync.
-    /// Handles automatic loading of generated results (geometry). Show / hide, unload results.
-    /// This behaves differently from a regular HDA as it doesn't expose any parms, 
-    /// nor the regular Houdini Engine cooking or baking functionality. Rather its strictly meant for PDG workflow.
-    /// It also uses a different loading (geometry generation) mechanism that focuses on asynchronous, fast loading,
-    /// lightweight footprint, and reduction of "editor" state. This means it doesn't support normal editor workflow such
-    /// as undo, parms, custom tools (e.g curve editor), baking, etc.
-    /// Currently the loaded geometry are not saved to persistent files in the Editor, but only saved to the current scene.
-    /// This limititation will be fixed in the near future.
+    ///     Connects to an instanced HDA containing TOP networks and TOP nodes, manages PDG graph cook, and keeps in sync.
+    ///     Handles automatic loading of generated results (geometry). Show / hide, unload results.
+    ///     This behaves differently from a regular HDA as it doesn't expose any parms,
+    ///     nor the regular Houdini Engine cooking or baking functionality. Rather its strictly meant for PDG workflow.
+    ///     It also uses a different loading (geometry generation) mechanism that focuses on asynchronous, fast loading,
+    ///     lightweight footprint, and reduction of "editor" state. This means it doesn't support normal editor workflow such
+    ///     as undo, parms, custom tools (e.g curve editor), baking, etc.
+    ///     Currently the loaded geometry are not saved to persistent files in the Editor, but only saved to the current scene.
+    ///     This limititation will be fixed in the near future.
     /// </summary>
     [ExecuteInEditMode]
     public class HEU_PDGAssetLink : MonoBehaviour, ISerializationCallbackReceiver
@@ -239,8 +239,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Reset all TOP network and node state.
-        /// Should be done after the linked HDA has rebuilt.
+        ///     Reset all TOP network and node state.
+        ///     Should be done after the linked HDA has rebuilt.
         /// </summary>
         public void Reset()
         {
@@ -248,8 +248,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Refresh this object's internal state by querying and populating TOP network and nodes
-        /// from linked HDA.
+        ///     Refresh this object's internal state by querying and populating TOP network and nodes
+        ///     from linked HDA.
         /// </summary>
         public void Refresh()
         {
@@ -307,7 +307,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Set the TOP network at the given index as currently selected TOP network
+        ///     Set the TOP network at the given index as currently selected TOP network
         /// </summary>
         /// <param name="newIndex">Index of the TOP network</param>
         public void SelectTOPNetwork(int newIndex)
@@ -321,7 +321,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Set the TOP node at the given index in the given TOP network as currently selected TOP node
+        ///     Set the TOP node at the given index in the given TOP network as currently selected TOP node
         /// </summary>
         /// <param name="network">Container TOP network</param>
         /// <param name="newIndex">Index of the TOP node to be selected</param>
@@ -365,7 +365,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Dirty the specified TOP node and clear its work item results.
+        ///     Dirty the specified TOP node and clear its work item results.
         /// </summary>
         /// <param name="topNode"></param>
         public void DirtyTOPNode(HEU_TOPNodeData topNode)
@@ -378,7 +378,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Cook the specified TOP node.
+        ///     Cook the specified TOP node.
         /// </summary>
         /// <param name="topNode"></param>
         public void CookTOPNode(HEU_TOPNodeData topNode)
@@ -391,7 +391,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Dirty the currently selected TOP network and clear all work item results.
+        ///     Dirty the currently selected TOP network and clear all work item results.
         /// </summary>
         public void DirtyAll()
         {
@@ -407,7 +407,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Cook the output TOP node of the currently selected TOP network.
+        ///     Cook the output TOP node of the currently selected TOP network.
         /// </summary>
         public void CookOutput()
         {
@@ -434,7 +434,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Pause the PDG cook of the currently selected TOP network
+        ///     Pause the PDG cook of the currently selected TOP network
         /// </summary>
         public void PauseCook()
         {
@@ -461,7 +461,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Cancel the PDG cook of the currently selected TOP network
+        ///     Cancel the PDG cook of the currently selected TOP network
         /// </summary>
         public void CancelCook()
         {
@@ -577,7 +577,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Callback on scene load, or code refresh.
+        ///     Callback on scene load, or code refresh.
         /// </summary>
         public void OnAfterDeserialize()
         {
@@ -587,7 +587,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Register self with the global HEU_PDGAssetLink list.
+        ///     Register self with the global HEU_PDGAssetLink list.
         /// </summary>
         private void HandleInitialLoad()
         {
@@ -621,7 +621,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Callback when linked HDA has been cooked. Allows to trigger a PDG graph cook.
+        ///     Callback when linked HDA has been cooked. Allows to trigger a PDG graph cook.
         /// </summary>
         /// <param name="asset"></param>
         /// <param name="bSuccess"></param>
@@ -671,7 +671,7 @@ namespace HoudiniEngineUnity
 
 
         /// <summary>
-        /// Populate TOP data from linked HDA
+        ///     Populate TOP data from linked HDA
         /// </summary>
         private void PopulateFromHDA()
         {
@@ -701,7 +701,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Find all TOP networks from linked HDA, as well as the TOP nodes within, and populate internal state.
+        ///     Find all TOP networks from linked HDA, as well as the TOP nodes within, and populate internal state.
         /// </summary>
         /// <returns>True if successfully populated data</returns>
         public bool PopulateTOPNetworks()
@@ -815,7 +815,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Given TOP nodes from a TOP network, populate internal state from each TOP node.
+        ///     Given TOP nodes from a TOP network, populate internal state from each TOP node.
         /// </summary>
         /// <param name="session">Houdini Engine session</param>
         /// <param name="topNetwork">TOP network to query TOP nodes from</param>
@@ -1023,9 +1023,9 @@ namespace HoudiniEngineUnity
 
 
         /// <summary>
-        /// Load the geometry generated as results of the given work item, of the given TOP node.
-        /// The load will be done asynchronously.
-        /// Results must be tagged with 'file', and must have a file path, otherwise will not be loaded.
+        ///     Load the geometry generated as results of the given work item, of the given TOP node.
+        ///     The load will be done asynchronously.
+        ///     Results must be tagged with 'file', and must have a file path, otherwise will not be loaded.
         /// </summary>
         /// <param name="session">Houdini Engine session that the TOP node is in</param>
         /// <param name="topNode">TOP node that the work item belongs to</param>
@@ -1257,7 +1257,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Helper to parse spare parm containing the filter key words.
+        ///     Helper to parse spare parm containing the filter key words.
         /// </summary>
         /// <param name="session">Houdini Engine session that the TOP node is in</param>
         /// <param name="topNodeID">TOP node to get spare parm from</param>

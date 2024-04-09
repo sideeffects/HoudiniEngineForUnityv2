@@ -49,8 +49,8 @@ namespace HoudiniEngineUnity
     }
 
     /// <summary>
-    /// Container for session-specific data.
-    /// Note that this is sealed for serialization purposes.
+    ///     Container for session-specific data.
+    ///     Note that this is sealed for serialization purposes.
     /// </summary>
     [Serializable]
     public sealed class HEU_SessionData
@@ -108,7 +108,7 @@ namespace HoudiniEngineUnity
 #if HOUDINIENGINEUNITY_ENABLED
                 return _HAPISession.id;
 #else
-		return INVALID_SESSION_ID;
+                return INVALID_SESSION_ID;
 #endif
             }
 
@@ -122,7 +122,7 @@ namespace HoudiniEngineUnity
 #if HOUDINIENGINEUNITY_ENABLED
                 return _serverProcessID;
 #else
-		return -1;
+                return -1;
 #endif
             }
 
@@ -136,7 +136,7 @@ namespace HoudiniEngineUnity
 #if HOUDINIENGINEUNITY_ENABLED
                 return _HAPISession.type;
 #else
-		return 0;
+                return 0;
 #endif
             }
 
@@ -150,7 +150,7 @@ namespace HoudiniEngineUnity
 #if HOUDINIENGINEUNITY_ENABLED
                 return _initialized;
 #else
-		return false;
+                return false;
 #endif
             }
 
@@ -164,7 +164,7 @@ namespace HoudiniEngineUnity
 #if HOUDINIENGINEUNITY_ENABLED
                 return SessionID > 0;
 #else
-		return false;
+                return false;
 #endif
             }
         }
@@ -176,7 +176,7 @@ namespace HoudiniEngineUnity
 #if HOUDINIENGINEUNITY_ENABLED
                 return _pipeName;
 #else
-		return "";
+                return "";
 #endif
             }
 

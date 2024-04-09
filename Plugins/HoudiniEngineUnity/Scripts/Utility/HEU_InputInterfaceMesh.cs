@@ -53,17 +53,17 @@ namespace HoudiniEngineUnity
 
 
     /// <summary>
-    /// This class provides functionality for uploading Unity mesh data from gameobjects
-    /// into Houdini through an input node.
-    /// It derives from the HEU_InputInterface and registers with HEU_InputUtility so that it
-    /// can be used automatically when uploading mesh data.
+    ///     This class provides functionality for uploading Unity mesh data from gameobjects
+    ///     into Houdini through an input node.
+    ///     It derives from the HEU_InputInterface and registers with HEU_InputUtility so that it
+    ///     can be used automatically when uploading mesh data.
     /// </summary>
     public class HEU_InputInterfaceMesh : HEU_InputInterface
     {
 #if UNITY_EDITOR
         /// <summary>
-        /// Registers this input inteface for Unity meshes on
-        /// the callback after scripts are reloaded in Unity.
+        ///     Registers this input inteface for Unity meshes on
+        ///     the callback after scripts are reloaded in Unity.
         /// </summary>
         [InitializeOnLoadMethod]
         [UnityEditor.Callbacks.DidReloadScripts]
@@ -86,7 +86,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Creates a mesh input node and uploads the mesh data from inputObject.
+        ///     Creates a mesh input node and uploads the mesh data from inputObject.
         /// </summary>
         /// <param name="session">Session that connectNodeID exists in</param>
         /// <param name="connectNodeID">The node to connect the network to. Most likely a SOP/merge node</param>
@@ -221,7 +221,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Upload the inputData (mesh geometry) into the input node with inputNodeID.
+        ///     Upload the inputData (mesh geometry) into the input node with inputNodeID.
         /// </summary>
         /// <param name="session">Session that the input node exists in</param>
         /// <param name="inputNodeID">ID of the input node</param>
@@ -243,7 +243,7 @@ namespace HoudiniEngineUnity
 #if UNITY_2018_2_OR_NEWER
             const int NumUVSets = 8;
 #else
-	    const int NumUVSets = 4;
+            const int NumUVSets = 4;
 #endif
             List<Vector3>[] uvs = new List<Vector3>[NumUVSets];
             for (int u = 0; u < NumUVSets; ++u)
@@ -1265,7 +1265,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Contains input geometry for multiple meshes.
+        ///     Contains input geometry for multiple meshes.
         /// </summary>
         public class HEU_InputDataMeshes : HEU_InputData
         {
@@ -1290,7 +1290,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Contains input geometry for a single mesh.
+        ///     Contains input geometry for a single mesh.
         /// </summary>
         public class HEU_InputDataMesh
         {
@@ -1315,9 +1315,9 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Return an input data structure containing mesh data that needs to be
-        /// uploaded from the given inputObject.
-        /// Supports child gameobjects with meshes from the given inputObject.
+        ///     Return an input data structure containing mesh data that needs to be
+        ///     uploaded from the given inputObject.
+        ///     Supports child gameobjects with meshes from the given inputObject.
         /// </summary>
         /// <param name="inputObject">GameObject containing mesh components</param>
         /// <returns>A valid input data strcuture containing mesh data</returns>
@@ -1379,7 +1379,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Returns HEU_UploadMeshData with mesh data found on meshGameObject.
+        ///     Returns HEU_UploadMeshData with mesh data found on meshGameObject.
         /// </summary>
         /// <param name="meshGameObject">The GameObject to query mesh data from</param>
         /// <returns>A valid HEU_UploadMeshData if mesh data found or null</returns>

@@ -29,8 +29,8 @@ using UnityEngine;
 namespace HoudiniEngineUnity
 {
     /// <summary>
-    /// Base class for input data where temporary 
-    /// data can be stored for uploading into input node.
+    ///     Base class for input data where temporary
+    ///     data can be stored for uploading into input node.
     /// </summary>
     public class HEU_InputData
     {

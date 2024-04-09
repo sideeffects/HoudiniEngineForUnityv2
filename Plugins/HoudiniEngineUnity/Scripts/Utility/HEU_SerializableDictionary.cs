@@ -31,7 +31,7 @@ using UnityEngine;
 namespace HoudiniEngineUnity
 {
     /// <summary>
-    /// Generic serializable Dictionary.
+    ///     Generic serializable Dictionary.
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>

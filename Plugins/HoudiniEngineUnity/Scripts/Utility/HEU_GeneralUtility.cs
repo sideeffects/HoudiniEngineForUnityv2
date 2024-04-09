@@ -91,7 +91,7 @@ namespace HoudiniEngineUnity
 
 
     /// <summary>
-    /// General utility functions for the Houdini Engine plugin.
+    ///     General utility functions for the Houdini Engine plugin.
     /// </summary>
     public class HEU_GeneralUtility
     {
@@ -266,7 +266,7 @@ namespace HoudiniEngineUnity
         // ARRAYS GENERAL ---------------------------------------------------------------------------------------------
 
         /// <summary>
-        /// Returns true if the element values in the two arrays match, and lengths match, and neither is null.
+        ///     Returns true if the element values in the two arrays match, and lengths match, and neither is null.
         /// </summary>
         /// <typeparam name="T">Type of array elements</typeparam>
         /// <param name="array1">First array</param>
@@ -302,7 +302,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Returns true if the element values in the two arrays match, and lengths match, and neither is null.
+        ///     Returns true if the element values in the two arrays match, and lengths match, and neither is null.
         /// </summary>
         /// <typeparam name="T">Type of array elements</typeparam>
         /// <param name="array1">First array</param>
@@ -649,7 +649,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Returns true if given part in geometry has the given attribute with name.
+        ///     Returns true if given part in geometry has the given attribute with name.
         /// </summary>
         /// <param name="session">Houdini Engine session</param>
         /// <param name="geoID">Geometry object ID</param>
@@ -665,7 +665,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Add or Update HEU_OutputAttributesStore component on the given gameobject for the specified part. 
+        ///     Add or Update HEU_OutputAttributesStore component on the given gameobject for the specified part.
         /// </summary>
         /// <param name="session">Houdini Engine session</param>
         /// <param name="geoID">Geometry object ID</param>
@@ -710,7 +710,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Helper to create HEU_OutputAttribute given the name and attribute info.
+        ///     Helper to create HEU_OutputAttribute given the name and attribute info.
         /// </summary>
         /// <param name="attrName">Name of attribute</param>
         /// <param name="attrInfo">Attribute info</param>
@@ -727,7 +727,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Create the HEU_OutputAttribute for the specified attribute on the given part.
+        ///     Create the HEU_OutputAttribute for the specified attribute on the given part.
         /// </summary>
         /// <param name="session">Houdini Engine session</param>
         /// <param name="geoID">Geometry object ID</param>
@@ -777,7 +777,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Copy the world transform values from src to dest.
+        ///     Copy the world transform values from src to dest.
         /// </summary>
         /// <param name="src"></param>
         /// <param name="dest"></param>
@@ -789,7 +789,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Multiply the src transform to target transform.
+        ///     Multiply the src transform to target transform.
         /// </summary>
         /// <param name="src"></param>
         /// <param name="target"></param>
@@ -801,7 +801,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Copy the local transform values from src to dest.
+        ///     Copy the local transform values from src to dest.
         /// </summary>
         /// <param name="src"></param>
         /// <param name="dest"></param>
@@ -813,7 +813,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Returns list of child gameobjects of parentGO.
+        ///     Returns list of child gameobjects of parentGO.
         /// </summary>
         /// <param name="parentGO"></param>
         /// <returns>List of child gameobjects of parentGO</returns>
@@ -831,8 +831,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Returns list of child gameobjects of parentGO with name containing the given patter.
-        /// Or if bExcluse is true, then the inverse of above list.
+        ///     Returns list of child gameobjects of parentGO with name containing the given patter.
+        ///     Or if bExcluse is true, then the inverse of above list.
         /// </summary>
         /// <param name="parentGO">The parent gameobject to get children from.</param>
         /// <param name="pattern">The pattern to search for in the game.</param>
@@ -858,7 +858,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Returns list of child gameobjects of parentGO that are instances.
+        ///     Returns list of child gameobjects of parentGO that are instances.
         /// </summary>
         /// <param name="parentGO">The parent gameobject to get children from.</param>
         /// <returns></returns>
@@ -868,7 +868,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Returns list of child gameobjects of parentGO that are not instances.
+        ///     Returns list of child gameobjects of parentGO that are not instances.
         /// </summary>
         /// <param name="parentGO">The parent gameobject to get children from.</param>
         /// <returns></returns>
@@ -878,7 +878,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Returns the gameobject with the name from given list.
+        ///     Returns the gameobject with the name from given list.
         /// </summary>
         /// <param name="goList">List to search</param>
         /// <param name="name">Name to match</param>
@@ -897,7 +897,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Find and return gameobject with name in project (not in scene).
+        ///     Find and return gameobject with name in project (not in scene).
         /// </summary>
         /// <param name="name">Name of gameobject to search for</param>
         /// <returns>Found gameobject or null</returns>
@@ -916,7 +916,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Returns true if given gameobjet is in Project only, and not in scene.
+        ///     Returns true if given gameobjet is in Project only, and not in scene.
         /// </summary>
         /// <param name="go"></param>
         /// <returns></returns>
@@ -926,7 +926,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Find and return gameobject with name in scene (not in project).
+        ///     Find and return gameobject with name in scene (not in project).
         /// </summary>
         /// <param name="name">Name of gameobject to search for</param>
         /// <returns>Found gameobject or null</returns>
@@ -955,7 +955,7 @@ namespace HoudiniEngineUnity
                 }
             }
 #else
-			HEU_Logger.LogWarning(HEU_Defines.HEU_USERMSG_NONEDITOR_NOT_SUPPORTED);
+            HEU_Logger.LogWarning(HEU_Defines.HEU_USERMSG_NONEDITOR_NOT_SUPPORTED);
 #endif
             return null;
         }
@@ -986,13 +986,13 @@ namespace HoudiniEngineUnity
                 }
             }
 #else
-			HEU_Logger.LogWarning(HEU_Defines.HEU_USERMSG_NONEDITOR_NOT_SUPPORTED);
+            HEU_Logger.LogWarning(HEU_Defines.HEU_USERMSG_NONEDITOR_NOT_SUPPORTED);
 #endif
             return null;
         }
 
         /// <summary>
-        /// Gets existing or creates new component for given gameObject.
+        ///     Gets existing or creates new component for given gameObject.
         /// </summary>
         /// <typeparam name="T">Component to retrieve (and/or create)</typeparam>
         /// <param name="gameObject">GameObject to retrieve (and/or create) from</param>
@@ -1009,7 +1009,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Destroy any potential generated components on given gameObject
+        ///     Destroy any potential generated components on given gameObject
         /// </summary>
         /// <param name="gameObject"></param>
         public static void DestroyGeneratedComponents(GameObject gameObject)
@@ -1036,7 +1036,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Destroy any terrain components and data on given gameObject.
+        ///     Destroy any terrain components and data on given gameObject.
         /// </summary>
         /// <param name="gameObject"></param>
         public static void DestroyTerrainComponents(GameObject gameObject)
@@ -1065,7 +1065,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Destroys component T if found on gameObject.
+        ///     Destroys component T if found on gameObject.
         /// </summary>
         /// <typeparam name="T">Component type</typeparam>
         /// <param name="gameObject">GameObject to search component on</param>
@@ -1082,7 +1082,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Destroys obj immediately and permanently.
+        ///     Destroys obj immediately and permanently.
         /// </summary>
         /// <param name="obj">The object to destroy</param>
         /// <param name="bAllowDestroyingAssets">Force destroy asset</param>
@@ -1099,7 +1099,7 @@ namespace HoudiniEngineUnity
                 UnityEngine.Object.DestroyImmediate(obj, bAllowDestroyingAssets);
             }
 #else
-			HEU_Logger.LogWarning(HEU_Defines.HEU_USERMSG_NONEDITOR_NOT_SUPPORTED);
+            HEU_Logger.LogWarning(HEU_Defines.HEU_USERMSG_NONEDITOR_NOT_SUPPORTED);
 #endif
         }
 
@@ -1188,9 +1188,9 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Destroy existing components on targetGO which were generated by our bake process.
-        /// Persistent resources like meshes, materials, textures will be deleted if bDontDeletePersistentResources is true.
-        /// Fills in targetAssetPath with targetGO's asset cache path.
+        ///     Destroy existing components on targetGO which were generated by our bake process.
+        ///     Persistent resources like meshes, materials, textures will be deleted if bDontDeletePersistentResources is true.
+        ///     Fills in targetAssetPath with targetGO's asset cache path.
         /// </summary>
         /// <param name="targetGO">The gameobject to destroy components of</param>
         /// <param name="bDontDeletePersistantResources">Whether to delete persistant data</param>
@@ -1295,7 +1295,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Set the given gameobject's render visibility.
+        ///     Set the given gameobject's render visibility.
         /// </summary>
         /// <param name="gameObject">Gameobject to set visibility on</param>
         /// <param name="bVisible">Visibility state</param>
@@ -1312,7 +1312,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Set the given gameobject childrens' render visibility.
+        ///     Set the given gameobject childrens' render visibility.
         /// </summary>
         /// <param name="gameObject">The gameobject's children to set the visiblity on</param>
         /// <param name="bVisible">Visibility state</param>
@@ -1332,7 +1332,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Set the gameobject's collider state
+        ///     Set the gameobject's collider state
         /// </summary>
         /// <param name="gameObject">The gameobject's collider will be set to bEnabled</param>
         /// <param name="bEnabled">Collider enabled state</param>
@@ -1349,7 +1349,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Set the given gameobject childrens' collision state.
+        ///     Set the given gameobject childrens' collision state.
         /// </summary>
         /// <param name="gameObject">The gameobject's children to set the collder state</param>
         /// <param name="bVisible">Collider enabled state</param>
@@ -1454,7 +1454,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Returns the type from name.
+        ///     Returns the type from name.
         /// </summary>
         /// <param name="typeName">String name of type</param>
         /// <returns>Valid type or null if not found in loaded assemblies.</returns>
@@ -1474,13 +1474,13 @@ namespace HoudiniEngineUnity
                 }
             }
 #else
-			HEU_Logger.LogWarning(HEU_Defines.HEU_USERMSG_NONEDITOR_NOT_SUPPORTED);
+            HEU_Logger.LogWarning(HEU_Defines.HEU_USERMSG_NONEDITOR_NOT_SUPPORTED);
 #endif
             return null;
         }
 
         /// <summary>
-        /// Assign the Unity tag to the GameObject if found on the part as attribute.
+        ///     Assign the Unity tag to the GameObject if found on the part as attribute.
         /// </summary>
         public static void AssignUnityTag(HEU_SessionBase session, HAPI_NodeId geoID, HAPI_PartId partID,
             GameObject gameObject)
@@ -1514,7 +1514,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Assign Unity layer to the GameObject if found on the part as attribute.
+        ///     Assign Unity layer to the GameObject if found on the part as attribute.
         /// </summary>
         /// <param name="session"></param>
         /// <param name="geoID"></param>
@@ -1553,7 +1553,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// If part has static attribute, then set gameobject as static or not
+        ///     If part has static attribute, then set gameobject as static or not
         /// </summary>
         public static void MakeStaticIfHasAttribute(HEU_SessionBase session, HAPI_NodeId geoID, HAPI_PartId partID,
             GameObject gameObject)
@@ -1574,8 +1574,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Returns the Unity script attribute value, if found, on the specified geo's part.
-        /// The attribute must be of string type, and owned by detail.
+        ///     Returns the Unity script attribute value, if found, on the specified geo's part.
+        ///     The attribute must be of string type, and owned by detail.
         /// </summary>
         /// <param name="session">Session that the asset resides in</param>
         /// <param name="geoID">The geo node's ID</param>
@@ -1602,7 +1602,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Returns the single string value from Attribute with given name and owner type, or null if failed.
+        ///     Returns the single string value from Attribute with given name and owner type, or null if failed.
         /// </summary>
         /// <param name="session">Houdini Engine session to query</param>
         /// <param name="geoID">The geometry ID in Houdini</param>
@@ -1639,9 +1639,9 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Returns the single string value from Attribute with given name and owner type, or null if failed.
-        /// This is the strict version of GetAttributeStringValueSingle, which means that the attribute must be
-        /// owned by the owner specified in the attrOwner parameter, otherwise it will return null.
+        ///     Returns the single string value from Attribute with given name and owner type, or null if failed.
+        ///     This is the strict version of GetAttributeStringValueSingle, which means that the attribute must be
+        ///     owned by the owner specified in the attrOwner parameter, otherwise it will return null.
         /// </summary>
         /// <param name="session">Houdini Engine session to query</param>
         /// <param name="geoID">The geometry ID in Houdini</param>
@@ -1683,8 +1683,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Helper to get a single float value for the Attribute with given name, or 0 if none found.
-        /// Returns true if successful, otherwise false.
+        ///     Helper to get a single float value for the Attribute with given name, or 0 if none found.
+        ///     Returns true if successful, otherwise false.
         /// </summary>
         /// <param name="session">Houdini Engine session to query</param>
         /// <param name="geoID">The geometry ID in Houdini</param>
@@ -1715,8 +1715,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Helper to get a single int value for the Attribute with given name, or 0 if none found.
-        /// Returns true if successful, otherwise false.
+        ///     Helper to get a single int value for the Attribute with given name, or 0 if none found.
+        ///     Returns true if successful, otherwise false.
         /// </summary>
         /// <param name="session">Houdini Engine session to query</param>
         /// <param name="geoID">The geometry ID in Houdini</param>
@@ -1747,8 +1747,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Helper to get a single color value for the Attribute with given name, or 0 if none found.
-        /// Returns true if successful, otherwise false.
+        ///     Helper to get a single color value for the Attribute with given name, or 0 if none found.
+        ///     Returns true if successful, otherwise false.
         /// </summary>
         /// <param name="session">Houdini Engine session to query</param>
         /// <param name="geoID">The geometry ID in Houdini</param>
@@ -1787,7 +1787,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Returns true if specified geometry and part has the given atttribute name.
+        ///     Returns true if specified geometry and part has the given atttribute name.
         /// </summary>
         /// <param name="session">Houdini session to check</param>
         /// <param name="geoID">Geometry object ID</param>
@@ -1809,8 +1809,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Attach scripts in Unity to the asset root gameobject, and optionally
-        /// invoke a function with an optional argument.
+        ///     Attach scripts in Unity to the asset root gameobject, and optionally
+        ///     invoke a function with an optional argument.
         /// </summary>
         /// <param name="scriptSet">A string with format: scriptname:function:msg[;scriptname:function:msg]</param>
         public static void AttachScriptWithInvokeFunction(string scriptSet, GameObject gameObject)
@@ -1961,7 +1961,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Copy components from srcGo to destGO, ignoring those already on destGO.
+        ///     Copy components from srcGo to destGO, ignoring those already on destGO.
         /// </summary>
         /// <param name="srcGO">Components to source from</param>
         /// <param name="destGO">Components to copy to</param>
@@ -1995,8 +1995,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Loads image file and return as Texture.
-        /// Presumes image file is PNG or JPG format (i.e. supported by Texture2D.LoadImage).
+        ///     Loads image file and return as Texture.
+        ///     Presumes image file is PNG or JPG format (i.e. supported by Texture2D.LoadImage).
         /// </summary>
         /// <param name="filePath">Path to image file</param>
         /// <returns>Loaded texture or null if failed</returns>
@@ -2024,7 +2024,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Returns a new texture with given size, and filled in with given single color.
+        ///     Returns a new texture with given size, and filled in with given single color.
         /// </summary>
         public static Texture2D MakeTexture(int width, int height, Color color)
         {
@@ -2046,7 +2046,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Replace the first occurence of searchStr in srcStr with replaceStr.
+        ///     Replace the first occurence of searchStr in srcStr with replaceStr.
         /// </summary>
         /// <param name="srcStr"></param>
         /// <param name="searchStr"></param>
@@ -2064,7 +2064,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Sets given childTransform parented to the given parentTransform, with clean (identity) transform matrix.
+        ///     Sets given childTransform parented to the given parentTransform, with clean (identity) transform matrix.
         /// </summary>
         public static void SetParentWithCleanTransform(Transform parentTransform, Transform childTransform)
         {
@@ -2075,7 +2075,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Copy src HAPI_Transfrom to dest HAPI_Transform.
+        ///     Copy src HAPI_Transfrom to dest HAPI_Transform.
         /// </summary>
         public static void CopyHAPITransform(ref HAPI_Transform src, ref HAPI_Transform dest)
         {
@@ -2088,7 +2088,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Get the assigned material via string attribute from the given part.
+        ///     Get the assigned material via string attribute from the given part.
         /// </summary>
         public static string GetMaterialAttributeValueFromPart(HEU_SessionBase session, HAPI_NodeId geoID,
             HAPI_PartId partID)
@@ -2113,11 +2113,11 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Replace the targetGO's Collider component's mesh with mesh from
-        /// sourceColliderGO's mesh.
-        /// If targetGO has a MeshCollider, its mesh will be replaced but the component kept.
-        /// If targetGO has any other collider, it will be destroyed and new MeshCollider added.
-        /// If targetGO has no other collider, a new MeshCollider will be added.
+        ///     Replace the targetGO's Collider component's mesh with mesh from
+        ///     sourceColliderGO's mesh.
+        ///     If targetGO has a MeshCollider, its mesh will be replaced but the component kept.
+        ///     If targetGO has any other collider, it will be destroyed and new MeshCollider added.
+        ///     If targetGO has no other collider, a new MeshCollider will be added.
         /// </summary>
         /// <param name="targetGO">The gameobject to replace the collider mesh for.</param>
         /// <param name="sourceColliderGO">The gameobject containing MeshFilter with mesh to use.</param>
@@ -2140,11 +2140,11 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Replace the targetGO's Collider component's mesh with mesh from
-        /// sourceColliderGO's MeshCollider mesh.
-        /// If targetGO has a MeshCollider, its mesh will be replaced but the component kept.
-        /// If targetGO has any other collider, it will be destroyed and new MeshCollider added.
-        /// If targetGO has no other collider, a new MeshCollider will be added.
+        ///     Replace the targetGO's Collider component's mesh with mesh from
+        ///     sourceColliderGO's MeshCollider mesh.
+        ///     If targetGO has a MeshCollider, its mesh will be replaced but the component kept.
+        ///     If targetGO has any other collider, it will be destroyed and new MeshCollider added.
+        ///     If targetGO has no other collider, a new MeshCollider will be added.
         /// </summary>
         /// <param name="targetGO">The gameobject to replace the collider mesh for.</param>
         /// <param name="sourceColliderGO">The gameobject containing MeshCollider with mesh to use.</param>

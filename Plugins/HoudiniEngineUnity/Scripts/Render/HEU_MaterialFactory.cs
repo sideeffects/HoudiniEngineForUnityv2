@@ -47,7 +47,7 @@ namespace HoudiniEngineUnity
 
 
     /// <summary>
-    /// Manages materials used by Houdini Engine assets.
+    ///     Manages materials used by Houdini Engine assets.
     /// </summary>
     public class HEU_MaterialFactory
     {
@@ -56,9 +56,9 @@ namespace HoudiniEngineUnity
 #if UNITY_EDITOR
             return Shader.Find(shaderName);
 #else
-			// TODO RUNTIME: Shader.Find is not available in non-Editor mode, so need to figure out a replacement in runtime.
-			HEU_Logger.LogWarning("Houdini Engine is unable to load shaders in non-Editor mode!");
-			return null;
+            // TODO RUNTIME: Shader.Find is not available in non-Editor mode, so need to figure out a replacement in runtime.
+            HEU_Logger.LogWarning("Houdini Engine is unable to load shaders in non-Editor mode!");
+            return null;
 #endif
         }
 
@@ -67,9 +67,9 @@ namespace HoudiniEngineUnity
 #if UNITY_EDITOR
             return FindShader(shaderName);
 #else
-			// TODO RUNTIME: Shader.Find is not available in non-Editor mode, so need to figure out a replacement in runtime.
-			HEU_Logger.LogWarning("Houdini Engine is unable to load shaders in non-Editor mode!");
-			return null;
+            // TODO RUNTIME: Shader.Find is not available in non-Editor mode, so need to figure out a replacement in runtime.
+            HEU_Logger.LogWarning("Houdini Engine is unable to load shaders in non-Editor mode!");
+            return null;
 #endif
         }
 
@@ -413,22 +413,22 @@ namespace HoudiniEngineUnity
 #if UNITY_2017_4_OR_NEWER || UNITY_2018_1_OR_NEWER
             HEU_Logger.LogErrorFormat("Houdini Engine for Unity does not support the new Substance plugin as of yet!");
 #elif UNITY_EDITOR
-			if (material != null)
-			{
-				string assetPath = HEU_AssetDatabase.GetAssetPath(material);
-				
-				SubstanceImporter substanceImporter = AssetImporter.GetAtPath(assetPath) as SubstanceImporter;
+            if (material != null)
+            {
+                string assetPath = HEU_AssetDatabase.GetAssetPath(material);
 
-				ProceduralMaterial[] proceduralMaterials = substanceImporter.GetMaterials();
-				for(int i = 0; i < proceduralMaterials.Length; ++i)
-				{
-					if(proceduralMaterials[i].name.Equals(substanceName))
-					{
-						material = proceduralMaterials[i];
-						break;
-					}
-				}
-			}
+                SubstanceImporter substanceImporter = AssetImporter.GetAtPath(assetPath) as SubstanceImporter;
+
+                ProceduralMaterial[] proceduralMaterials = substanceImporter.GetMaterials();
+                for (int i = 0; i < proceduralMaterials.Length; ++i)
+                {
+                    if (proceduralMaterials[i].name.Equals(substanceName))
+                    {
+                        material = proceduralMaterials[i];
+                        break;
+                    }
+                }
+            }
 #endif
 
             if (material != null)
@@ -451,16 +451,16 @@ namespace HoudiniEngineUnity
 #if UNITY_2017_4_OR_NEWER || UNITY_2018_1_OR_NEWER
             HEU_Logger.LogErrorFormat("Houdini Engine for Unity does not support the new Substance plugin as of yet!");
 #elif UNITY_EDITOR
-			if (material != null)
-			{
-				string assetPath = HEU_AssetDatabase.GetAssetPath(material);
-				SubstanceImporter substanceImporter = AssetImporter.GetAtPath(assetPath) as SubstanceImporter;
+            if (material != null)
+            {
+                string assetPath = HEU_AssetDatabase.GetAssetPath(material);
+                SubstanceImporter substanceImporter = AssetImporter.GetAtPath(assetPath) as SubstanceImporter;
 
-				if(substanceMaterialIndex >= 0 && substanceMaterialIndex < substanceImporter.GetMaterialCount())
-				{
-					material = substanceImporter.GetMaterials()[substanceMaterialIndex];
-				}
-			}
+                if (substanceMaterialIndex >= 0 && substanceMaterialIndex < substanceImporter.GetMaterialCount())
+                {
+                    material = substanceImporter.GetMaterials()[substanceMaterialIndex];
+                }
+            }
 #endif
             if (material != null)
             {
@@ -512,7 +512,7 @@ namespace HoudiniEngineUnity
 #if UNITY_5_6_OR_NEWER
             return material.enableInstancing;
 #else
-			return true;
+            return true;
 #endif
         }
 
@@ -534,7 +534,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Loads texture at path which should be under a Resources/ folder.
+        ///     Loads texture at path which should be under a Resources/ folder.
         /// </summary>
         /// <param name="path">Path to texture, must be relative to a Resources/ folder.</param>
         /// <returns>Loaded texture or null if failed.</returns>

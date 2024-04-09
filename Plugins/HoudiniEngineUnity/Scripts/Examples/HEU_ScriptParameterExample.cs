@@ -35,7 +35,7 @@ using System.Collections.Generic;
 using HoudiniEngineUnity;
 
 /// <summary>
-/// Example to show how a HDA's parameters can be modified via script and recooked.
+///     Example to show how a HDA's parameters can be modified via script and recooked.
 /// </summary>
 public class HEU_ScriptParameterExample : MonoBehaviour
 {

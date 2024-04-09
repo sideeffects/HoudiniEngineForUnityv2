@@ -68,7 +68,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Update the unity pipeline defines for URP
+        ///     Update the unity pipeline defines for URP
         /// </summary>
         private static void UpdateDefines()
         {
@@ -95,7 +95,7 @@ namespace HoudiniEngineUnity
 
 
         /// <summary>
-        /// Returns the type of renderpipeline that is currently running
+        ///     Returns the type of renderpipeline that is currently running
         /// </summary>
         /// <returns></returns>
         public static HEU_PipelineType GetPipeline()
@@ -117,17 +117,18 @@ namespace HoudiniEngineUnity
                 else return HEU_PipelineType.Unsupported;
             }
 #elif UNITY_2017_1_OR_NEWER
-        if (GraphicsSettings.renderPipelineAsset != null) {
-            // SRP not supported before 2019
-            return HEU_PipelineType.Unsupported;
-        }
+            if (GraphicsSettings.renderPipelineAsset != null)
+            {
+                // SRP not supported before 2019
+                return HEU_PipelineType.Unsupported;
+            }
 #endif
             // no SRP
             return HEU_PipelineType.BiRP;
         }
 
         /// <summary>
-        /// Add a custom define
+        ///     Add a custom define
         /// </summary>
         /// <param name="define"></param>
         /// <param name="buildTargetGroup"></param>
@@ -142,7 +143,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Remove a custom define
+        ///     Remove a custom define
         /// </summary>
         /// <param name="_define"></param>
         /// <param name="_buildTargetGroup"></param>
@@ -164,7 +165,7 @@ namespace HoudiniEngineUnity
             var defines = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTargetGroup);
             return defines.Split(';').ToList();
 #else
-        return new List<string>();
+            return new List<string>();
 #endif
         }
 

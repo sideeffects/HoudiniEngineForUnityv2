@@ -64,23 +64,22 @@ namespace HoudiniEngineUnity
     public class HEU_InputInterfaceSpline : HEU_InputInterface
     {
 #if UNITY_EDITOR
-		/// <summary>
-		/// Registers this input inteface for Unity splines on
-		/// the callback after scripts are reloaded in Unity.
-		/// </summary>
-		[UnityEditor.Callbacks.DidReloadScripts]
-		private static void OnScriptsReloaded()
-		{
-			HEU_InputInterfaceSpline inputInterface = new HEU_InputInterfaceSpline();
-			HEU_InputUtility.RegisterInputInterface(inputInterface);
-		}
+        /// <summary>
+        /// Registers this input inteface for Unity splines on
+        /// the callback after scripts are reloaded in Unity.
+        /// </summary>
+        [UnityEditor.Callbacks.DidReloadScripts]
+        private static void OnScriptsReloaded()
+        {
+            HEU_InputInterfaceSpline inputInterface = new HEU_InputInterfaceSpline();
+            HEU_InputUtility.RegisterInputInterface(inputInterface);
+        }
 #endif
 
         private HEU_InputInterfaceSplineSettings settings;
 
         private HEU_InputInterfaceSpline() : base(priority: DEFAULT_PRIORITY)
         {
-
         }
 
         public void Initialize(HEU_InputInterfaceSplineSettings settings)
@@ -100,25 +99,26 @@ namespace HoudiniEngineUnity
         /// <param name="inputObject">The gameobject whose components will be checked</param>
         /// <returns>True if this interface supports uploading this input object's data</returns>
         public override bool IsThisInputObjectSupported(GameObject inputObject)
-		{
+        {
             if (inputObject != null)
             {
                 if (inputObject.GetComponent<SplineContainer>() != null)
                     return true;
             }
+
             return false;
         }
 
-		/// <summary>
-		/// Create the input node and upload data based on the given inputObject.
-		/// </summary>
-		/// <param name="session">Session to create the node in</param>
-		/// <param name="connectNodeID">The node to connect the input node to. Usually the SOP/merge node.</param>
-		/// <param name="inputObject">The gameobject containing the components with data for upload</param>
-		/// <param name="inputNodeID">The newly created input node's ID</param>
-		/// <returns>Returns true if sucessfully created the input node and uploaded data.</returns>
-		public override bool CreateInputNodeWithDataUpload(HEU_SessionBase session, HAPI_NodeId connectNodeID, GameObject inputObject, out HAPI_NodeId inputNodeID)
-		{
+        /// <summary>
+        /// Create the input node and upload data based on the given inputObject.
+        /// </summary>
+        /// <param name="session">Session to create the node in</param>
+        /// <param name="connectNodeID">The node to connect the input node to. Usually the SOP/merge node.</param>
+        /// <param name="inputObject">The gameobject containing the components with data for upload</param>
+        /// <param name="inputNodeID">The newly created input node's ID</param>
+        /// <returns>Returns true if sucessfully created the input node and uploaded data.</returns>
+        public override bool CreateInputNodeWithDataUpload(HEU_SessionBase session, HAPI_NodeId connectNodeID, GameObject inputObject, out HAPI_NodeId inputNodeID)
+        {
             inputNodeID = HEU_Defines.HEU_INVALID_NODE_ID;
 
             if (!HEU_HAPIUtility.IsNodeValidInHoudini(session, connectNodeID))
@@ -143,6 +143,7 @@ namespace HoudiniEngineUnity
                 HEU_Logger.LogError("Failed to create new input cruve node in Houdini session!");
                 return false;
             }
+
             inputNodeID = newNodeID;
 
             HEU_InputDataSpline inputSpline = inputSplines._inputSplines[0];
@@ -182,6 +183,7 @@ namespace HoudiniEngineUnity
             {
                 HEU_Logger.LogWarningFormat("Unable to set display flag!");
             }
+
             inputNodeID = mergeNodeId;
 
             Matrix4x4 localToWorld = inputSplines._transform.localToWorldMatrix;
@@ -204,6 +206,7 @@ namespace HoudiniEngineUnity
                         HEU_Logger.LogError("New input curve node failed to cook!");
                         return false;
                     }
+
                     return false;
                 }
 
@@ -221,7 +224,7 @@ namespace HoudiniEngineUnity
             }
 
             return true;
-		}
+        }
 
         /// <summary>
         /// Contains input geometry for a single spline.
@@ -267,6 +270,7 @@ namespace HoudiniEngineUnity
 
                 splineContainerData._inputSplines.Add(splineData);
             }
+
             splineContainerData._transform = inputObject.transform;
 
             return splineContainerData;
@@ -289,7 +293,7 @@ namespace HoudiniEngineUnity
             inputCurveInfo.reverse = false;
             inputCurveInfo.inputMethod = HAPI_InputCurveMethod.HAPI_CURVEMETHOD_BREAKPOINTS;
             inputCurveInfo.breakpointParameterization =
- HAPI_InputCurveParameterization.HAPI_CURVEPARAMETERIZATION_UNIFORM;
+                HAPI_InputCurveParameterization.HAPI_CURVEPARAMETERIZATION_UNIFORM;
             if (!session.SetInputCurveInfo(inputNodeID, 0, ref inputCurveInfo))
             {
                 HEU_Logger.LogError("Failed to initialize input curve info.");
@@ -301,7 +305,7 @@ namespace HoudiniEngineUnity
             float splineLength = inputSpline._length;
             float splineResolution = settings != null ? settings.SamplingResolution : 0.0f;
             int numRefinedSplinePoints =
- splineResolution > 0.0f ? Mathf.CeilToInt(splineLength / splineResolution) + 1 : numControlPoints;
+                splineResolution > 0.0f ? Mathf.CeilToInt(splineLength / splineResolution) + 1 : numControlPoints;
 
             float[] posArr;
             float[] rotArr;
@@ -318,7 +322,7 @@ namespace HoudiniEngineUnity
 
                     // For branching sub-splines, apply local transform on vertices to get the merged spline
                     float3 pos = localToWorld.MultiplyPoint(knot.Position);
-                    
+
                     HEU_HAPIUtility.ConvertPositionUnityToHoudini(pos, out posArr[i * 3 + 0], out posArr[i * 3 + 1], out posArr[i * 3 + 2]);
                     HEU_HAPIUtility.ConvertRotationUnityToHoudini(knot.Rotation, out rotArr[i * 4 + 0], out rotArr[i * 4 + 1], out rotArr[i * 4 + 2], out rotArr[i * 4 + 3]);
                 }
@@ -333,11 +337,11 @@ namespace HoudiniEngineUnity
                 for (int i = 0; i < numRefinedSplinePoints; i++)
                 {
                     float3 pos =
- SplineUtility.EvaluatePosition<Spline>(inputSpline._spline, currentDistance / splineLength);
+                        SplineUtility.EvaluatePosition<Spline>(inputSpline._spline, currentDistance / splineLength);
 
                     // For branching sub-splines, apply local transform on vertices to get the merged spline
                     pos = localToWorld.MultiplyPoint(pos);
-                    
+
                     HEU_HAPIUtility.ConvertPositionUnityToHoudini(pos, out posArr[i * 3 + 0], out posArr[i * 3 + 1], out posArr[i * 3 + 2]);
                     currentDistance += splineResolution;
                 }

@@ -30,10 +30,10 @@ using UnityEngine;
 namespace HoudiniEngineUnity
 {
     /// <summary>
-    /// Contains the SessionSync local state information for Unity plugin.
-    /// The HEU_SesionSyncWindow uses the data stored here.
-    /// This is stored as part of the Houdini Engine data (HEU_SessionData)
-    /// when SessionSync is active.
+    ///     Contains the SessionSync local state information for Unity plugin.
+    ///     The HEU_SesionSyncWindow uses the data stored here.
+    ///     This is stored as part of the Houdini Engine data (HEU_SessionData)
+    ///     when SessionSync is active.
     /// </summary>
     [System.Serializable]
     public class HEU_SessionSyncData

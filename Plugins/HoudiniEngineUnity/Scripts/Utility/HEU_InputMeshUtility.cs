@@ -35,7 +35,7 @@ namespace HoudiniEngineUnity
     using HAPI_PartId = System.Int32;
 
     /// <summary>
-    /// Utility class for uploading input mesh data
+    ///     Utility class for uploading input mesh data
     /// </summary>
     public static class HEU_InputMeshUtility
     {
@@ -165,8 +165,8 @@ namespace HoudiniEngineUnity
         }
 
         /// <summary>
-        /// Uploads given mesh geometry into Houdini.
-        /// Creates a new part for given geo node, and uploads vertices, indices, UVs, Normals, and Colors.
+        ///     Uploads given mesh geometry into Houdini.
+        ///     Creates a new part for given geo node, and uploads vertices, indices, UVs, Normals, and Colors.
         /// </summary>
         /// <param name="session"></param>
         /// <param name="assetNodeID"></param>

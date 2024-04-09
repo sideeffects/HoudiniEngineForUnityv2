@@ -39,8 +39,8 @@ using UnityEditor;
 namespace HoudiniEngineUnity
 {
     /// <summary>
-    /// General manager for threads created via the plugin for asynchronous work.
-    /// Works with HEU_ThreadTasks.
+    ///     General manager for threads created via the plugin for asynchronous work.
+    ///     Works with HEU_ThreadTasks.
     /// </summary>
     public class HEU_ThreadManager
     {

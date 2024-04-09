@@ -44,8 +44,8 @@ namespace HoudiniEngineUnity
     using HAPI_PartId = System.Int32;
 
     /// <summary>
-    /// Lightweight Unity geometry generator for Houdini geometry.
-    /// Given already loaded geometry buffers, creates corresponding Unity geometry.
+    ///     Lightweight Unity geometry generator for Houdini geometry.
+    ///     Given already loaded geometry buffers, creates corresponding Unity geometry.
     /// </summary>
     public class HEU_GeoSync : HEU_BaseSync
     {
