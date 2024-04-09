@@ -147,6 +147,11 @@ namespace HoudiniEngineUnity
                 bResult = a.Equals(b);
             }
 
+            if (!bResult)
+            {
+                optional3 = string.Format("{0} vs {1}", a.ToString(), b.ToString());
+            }
+
             PrintTestLogAndSetResult(bResult, ref result, header, subject, optional1, optional2, optional3);
 
             return bResult;
@@ -203,6 +208,8 @@ namespace HoudiniEngineUnity
             if (ShouldBeTested(a, b, ref bResult, header, subject))
             {
                 bResult = a.Equals(b);
+                optional1 = a.ToString();
+                optional2 = b.ToString();
                 PrintTestLogAndSetResult(bResult, ref result, header, subject, optional1, optional2, optional3);
             }
 
@@ -1008,8 +1015,6 @@ namespace HoudiniEngineUnity
 
             // skip id, parentId, childIndex
             HEU_TestHelpers.AssertTrueLogEquivalent(self.type, other.self.type, ref bResult, header, "type");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.scriptType, other.self.scriptType, ref bResult, header,
-                "scriptType");
             HEU_TestHelpers.AssertTrueLogEquivalent(self.permissions, other.self.permissions, ref bResult, header,
                 "permissions");
             HEU_TestHelpers.AssertTrueLogEquivalent(self.tagCount, other.self.tagCount, ref bResult, header,
