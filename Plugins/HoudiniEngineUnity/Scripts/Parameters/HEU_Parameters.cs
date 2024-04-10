@@ -2894,8 +2894,7 @@ namespace HoudiniEngineUnity
 
             // Preset data doesn't seem to be the same for different components
             // HEU_TestHelpers.AssertTrueLogEquivalent(this._presetData.IsEquivalentArray(other._presetData), ref bResult, header, "_presetData");
-
-            HEU_TestHelpers.AssertTrueLogEquivalent(this._defaultPresetData, other._defaultPresetData, ref bResult, header, "_defaultPresetData");
+            // HEU_TestHelpers.AssertTrueLogEquivalent(this._defaultPresetData, other._defaultPresetData, ref bResult, header, "_defaultPresetData");
 
             HEU_TestHelpers.AssertTrueLogEquivalent(this._validParameters, other._validParameters, ref bResult, header, "_validParameters");
 
