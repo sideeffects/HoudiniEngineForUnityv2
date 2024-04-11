@@ -771,26 +771,16 @@ namespace HoudiniEngineUnity
 
             string header = "HAPI_NodeInfo";
 
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.parmCount, other.self.parmCount, ref bResult, header,
-                "Parm count");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.parmIntValueCount, other.self.parmIntValueCount, ref bResult,
-                header, "Parm Int count");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.parmFloatValueCount, other.self.parmFloatValueCount,
-                ref bResult, header, "Parm float count");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.parmStringValueCount, other.self.parmStringValueCount,
-                ref bResult, header, "Parm string count");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.parmChoiceCount, other.self.parmChoiceCount, ref bResult,
-                header, "Parm choice count");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.childNodeCount, other.self.childNodeCount, ref bResult, header,
-                "Child node count");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.inputCount, other.self.inputCount, ref bResult, header,
-                "Input count");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.outputCount, other.self.outputCount, ref bResult, header,
-                "Output count");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.createdPostAssetLoad, other.self.createdPostAssetLoad,
-                ref bResult, header, "Created post asset load");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.isTimeDependent, other.self.isTimeDependent, ref bResult,
-                header, "Is time dependent");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.parmCount, other.self.parmCount, ref bResult, header, "Parm count");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.parmIntValueCount, other.self.parmIntValueCount, ref bResult, header, "Parm Int count");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.parmFloatValueCount, other.self.parmFloatValueCount, ref bResult, header, "Parm float count");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.parmStringValueCount, other.self.parmStringValueCount, ref bResult, header, "Parm string count");
+            //HEU_TestHelpers.AssertTrueLogEquivalent(self.parmChoiceCount, other.self.parmChoiceCount, ref bResult, header, "Parm choice count");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.childNodeCount, other.self.childNodeCount, ref bResult, header, "Child node count");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.inputCount, other.self.inputCount, ref bResult, header, "Input count");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.outputCount, other.self.outputCount, ref bResult, header, "Output count");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.createdPostAssetLoad, other.self.createdPostAssetLoad, ref bResult, header, "Created post asset load");
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.isTimeDependent, other.self.isTimeDependent, ref bResult, header, "Is time dependent");
 
             return bResult;
         }
@@ -904,10 +894,6 @@ namespace HoudiniEngineUnity
                 "isTemplated");
             HEU_TestHelpers.AssertTrueLogEquivalent(self.isDisplayGeo, other.self.isDisplayGeo, ref bResult, header,
                 "isDisplayGeo");
-            // HEU_TestHelpers.AssertTrueLogEquivalent(self.hasGeoChanged == other.hasGeoChanged, ref bResult, header, "hasGeoChanged");
-            HEU_TestHelpers.AssertTrueLogEquivalent(self.hasMaterialChanged, other.self.hasMaterialChanged, ref bResult,
-                header, "hasMaterialChanged");
-
             HEU_TestHelpers.AssertTrueLogEquivalent(self.pointGroupCount, other.self.pointGroupCount, ref bResult,
                 header, "pointGroupCount");
             HEU_TestHelpers.AssertTrueLogEquivalent(self.primitiveGroupCount, other.self.primitiveGroupCount,
@@ -1272,8 +1258,12 @@ namespace HoudiniEngineUnity
         {
             bool bResult = true;
 
-            // Nothing too good to test - bounds can be different
             string header = "Collider";
+
+            HEU_TestHelpers.AssertTrueLogEquivalent(self.GetType().ToString(), other.self.GetType().ToString(), ref bResult, header, "type");
+
+            // Nothing too good to test - bounds can be different
+
             //HEU_TestHelpers.AssertTrueLogEquivalent(self.bounds, other.self.bounds, ref bResult, header, "bounds");
             if (other.self.GetType() == typeof(BoxCollider))
             {

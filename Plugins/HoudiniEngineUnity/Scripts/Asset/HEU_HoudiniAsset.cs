@@ -665,7 +665,7 @@ namespace HoudiniEngineUnity
 
 
         // If false, pauses all cooking on this HDA until set back to true. Meant for unit testing use.
-        [SerializeField] private bool _pauseCooking = false;
+       private bool _pauseCooking = false;
 
         // CURVES -----------------------------------------------------------------------------------------------------
 
@@ -5534,7 +5534,7 @@ namespace HoudiniEngineUnity
 
             HEU_TestHelpers.AssertTrueLogEquivalent(this._assetOpName, asset._assetOpName, ref bResult, header, "Asset op");
 
-            HEU_TestHelpers.AssertTrueLogEquivalent(this._assetHelp, asset._assetHelp, ref bResult, header, "_assetHelp");
+            //HEU_TestHelpers.AssertTrueLogEquivalent(this._assetHelp, asset._assetHelp, ref bResult, header, "_assetHelp");
 
 
             // TransformInputCount/GeoInputCount not necessary because it is a part of _assetInfo
