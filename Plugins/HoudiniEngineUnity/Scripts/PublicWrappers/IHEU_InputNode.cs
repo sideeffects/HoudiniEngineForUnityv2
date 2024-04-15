@@ -251,6 +251,6 @@ namespace HoudiniEngineUnity
         /// Populates the specified inputPreset with this HEU_InputNode's data
         /// </summary>
         /// <param name="inputPreset">The input preset</param>
-        void PopulateInputPreset(HEU_InputPreset inputPreset);
+        void PopulateInputPreset(HEU_InputPreset inputPreset, bool sceneRelativeGameObjects);
     }
 } // HoudiniEngineUnity

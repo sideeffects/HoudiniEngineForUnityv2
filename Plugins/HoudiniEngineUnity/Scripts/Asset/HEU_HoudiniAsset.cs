@@ -1642,7 +1642,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <inheritdoc />
-        public HEU_AssetPreset GetAssetPreset()
+        public HEU_AssetPreset GetAssetPreset(bool sceneRelativeGameObjects)
         {
             if (string.IsNullOrEmpty(_assetName))
             {
@@ -1684,7 +1684,7 @@ namespace HoudiniEngineUnity
                 if (inputNode != null)
                 {
                     HEU_InputPreset inputPreset = new HEU_InputPreset();
-                    inputNode.PopulateInputPreset(inputPreset);
+                    inputNode.PopulateInputPreset(inputPreset, sceneRelativeGameObjects);
                     assetPreset.inputPresets.Add(inputPreset);
                 }
             }
@@ -2191,7 +2191,7 @@ namespace HoudiniEngineUnity
             }
 
             // Save parameter preset
-            _savedAssetPreset = GetAssetPreset();
+            _savedAssetPreset = GetAssetPreset(false);
 
             if (_assetID != HEU_Defines.HEU_INVALID_NODE_ID && !IsAssetValidInHoudini(session))
             {

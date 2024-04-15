@@ -489,7 +489,7 @@ namespace HoudiniEngineUnity
         /// and their presets.
         /// </summary>
         /// <returns>A new HEU_AssetPreset populated with parameter preset and curve presets</returns>
-        HEU_AssetPreset GetAssetPreset();
+        HEU_AssetPreset GetAssetPreset(bool sceneRelativeObjects);
 
         /// <summary>
         /// Gets or creates a PDG asset link for this asset, if it doesn't exist.
