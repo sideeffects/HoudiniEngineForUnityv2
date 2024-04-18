@@ -454,7 +454,7 @@ namespace HoudiniEngineUnity
 
         [SerializeField] private string _assetHelp;
 
-        [SerializeField] private HAPI_NodeId _assetID = HEU_Defines.HEU_INVALID_NODE_ID;
+        [System.NonSerialized] private HAPI_NodeId _assetID = HEU_Defines.HEU_INVALID_NODE_ID;
 
         [SerializeField] private string _assetPath;
 
@@ -1921,6 +1921,16 @@ namespace HoudiniEngineUnity
                 HEU_Logger.LogWarning("Undoing a deleted HDA may also remove its parameter undo stack.");
                 RequestReload(false);
             }
+
+            // If there are curves they need to be cooked.
+            if (Curves != null)
+            {
+                foreach (var curve in Curves)
+                {
+                    curve.Rebuild();
+                }
+            }
+
 #endif
         }
 
@@ -2782,7 +2792,7 @@ namespace HoudiniEngineUnity
                 }
             }
 
-            if (!bCookingSessionSync)
+            if (!bCookingSessionSync || true)
             {
                 // Only upload the following if we are not cooking as a result of SessionSync
                 // i.e. Houdini already cook so no need to upload our own
@@ -2798,10 +2808,11 @@ namespace HoudiniEngineUnity
                     }
                     else
                     {
-                        // Otherwise curves should upload their parameters
-                        UploadCurvesParameters(session, bCheckParamsChanged);
                     }
                 }
+
+                // Otherwise curves should upload their parameters
+                UploadCurvesParameters(session, bCheckParamsChanged);
 
                 // Upload attributes. For edit nodes, this will be a cumulative update. So if the source geo has
                 // changed earlier in the graph, it will most likely be ignored here since the edit node has its own
