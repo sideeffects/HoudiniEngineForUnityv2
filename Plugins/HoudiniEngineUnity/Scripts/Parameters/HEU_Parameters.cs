@@ -83,14 +83,12 @@ namespace HoudiniEngineUnity
 
         //	DATA ------------------------------------------------------------------------------------------------------
 
-        [SerializeField] private HAPI_NodeId _nodeID;
+        [System.NonSerialized] private HAPI_NodeId _nodeID = HEU_Defines.HEU_INVALID_NODE_ID;
 
         [SerializeField] internal string _uiLabel = "ASSET PARAMETERS";
 
         [SerializeField] private int[] _paramInts;
-
         [SerializeField] private float[] _paramFloats;
-
         [SerializeField] private string[] _paramStrings;
 
         [SerializeField] private HAPI_ParmChoiceInfo[] _paramChoices;

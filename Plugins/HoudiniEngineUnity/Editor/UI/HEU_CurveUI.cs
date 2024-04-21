@@ -62,17 +62,12 @@ namespace HoudiniEngineUnity
         private const float _sceneUIBorderPadding = 2f;
 
         private const string _curveEditorLabel = "HOUDINI ENGINE CURVE EDITOR";
-
         private const string _infoHeaderLabel = "CURVE EDITOR INFO";
-
         private const string _curveNewPointModeLabel = "New Point Mode";
-
         private const string _infoLabel = "Press F1 to show or hide Info Panel.";
-
         private const string _curveViewHelp =
             "You can add and edit curve points similar to the Houdini Curve tool."
             + "\nSelect ADD or EDIT mode or switch to them using Space.";
-
         private const string _curveViewHelp2 =
             "You can add and edit curve points similar to the Houdini Curve tool."
             + "\nSelect ADD or EDIT mode or switch to them using F2.";
@@ -96,13 +91,9 @@ namespace HoudiniEngineUnity
         // CACHE ------------------------------------------------------------------------------------------------------
 
         private Camera _currentCamera;
-
         private Texture2D _lineTexture;
-
         private Texture2D _boxTexture;
-
         private Rect _curveEditorUIRect;
-
         private HEU_Curve.Interaction _interactionMode;
 
         // Map of selected points for each curve
@@ -894,16 +885,9 @@ namespace HoudiniEngineUnity
             // For multi-point selection, calculates bounds and centre point
             Bounds bounds = new Bounds();
             int numSelectedPoints = 0;
-
             bool bInteractionOcurred = false;
-
             bool isDraggingPoints = false;
             bool wasDraggingPoints = false;
-
-            bool cookWhileDragging = false;
-
-            bool disableCurveScaleRot = false;
-
 
             // Draw the curve points
             EditModeDrawCurvePoints(currentEvent, eventType, ref numSelectedPoints, ref bounds,
@@ -916,7 +900,7 @@ namespace HoudiniEngineUnity
                 // Drag selected points
                 Vector3 handleCenter = bounds.center;
                 isDraggingPoints = (EditorGUIUtility.hotControl != 0);
-                disableCurveScaleRot = asset.CurveDisableScaleRotation;
+                bool disableCurveScaleRot = asset.CurveDisableScaleRotation;
 
 
                 // Use rotation for every handle type
@@ -933,8 +917,6 @@ namespace HoudiniEngineUnity
                         if (selectedPoints.Count > 0)
                         {
                             SerializedObject serializedCurve = GetOrCreateSerializedCurve(curvePoints.Key);
-                            SerializedProperty curveNodesProperty = serializedCurve.FindProperty("_curveNodeData");
-
                             HEU_Curve curve = serializedCurve.targetObject as HEU_Curve;
                             handleRotation = Quaternion.Euler(curve.CurveNodeData[selectedPoints[0]].rotation);
                             handleScale = curve.CurveNodeData[selectedPoints[0]].scale;
@@ -1093,7 +1075,7 @@ namespace HoudiniEngineUnity
                     HEU_Curve.CurveEditState editState = (HEU_Curve.CurveEditState)stateProperty.intValue;
 
                     // On mouse release, transition editing curve to generation state
-                    if (!isDraggingPoints || (isDraggingPoints && cookWhileDragging))
+                    if (!isDraggingPoints)
                     {
                         if (editState == HEU_Curve.CurveEditState.EDITING)
                         {

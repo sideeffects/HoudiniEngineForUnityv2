@@ -55,9 +55,7 @@ namespace HoudiniEngineUnity
     public class CurveNodeData : IEquivable<CurveNodeData>
     {
         [SerializeField] public Vector3 position = Vector3.zero;
-
         [SerializeField] public Vector3 rotation = Vector3.zero;
-
         [SerializeField] public Vector3 scale = Vector3.one;
 
         // The index of the curve that this node belongs to
@@ -211,23 +209,16 @@ namespace HoudiniEngineUnity
 
         // DATA -------------------------------------------------------------------------------------------------------
 
-        [SerializeField] private HAPI_NodeId _geoID;
-
-
-        [SerializeField] private HAPI_NodeId _partID;
+        [System.NonSerialized] private HAPI_NodeId _geoID = HEU_Defines.HEU_INVALID_NODE_ID;
+        [System.NonSerialized] private HAPI_NodeId _partID;
 
 
         [SerializeField] private List<CurveNodeData> _curveNodeData = new List<CurveNodeData>();
 
 
         [SerializeField] private Vector3[] _vertices;
-
         [SerializeField] private bool _isEditable;
-
-
         [SerializeField] private HEU_Parameters _parameters;
-
-
         [SerializeField] private bool _bUploadParameterPreset;
 
         internal void SetUploadParameterPreset(bool bValue)
@@ -236,10 +227,7 @@ namespace HoudiniEngineUnity
         }
 
         [SerializeField] private string _curveName;
-
-
         [SerializeField] private GameObject _targetGameObject;
-
         [SerializeField] private bool _isGeoCurve;
 
 
@@ -282,9 +270,7 @@ namespace HoudiniEngineUnity
         // Variables dealing with part curves
 
         [SerializeField] private bool _bIsPartCurve = true;
-
         [SerializeField] private bool _cachedCurveInfoValid = false;
-
         [SerializeField] private int[] _cachedCurveCounts = null;
 
 
@@ -323,6 +309,16 @@ namespace HoudiniEngineUnity
             if (_parentAsset != null)
             {
                 _parentAsset.RequestCook();
+            }
+        }
+
+        public void Rebuild()
+        {
+            SetEditState(CurveEditState.INVALID);
+
+            if (_parentAsset != null)
+            {
+                _parentAsset.RequestReload();
             }
         }
 
