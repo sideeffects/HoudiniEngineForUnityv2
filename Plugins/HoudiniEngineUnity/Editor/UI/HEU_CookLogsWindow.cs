@@ -7,75 +7,74 @@ namespace HoudiniEngineUnity
 {
     public class HEU_CookLogsWindow : EditorWindow
     {
+        private HEU_OutputLogUIComponent _outputLogUIComponent = null;
 
-	private HEU_OutputLogUIComponent _outputLogUIComponent = null;
+        private GUIContent _titleContent = new GUIContent("Cook Log", "Cook logs displayed here");
 
-	private GUIContent _titleContent = new GUIContent("Cook Log", "Cook logs displayed here");
+        private const float _bottomPadding = 75;
 
-	private const float _bottomPadding = 75;
-    
-	[MenuItem("HoudiniEngine/Cook Progress Logs")]
-	static void Init()
-	{
-	    bool bUtility = false;
-	    bool bFocus = false;
-	    string title = "Houdini Cook Logs";
+        [MenuItem("HoudiniEngine/Cook Progress Logs")]
+        private static void Init()
+        {
+            bool bUtility = false;
+            bool bFocus = false;
+            string title = "Houdini Cook Logs";
 
-	    HEU_CookLogsWindow window = EditorWindow.GetWindow<HEU_CookLogsWindow>(bUtility, title, bFocus);
-	    InitSize(window);
-	}
+            HEU_CookLogsWindow window = EditorWindow.GetWindow<HEU_CookLogsWindow>(bUtility, title, bFocus);
+            InitSize(window);
+        }
 
-	public static void InitSize(HEU_CookLogsWindow window)
-	{
-	     window.minSize = new Vector2(300, 150);
-	}
-	
-	private void SetupUI()
-	{
-	    if (_outputLogUIComponent == null)
-	    {
-		_outputLogUIComponent = new HEU_OutputLogUIComponent(_titleContent, OnClearLog);
-	    }
+        public static void InitSize(HEU_CookLogsWindow window)
+        {
+            window.minSize = new Vector2(300, 150);
+        }
 
-	    _outputLogUIComponent.SetupUI();
-	}
-	
-	void OnGUI()
-	{
-	    HEU_SessionBase sessionBase = HEU_SessionManager.GetDefaultSession();
+        private void SetupUI()
+        {
+            if (_outputLogUIComponent == null)
+            {
+                _outputLogUIComponent = new HEU_OutputLogUIComponent(_titleContent, OnClearLog);
+            }
 
-	    if (sessionBase == null)
-	    {
-		return;
-	    }
+            _outputLogUIComponent.SetupUI();
+        }
 
-	    SetupUI();
+        private void OnGUI()
+        {
+            HEU_SessionBase sessionBase = HEU_SessionManager.GetDefaultSession();
 
-	    if (_outputLogUIComponent != null)
-	    {
-		float setHeight = this.position.size.y - _bottomPadding;
-		_outputLogUIComponent.SetHeight(setHeight);
-		_outputLogUIComponent.OnGUI(HEU_CookLogs.Instance.GetCookLogString());
-	    }
+            if (sessionBase == null)
+            {
+                return;
+            }
+
+            SetupUI();
+
+            if (_outputLogUIComponent != null)
+            {
+                float setHeight = this.position.size.y - _bottomPadding;
+                _outputLogUIComponent.SetHeight(setHeight);
+                _outputLogUIComponent.OnGUI(HEU_CookLogs.Instance.GetCookLogString());
+            }
 
 
-	    if (GUILayout.Button("Delete Log File"))
-	    {
-		HEU_CookLogs.Instance.DeleteCookingFile();
-	    }
-	}
+            if (GUILayout.Button("Delete Log File"))
+            {
+                HEU_CookLogs.Instance.DeleteCookingFile();
+            }
+        }
 
-	private void OnClearLog()
-	{
-	    HEU_CookLogs.Instance.ClearCookLog();
-	}
+        private void OnClearLog()
+        {
+            HEU_CookLogs.Instance.ClearCookLog();
+        }
 
-	void OnInspectorUpdate()
-	{
-	    if (HEU_PluginSettings.WriteCookLogs)
-	    {
-	        Repaint();
-	    }
-	}
+        private void OnInspectorUpdate()
+        {
+            if (HEU_PluginSettings.WriteCookLogs)
+            {
+                Repaint();
+            }
+        }
     }
 } // HoudiniEngineUnity

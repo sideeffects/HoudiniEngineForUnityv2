@@ -745,6 +745,7 @@ namespace HoudiniEngineUnity
 			case "Core": hexecutable = "houdinicore"; break;
 			case "FX": hexecutable = "houdini"; break;
 			case "Indie": hexecutable = "hindie"; break;
+                        case "Education": hexecutable = "heducation"; break;
 			case "Indie Steam Edition": hexecutable = "hindie.steam"; break;
 			default: break;
 		    }

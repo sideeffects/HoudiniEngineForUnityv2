@@ -1,28 +1,28 @@
 ﻿/*
-* Copyright (c) <2023> Side Effects Software Inc.
-* All rights reserved.
-*
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-*
-* 1. Redistributions of source code must retain the above copyright notice,
-*    this list of conditions and the following disclaimer.
-*
-* 2. The name of Side Effects Software may not be used to endorse or
-*    promote products derived from this software without specific prior
-*    written permission.
-*
-* THIS SOFTWARE IS PROVIDED BY SIDE EFFECTS SOFTWARE "AS IS" AND ANY EXPRESS
-* OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
-* OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN
-* NO EVENT SHALL SIDE EFFECTS SOFTWARE BE LIABLE FOR ANY DIRECT, INDIRECT,
-* INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-* LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
-* OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
-* LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-* NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
-* EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ * Copyright (c) <2023> Side Effects Software Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ *    this list of conditions and the following disclaimer.
+ *
+ * 2. The name of Side Effects Software may not be used to endorse or
+ *    promote products derived from this software without specific prior
+ *    written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY SIDE EFFECTS SOFTWARE "AS IS" AND ANY EXPRESS
+ * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN
+ * NO EVENT SHALL SIDE EFFECTS SOFTWARE BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+ * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 
 
 using System.Collections.Generic;
@@ -30,7 +30,6 @@ using System.Linq;
 using UnityEngine;
 
 #if UNITY_SPLINES_INSTALLED
-
 using UnityEngine.Splines;
 using Unity.Mathematics;
 
@@ -46,10 +45,13 @@ namespace HoudiniEngineUnity
     [System.Serializable]
     public class HEU_InputInterfaceSplineSettings
     {
-        public float SamplingResolution { get { return _samplingResolution; } set { _samplingResolution = value; } }
+        public float SamplingResolution
+        {
+            get => _samplingResolution;
+            set => _samplingResolution = value;
+        }
 
-        [SerializeField]
-        private float _samplingResolution = 25.0f;
+        [SerializeField] private float _samplingResolution = 25.0f;
     };
 
 #if UNITY_SPLINES_INSTALLED
@@ -286,7 +288,8 @@ namespace HoudiniEngineUnity
             inputCurveInfo.closed = inputSpline._closed;
             inputCurveInfo.reverse = false;
             inputCurveInfo.inputMethod = HAPI_InputCurveMethod.HAPI_CURVEMETHOD_BREAKPOINTS;
-            inputCurveInfo.breakpointParameterization = HAPI_InputCurveParameterization.HAPI_CURVEPARAMETERIZATION_UNIFORM;
+            inputCurveInfo.breakpointParameterization =
+ HAPI_InputCurveParameterization.HAPI_CURVEPARAMETERIZATION_UNIFORM;
             if (!session.SetInputCurveInfo(inputNodeID, 0, ref inputCurveInfo))
             {
                 HEU_Logger.LogError("Failed to initialize input curve info.");
@@ -297,7 +300,8 @@ namespace HoudiniEngineUnity
             int numControlPoints = inputSpline._knots.Count();
             float splineLength = inputSpline._length;
             float splineResolution = settings != null ? settings.SamplingResolution : 0.0f;
-            int numRefinedSplinePoints = splineResolution > 0.0f ? Mathf.CeilToInt(splineLength / splineResolution) + 1 : numControlPoints;
+            int numRefinedSplinePoints =
+ splineResolution > 0.0f ? Mathf.CeilToInt(splineLength / splineResolution) + 1 : numControlPoints;
 
             float[] posArr;
             float[] rotArr;
@@ -328,7 +332,8 @@ namespace HoudiniEngineUnity
                 float currentDistance = 0.0f;
                 for (int i = 0; i < numRefinedSplinePoints; i++)
                 {
-                    float3 pos = SplineUtility.EvaluatePosition<Spline>(inputSpline._spline, currentDistance / splineLength);
+                    float3 pos =
+ SplineUtility.EvaluatePosition<Spline>(inputSpline._spline, currentDistance / splineLength);
 
                     // For branching sub-splines, apply local transform on vertices to get the merged spline
                     pos = localToWorld.MultiplyPoint(pos);
@@ -365,5 +370,4 @@ namespace HoudiniEngineUnity
         }
     }
 #endif
-
-}   // HoudiniEngineUnity
+} // HoudiniEngineUnity
