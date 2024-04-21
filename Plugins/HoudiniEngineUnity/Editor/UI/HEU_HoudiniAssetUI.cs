@@ -1145,11 +1145,6 @@ namespace HoudiniEngineUnity
                             }
                         }
 
-                        SerializedProperty curveCookOnDragProperty =
-                            HEU_EditorUtility.GetSerializedProperty(assetObject, "_curveCookOnDrag");
-                        curveCookOnDragProperty.boolValue = EditorGUILayout.Toggle(_cookCurveOnDragContent,
-                            curveCookOnDragProperty.boolValue);
-
                         SerializedProperty curveFrameSelectedNodesProperty =
                             HEU_EditorUtility.GetSerializedProperty(assetObject, "_curveFrameSelectedNodes");
                         curveFrameSelectedNodesProperty.boolValue =

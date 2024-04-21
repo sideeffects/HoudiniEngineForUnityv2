@@ -708,14 +708,6 @@ namespace HoudiniEngineUnity
 
         [SerializeField] private bool _curveDisableScaleRotation = true;
 
-        [SerializeField] private bool _curveCookOnDrag = true;
-
-        internal bool CurveCookOnDrag
-        {
-            get { return _curveCookOnDrag; }
-            set { _curveCookOnDrag = value; }
-        }
-
         [SerializeField] private bool _curveFrameSelectedNodes = true;
 
         [SerializeField] private float _curveFrameSelectedNodeDistance = 20f;
@@ -5186,7 +5178,6 @@ namespace HoudiniEngineUnity
             newAsset._curveDrawColliders = new List<Collider>(this._curveDrawColliders);
             newAsset._curveDrawLayerMask = this._curveDrawLayerMask;
             newAsset._curveDisableScaleRotation = this._curveDisableScaleRotation;
-            newAsset._curveCookOnDrag = this._curveCookOnDrag;
 
             // Upload parameter preset
             newAsset.UploadParameterPresetToHoudini(newAsset.GetAssetSession(false));
@@ -5640,7 +5631,6 @@ namespace HoudiniEngineUnity
                 "Curve project direction");
             HEU_TestHelpers.AssertTrueLogEquivalent(this._curveDisableScaleRotation, asset.CurveDisableScaleRotation, ref bResult, header,
                 "Curve disable scale rotation");
-            HEU_TestHelpers.AssertTrueLogEquivalent(this._curveCookOnDrag, asset._curveCookOnDrag, ref bResult, header, "Curve cook on drag");
             HEU_TestHelpers.AssertTrueLogEquivalent(this._curveFrameSelectedNodes, asset._curveFrameSelectedNodes, ref bResult, header,
                 "Curve Frame selected nodes");
             HEU_TestHelpers.AssertTrueLogEquivalent(this._curveFrameSelectedNodeDistance, asset._curveFrameSelectedNodeDistance, ref bResult, header,
