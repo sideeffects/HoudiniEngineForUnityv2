@@ -642,7 +642,7 @@ namespace HoudiniEngineUnity
         }
 
         /// <inheritdoc />
-        public void PopulateInputPreset(HEU_InputPreset inputPreset)
+        public void PopulateInputPreset(HEU_InputPreset inputPreset, bool sceneRelativeGameObjects)
         {
             inputPreset._inputObjectType = _inputObjectType;
 
@@ -661,14 +661,26 @@ namespace HoudiniEngineUnity
 
                 if (inputObject._gameObject != null)
                 {
-                    inputObjectPreset._gameObjectName = inputObject._gameObject.name;
-
-                    // Tag whether scene or project input object
                     inputObjectPreset._isSceneObject = !HEU_GeneralUtility.IsGameObjectInProject(inputObject._gameObject);
                     if (!inputObjectPreset._isSceneObject)
                     {
                         // For inputs in project, use the project path as name
                         inputObjectPreset._gameObjectName = HEU_AssetDatabase.GetAssetOrScenePath(inputObject._gameObject);
+                    }
+                    else
+                    {
+                        if (sceneRelativeGameObjects)
+                        {
+                            // If scene relative (used for presets) store the name of the object so it works in any scene.
+                            inputObjectPreset._gameObjectName = inputObject._gameObject.name;
+                            inputObjectPreset._gameObject = null;
+                        }
+                        else
+                        {
+                            // If not scene relative, store the game object. This is used for rebuilding.
+                            inputObjectPreset._gameObjectName = "";
+                            inputObjectPreset._gameObject = inputObject._gameObject;
+                        }
                     }
                 }
                 else
@@ -1369,9 +1381,12 @@ namespace HoudiniEngineUnity
                 {
                     bSet = false;
 
+                    // Fetch the gameObject. This will with be the name of an object in the scene, _gameObjectName,
+                    // used for presets, or an explicit gameObject, _gameObject, used during rebuilds.
+
+                    GameObject inputGO = null;
                     if (!string.IsNullOrEmpty(inputPreset._inputObjectPresets[i]._gameObjectName))
                     {
-                        GameObject inputGO = null;
                         if (inputPreset._inputObjectPresets[i]._isSceneObject)
                         {
                             inputGO = HEU_GeneralUtility.GetGameObjectByNameInScene(inputPreset._inputObjectPresets[i]._gameObjectName);
@@ -1387,22 +1402,25 @@ namespace HoudiniEngineUnity
                                 HEU_Logger.LogErrorFormat("Unable to find input at {0}", inputPreset._inputObjectPresets[i]._gameObjectName);
                             }
                         }
+                    } 
+                    else if (inputPreset._inputObjectPresets[i]._gameObject != null)
+                    {
+                        inputGO = inputPreset._inputObjectPresets[i]._gameObject; 
+                    }
 
-                        if (inputGO != null)
-                        {
-                            HEU_InputObjectInfo inputObject = InternalAddInputObjectAtEnd(inputGO);
-                            bSet = true;
-
-                            inputObject._useTransformOffset = inputPreset._inputObjectPresets[i]._useTransformOffset;
-                            inputObject._translateOffset = inputPreset._inputObjectPresets[i]._translateOffset;
-                            inputObject._rotateOffset = inputPreset._inputObjectPresets[i]._rotateOffset;
-                            inputObject._scaleOffset = inputPreset._inputObjectPresets[i]._scaleOffset;
-                        }
-                        else
-                        {
-                            HEU_Logger.LogWarningFormat("Gameobject with name {0} not found. Unable to set input object.",
-                                inputPreset._inputAssetName);
-                        }
+                    if (inputGO != null)
+                    {
+                        HEU_InputObjectInfo inputObject = InternalAddInputObjectAtEnd(inputGO);
+                        bSet = true;
+                        inputObject._useTransformOffset = inputPreset._inputObjectPresets[i]._useTransformOffset;
+                        inputObject._translateOffset = inputPreset._inputObjectPresets[i]._translateOffset;
+                        inputObject._rotateOffset = inputPreset._inputObjectPresets[i]._rotateOffset;
+                        inputObject._scaleOffset = inputPreset._inputObjectPresets[i]._scaleOffset;
+                    }
+                    else
+                    {
+                        HEU_Logger.LogWarningFormat("Gameobject with name {0} not found. Unable to set input object.",
+                            inputPreset._inputAssetName);
                     }
 
                     if (!bSet)

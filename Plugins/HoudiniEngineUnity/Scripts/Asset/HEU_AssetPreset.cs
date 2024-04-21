@@ -118,6 +118,9 @@ namespace HoudiniEngineUnity
         public string _gameObjectName;
         public bool _isSceneObject;
 
+        // When rebuilding an HDA we need to store the gameObject, but not serialize it for presets.
+        [System.NonSerialized]  public GameObject _gameObject;
+
         public bool _useTransformOffset = false;
 
         public Vector3 _translateOffset = Vector3.zero;
@@ -203,7 +206,7 @@ namespace HoudiniEngineUnity
         public static void SaveAssetPresetToFile(HEU_HoudiniAsset asset, string filePath)
         {
             // This should return an object filled with preset data, and which we can serialize directly
-            HEU_AssetPreset assetPreset = asset.GetAssetPreset();
+            HEU_AssetPreset assetPreset = asset.GetAssetPreset(true);
 
             if (assetPreset != null)
             {
