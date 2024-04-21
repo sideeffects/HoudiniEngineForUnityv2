@@ -430,7 +430,7 @@ namespace HoudiniEngineUnity
                     foreach (HEU_Curve curve in _curves)
                     {
                         // Draw the cooked curve using its vertices
-                        DrawCurveUsingVertices(curve, _unselectedCurveColor);
+                        DrawCurveUsingPoints(curve, _unselectedCurveColor);
 
                         DrawPointCaps(curve, _viewPointColor);
                     }
@@ -579,7 +579,7 @@ namespace HoudiniEngineUnity
             foreach (HEU_Curve curve in _curves)
             {
                 // Draw the cooked curve using its vertices
-                DrawCurveUsingVertices(curve, _selectedCurveColor);
+                DrawCurveUsingPoints(curve, _selectedCurveColor);
 
                 DrawPointCaps(curve, _addModeDefaultPointColor);
 
@@ -1227,7 +1227,7 @@ namespace HoudiniEngineUnity
                 if (eventType == EventType.Repaint)
                 {
                     // Draw the cooked curve using its vertices
-                    DrawCurveUsingVertices(curve, _selectedCurveColor);
+                    DrawCurveUsingPoints(curve, _selectedCurveColor);
                 }
 
                 // During dragging, we draw the points in the drag logic later
@@ -1841,7 +1841,7 @@ namespace HoudiniEngineUnity
             foreach (HEU_Curve curve in _curves)
             {
                 // Draw the cooked curve using its vertices
-                DrawCurveUsingVertices(curve, _unselectedCurveColor);
+                DrawCurveUsingPoints(curve, _unselectedCurveColor);
 
                 DrawPointCaps(curve, _viewPointColor);
             }
