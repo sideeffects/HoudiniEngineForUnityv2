@@ -60,6 +60,7 @@ namespace HoudiniEngineUnity
     using HAPI_NodeFlagsBits = System.Int32;
 
     [StructLayout(LayoutKind.Sequential)]
+    [Serializable]
     public partial struct HAPI_Transform          //A Transform with Quaternion rotation
     {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = HEU_HAPIConstants.HAPI_POSITION_VECTOR_SIZE, ArraySubType = UnmanagedType.R4)]
