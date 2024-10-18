@@ -944,5 +944,16 @@ namespace HoudiniEngineUnity
             }
             set => HEU_PluginStorage.Instance.Set("HAPI_CookOnMouseUp", value);
         }
+
+        public static bool EditableNodesToolsEnabled
+        {
+            get
+            {
+                bool enabled = false;
+                HEU_PluginStorage.Instance.Get("HAPI_EditableNodesToolsEnabled", out enabled, enabled);
+                return enabled;
+            }
+            set => HEU_PluginStorage.Instance.Set("HAPI_EditableNodesToolsEnabled", value);
+        }
     }
 } // HoudiniEngineUnity
